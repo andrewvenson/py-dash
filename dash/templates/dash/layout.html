@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyVid</title>
+    <link rel="stylesheet" href="{{url_for('dash_bp.static', filename='dash.css')}}">
+</head>
+<body>
+    {% include 'dash/nav.html' %}
+
+    {% block content %}{% endblock content %}
+
+    {% include 'dash/footer.html' %}
+</body>
+</html>
