@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template, url_for, current_app
+from .models import Data
+from .. import db
 
 dash_bp = Blueprint('dash_bp', __name__,
     template_folder='templates',
