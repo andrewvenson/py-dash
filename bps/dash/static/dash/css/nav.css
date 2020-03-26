@@ -1,21 +1,30 @@
 nav{
     height: 50px;
     background-color: #242424;
+    padding-left:10px !important;
+    box-shadow: 4px 6px 12px rgb(14, 14, 14);
 }
 
 
-.nav-item a{
+.nv-link{
     color:#af0404 !important;
     text-decoration:none;
 }
 
-.nav-item a:hover{
-    color:red !important;
+.nv-link:hover{
+    color:#e95656 !important;
     text-decoration:none;
 }
 
-.navbar-brand{
-    color:#af0404;
+.nav-logo{
+    color:#af0404 !important;
     font-weight: bold;
-    font-family: c
+    font-family: monospace;
+    text-decoration: none !important;
 }
+
+.nav a{
+    margin-top:10px;
+    margin-right:10px;
+}
+

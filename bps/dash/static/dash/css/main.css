@@ -10,8 +10,4 @@ html{
     height:100%;
 }
 
-@media only screen and (max-width: 990px) {
-    .side-nav{
-        display:none;
-    }
-}
+

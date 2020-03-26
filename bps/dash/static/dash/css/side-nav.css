@@ -13,3 +13,10 @@
     padding:10px;
     border-radius:10px;
 }
+
+@media only screen and (max-width: 800px) {
+    .side-nav{
+        margin-bottom:10px;
+        padding-bottom:10px;
+    }
+}
