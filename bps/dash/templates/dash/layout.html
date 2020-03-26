@@ -9,10 +9,19 @@
     {% include 'dash/nav.html' %}
 
     
-    {% block content %}{% endblock content %}
-    
 
-    {% include 'dash/footer.html' %}
+    <div class='row' style='padding:0px;margin:0px;height:100% !important;'>
+        <div class="col-2 side-nav">
+            <div>
+                {% include 'dash/side-nav.html' %}
+            </div>
+        </div>
+
+        <div class="col-10 dash">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+    
 
     {% include 'dash/scripts.html' %}
 </body>

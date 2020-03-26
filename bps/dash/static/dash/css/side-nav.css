@@ -1,0 +1,15 @@
+.side-nav{
+    padding-top:20px;
+    padding-bottom:30px;
+    margin-bottom:30px;
+    
+}
+
+.side-nav div{
+    height:100% !important;
+    /* width: 250px; */
+    background-color: #242424;
+    margin:0px !important;
+    padding:10px;
+    border-radius:10px;
+}

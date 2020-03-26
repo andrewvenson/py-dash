@@ -1,63 +1,32 @@
-nav{
-    height: 50px;
-    background-color: #3B4BA4;
-}
-
-body{
-    background-color:whitesmoke;
-    min-height:100vh;
-    height:100%;
-    overflow:hidden;
-    font-family: 'Roboto Mono', monospace !important;
-}
-
-
-.nav-item a{
-    color:whitesmoke !important;
-    text-decoration:none;
-}
-
-.nav-item a:hover{
-    color:#222222 !important;
-    text-decoration:none;
-}
-
-.navbar-brand{
-    color:whitesmoke;
-}
-
-.footer{
-    position:fixed;
-    bottom:0; 
-    width:100%;
-    background-color: #3B4BA4;
-    height: 200px;
-    color:whitesmoke;
-}
-
-.side-nav{
-    height:100% !important;
-    width: 250px;
-    background-color: #182468;
-    margin:0px !important;
-    padding:10px;
-    float:left;
-}
-
-html{
-    height:100%;
-}
-
 .dash{
+    overflow-y:scroll !important;
+    height:100%;
+    padding-bottom:20px !important;
     padding:10px;
-    float:left;
-    margin-left:25px;
 }
 
 
-@media only screen and (max-width: 990px) {
-    .side-nav{
-        display:none;
-    }
+
+.widget div{
+    background-color: #232323;
+    height: 300px;
+    border-radius:10px;
+    box-shadow: 3px 4px 8px black;
+    padding: 10px;
 }
+
+.widget div:hover{
+    background-color: #1b1b1b;
+    border-radius:15px;
+    box-shadow: 5px 8px 16px black;
+}
+
+.widget div p{
+    color:#af0404;
+}
+
+.widget{
+    padding:10px !important;
+}
+
 

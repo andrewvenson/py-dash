@@ -1,0 +1,17 @@
+body{
+    background-color:#191919 !important;
+    min-height:100vh;
+    height:100%;
+    overflow:hidden;
+    font-family: monospace !important;
+}
+
+html{
+    height:100%;
+}
+
+@media only screen and (max-width: 990px) {
+    .side-nav{
+        display:none;
+    }
+}
