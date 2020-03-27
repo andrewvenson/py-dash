@@ -25,6 +25,7 @@
     overflow-y:scroll;
     height:750px;
     scrollbar-width:none;
+    padding: 0px 5px 0px 5px;
 }
 
 .global-sts div {
@@ -33,6 +34,24 @@
     margin-bottom: 10px;
     padding: 5px;
     background-color: #181616;
+}
+
+.global-sts div:hover {
+    /* border: 1px solid #181616;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #181616; */
+    box-shadow: 2px 4px 6px black;
+}
+
+.titles{
+    color:#af0404 !important;
+    background-color: #181616;
+    float:right;
+    padding:3px;
+    border-radius: 10px;
+    font-size: 15px;
 }
 
 @media only screen and (max-width: 1189px) {

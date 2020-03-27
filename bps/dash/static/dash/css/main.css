@@ -3,7 +3,7 @@ body{
     min-height:100vh;
     height:100%;
     overflow:hidden;
-    font-family: monospace !important;
+    font-family: 'Open Sans', sans-serif;
 }
 
 html{
