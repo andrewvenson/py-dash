@@ -22,9 +22,8 @@
 	or
 	pip3 install -r requirements.txt
 
-6. Set our Flask ENV and APP variables
+6. Set up our Flask ENV and APP variables
 	For Windows:
-
 		set FLASK_APP=run.py
 		set FLASK_ENV=development
 
@@ -35,7 +34,7 @@
 7. Run the following command to run our application on localhost
 	flask run
 
-8. Navigate to brower of choice and enter the following
+8. Navigate to browser of choice and enter the following
 	localhost:5000
 	or
 	127.0.0.1:5000
