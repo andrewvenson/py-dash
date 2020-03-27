@@ -16,7 +16,7 @@
             {% for y in data[x] %}
                 {% if y['Country'] != ""%}
                 <div>
-                    <p>Country: {{y['Country']}}</p>
+                    <p>{{y['Country']}}</p>
                     <p> New Confirmed: <span>{{y['NewConfirmed']}}</span></p>
                     <p>Total Confirmed: <span>{{y['TotalConfirmed']}}</span></p>
                     <p>New Deaths: <span>{{y['NewDeaths']}}</span></p>

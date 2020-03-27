@@ -10,21 +10,25 @@
 
 
 
-.widget div{
+.widget .wid{
     background-color: #232323;
     height: 300px;
     border-radius:10px;
     box-shadow: 3px 4px 8px black;
     padding: 10px;
+    position:relative;
 }
 
-.widget div:hover{
+.widget .wid:hover{
     background-color: #1b1b1b;
     border-radius:15px;
     box-shadow: 5px 8px 16px black;
 }
 
-.widget div p{
+.widget .wid:hover .widget-tool{
+    display:block !important;
+}
+.widget .wid p{
     color:#af0404;
 }
 
@@ -32,4 +36,15 @@
     padding:10px !important;
 }
 
+.widget-tool{
+    display:none;
+    background-color:#131111;
+    border-radius: 50%; 
+    height: 30px; 
+    width:30px;
+    position: absolute; 
+    top:-10px;
+    right:-10px;
+
+}
 
