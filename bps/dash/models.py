@@ -1,5 +1,6 @@
 from .. import db
 
+# Database model aka table
 class Data(db.Model):
     
     __tablename__ = 'data'

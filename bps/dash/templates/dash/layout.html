@@ -2,24 +2,30 @@
 <html lang="en">
 
 <head>
+    <!-- Header html -->
     {% include 'dash/head.html' %}
 </head>
 
 <body>
+    <!-- Nav html -->
     {% include 'dash/nav.html' %}
+
 
     <div class='row dash-desktop' style='padding:0px;margin:0px;height:100% !important;'>
         <div class="col-xl-2 side-nav">
             <div>
+                <!-- Side Nav html-->
                 {% include 'dash/side-nav.html' %}
             </div>
         </div>
 
         <div class="col-xl-10 dash">
+            <!-- Main Dash Content html -->
             {% block content %}{% endblock content %}
         </div>
     </div>
 
+    <!-- Scripts html -->
     {% include 'dash/scripts.html' %}
 </body>
 </html>
