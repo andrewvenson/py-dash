@@ -5,8 +5,8 @@
     
 }
 
-.side-nav div{
-    height:100% !important;
+.side-nav .sd-hgt-xtnd{
+    height:100%;
     /* width: 250px; */
     background-color: #242424;
     margin:0px !important;
@@ -14,9 +14,33 @@
     border-radius:10px;
 }
 
+.global-sts p{
+    color:rgba(163, 53, 53, 0.781); 
+    font-size: 14px;
+    font-weight:bold;
+}
+
+
+.global-sts{
+    overflow-y:scroll;
+    height:750px;
+    scrollbar-width:none;
+}
+
+.global-sts div {
+    border: 1px solid #181616;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #181616;
+}
+
 @media only screen and (max-width: 800px) {
     .side-nav{
         margin-bottom:10px;
         padding-bottom:10px;
+    }
+    .global-sts{
+        height: 200px !important;
     }
 }
