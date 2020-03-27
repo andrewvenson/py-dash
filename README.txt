@@ -27,7 +27,7 @@
 		set FLASK_APP=run.py
 		set FLASK_ENV=development
 
-	For Mac os/linux
+	For macOS/linux
 		export FLASK_APP=run.py
 		export FLASK_ENV=development
 
