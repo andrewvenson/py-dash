@@ -1,0 +1,25 @@
+.country-info{
+    padding:10px;
+    position:absolute; 
+    height: 225px; 
+    width: 175px;
+    left:10px;
+    top:50px;
+    background-color:rgb(19, 18, 18);
+    bottom:25px;
+    border-radius:5px;
+    display:none;
+    z-index:1000;
+    opacity:.7;
+}
+
+#svg2 path:hover{
+    fill: #000 !important;
+}
+
+
+#svg2{
+    position:absolute;
+    z-index:888 !important;
+    min-width:500px !important;
+}
