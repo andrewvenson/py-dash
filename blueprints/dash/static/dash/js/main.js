@@ -9,10 +9,14 @@ $('.search').click(function(){
     }
 })
 
-// $('#svg2 path').hover(function(){
-//     $(this).css('fill', '#000');
-//     // $(this).css('z-index', '888');
-//     console.log('whoa');
-// })
+$('#svg2 path').mouseenter(function(){
+    $('.country-info').css('display', 'block');
+    $('.country-title').text($(this).attr('data-name'));
+    $('.country-cases').text(this.id)
 
+})
+
+$('#svg2 path').mouseout(function(){
+    $('.country-info').css('display', 'none');
+})
 
