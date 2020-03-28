@@ -39,5 +39,5 @@
 	or
 	127.0.0.1:5000
 
-## This is a basic flask blueprint project structure. 
-## The application is modularized so we can work on different components of the frontend and backend as a team at the same time.
+## Basic flask blueprint structure. 
+## The application is separated in structure so we can work on different components of the frontend and backend as a team at the same time.
