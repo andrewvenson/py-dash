@@ -1,28 +1,18 @@
-{% extends 'dash/layout.html' %}
+{% extends 'dash/layouts/layout.html' %}
 {% block content %}
 
 <div class="row">
     <div class="col-sm-8 widget">
-        <div class='wid'>
-            <div class='widget-tool'>...</div>
-            <p style='margin-bottom:0px !important;'>World Map</p>
-            <img src="{{ url_for('dash_bp.static', filename='svg/world.svg') }}" style='height: 100%; width:100%;' alt="">
-        </div>
+        {% include 'dash/widgets/map-wid.html' %}
     </div>
     <div class="col-sm-4 widget">
-        <div class='wid'>
-            <div class='widget-tool'>...</div>
-            <p>Test</p>
-        </div>
+        {% include 'dash/widgets/datavisual-wid.html' %}
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-6 widget">
-        <div class='wid'>
-            <div class='widget-tool'>...</div>
-            <p>Test</p>
-        </div>
+        {% include 'dash/widgets/test1-wid.html' %}
     </div>
     <div class="col-sm-6 widget">
         <div class='wid'>

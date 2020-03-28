@@ -1,21 +1,21 @@
+<!-- Main Layout -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <!-- Header html -->
-    {% include 'dash/head.html' %}
+    {% include 'dash/resources/head.html' %}
 </head>
 
 <body>
     <!-- Nav html -->
-    {% include 'dash/nav.html' %}
-
+    {% include 'dash/partials/nav.html' %}
 
     <div class='row dash-desktop' style='padding:0px;margin:0px;height:100% !important;'>
         <div class="col-xl-2 side-nav">
             <div>
-                <!-- Side Nav html-->
-                {% include 'dash/side-nav.html' %}
+                <!-- Side Global Widget html-->
+                {% include 'dash/widgets/side-globals.html' %}
             </div>
         </div>
 
@@ -26,6 +26,6 @@
     </div>
 
     <!-- Scripts html -->
-    {% include 'dash/scripts.html' %}
+    {% include 'dash/resources/scripts.html' %}
 </body>
 </html>
