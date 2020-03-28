@@ -24,6 +24,7 @@
 
 .global-sts p{
     color:rgba(163, 53, 53, 0.781); 
+    /* color: yellow; */
     font-size: 14px;
     font-weight:bold;
 }
@@ -89,6 +90,18 @@
     border-radius: 10px;
     font-size: 15px;
     margin-top:3px;
+}
+
+.global-sts::-webkit-scrollbar {
+    width: 5px;
+}
+   
+.global-sts::-webkit-scrollbar-track {
+    background: #232323;
+}
+   
+.global-sts::-webkit-scrollbar-thumb {
+    background: #181616;
 }
 
 
