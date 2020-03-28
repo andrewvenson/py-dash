@@ -23,3 +23,14 @@
     z-index:888 !important;
     min-width:500px !important;
 }
+
+#min {
+    touch-action: none !important;
+}
+#max {
+    touch-action: none !important;
+}
+
+img {
+    touch-action: none !important;
+}
