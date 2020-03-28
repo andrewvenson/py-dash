@@ -15,7 +15,7 @@
 
 .side-nav .shrunkdv{
     display:none;
-    height:40px;
+    height:44px;
     background-color: #242424;
     margin:0px !important;
     padding:5px 5px 0px 5px;
@@ -26,6 +26,26 @@
     color:rgba(163, 53, 53, 0.781); 
     font-size: 14px;
     font-weight:bold;
+}
+
+.search-inp{
+    width:100%;
+    display:none;
+    border: 1px solid #181616;
+    background-color: #242424;
+    position: absolute; 
+    z-index: 0;
+    border-radius: 10px;
+    height:33px;
+    color:white;
+    padding-left:30px;
+}
+
+.search{
+    z-index: 999 !important;
+    position:absolute;
+    top:0;
+    left:5px;
 }
 
 
@@ -54,12 +74,22 @@
 .titles{
     color:#af0404 !important;
     background-color: #181616;
+    float:left;
+    padding:3px;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-top:3px;
+}
+
+.titles1{
+    color:#af0404 !important;
+    background-color: #181616;
     float:right;
     padding:3px;
     border-radius: 10px;
     font-size: 15px;
+    margin-top:3px;
 }
-
 
 
 @media only screen and (max-width: 1189px) {
