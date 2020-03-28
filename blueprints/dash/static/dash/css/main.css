@@ -10,4 +10,12 @@ html{
     height:100%;
 }
 
+#svg2 path:hover{
+    fill: #000 !important;
+}
 
+#svg2{
+    position:absolute;
+    z-index:888 !important;
+    min-width:500px !important;
+}

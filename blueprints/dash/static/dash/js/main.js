@@ -8,3 +8,11 @@ $('.search').click(function(){
 
     }
 })
+
+// $('#svg2 path').hover(function(){
+//     $(this).css('fill', '#000');
+//     // $(this).css('z-index', '888');
+//     console.log('whoa');
+// })
+
+

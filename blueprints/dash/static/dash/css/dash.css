@@ -28,6 +28,7 @@
 .widget .wid:hover .widget-tool{
     display:block !important;
 }
+
 .widget .wid p{
     color:#af0404;
     background-color: #181616;
