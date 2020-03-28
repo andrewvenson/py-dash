@@ -1,3 +1,7 @@
+# Entry Point into our app
 from blueprints import app
 
-# Entry Point into our app
+# Allows you to run our app from this file with python directly
+if __name__ == "__main__":
+    app.run(debug=True)
+
