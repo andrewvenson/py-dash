@@ -24,7 +24,8 @@
 .global-sts{
     overflow-y:scroll;
     height:750px;
-    scrollbar-width:none;
+    scrollbar-color: #181616 #232323;
+    scrollbar-width: thin;
     padding: 0px 5px 0px 5px;
 }
 
