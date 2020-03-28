@@ -34,3 +34,8 @@
 img {
     touch-action: none !important;
 }
+
+.map-scroll{
+    scrollbar-color: #181616 #232323;
+    scrollbar-width: thin;
+}
