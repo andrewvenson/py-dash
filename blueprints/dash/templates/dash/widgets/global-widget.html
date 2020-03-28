@@ -3,9 +3,29 @@
         <a class='minimize' style='float:right;'><img class='img-min' src="{{url_for('dash_bp.static', filename='images/shrink.png')}}" style='height: 0px; width:0px;' alt=""></a>
     </div>
     <div class="search-title" style='position:relative'>
-        <input class='search-inp' type="text" placeholder='Search...' >
-        <a class='search' style=''><img src="{{ url_for('dash_bp.static', filename='images/search.png') }}" alt="Search" style='width: 20px; height:20px;z-index: 777 !important;'></a>
-        <a class='titles1' >Global Cases</a>
+        <input class='search-inp' type="text" placeholder='Search...' style="width:100%;
+        display:none;
+        border: 1px solid #181616;
+        background-color: #242424;
+        position: absolute; 
+        z-index: 0;
+        border-radius: 10px;
+        height:33px;
+        color:white;
+        padding-left:30px;">
+
+        <a class='search' style='z-index: 999 !important;
+        position:absolute;
+        top:0;
+        left:5px;'>
+        <img src="{{ url_for('dash_bp.static', filename='images/search.png') }}" alt="Search" style='width: 20px; height:20px;z-index: 777 !important;'></a>
+        <a class='titles1' style="color:#af0404 !important;
+        background-color: #181616;
+        float:right;
+        padding:3px;
+        border-radius: 10px;
+        font-size: 15px;
+        margin-top:3px;">Global Cases</a>
     </div>
 
     <div class='global-sts' style="margin-top:40px;">
