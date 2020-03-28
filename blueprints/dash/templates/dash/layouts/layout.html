@@ -12,17 +12,20 @@
     {% include 'dash/partials/nav.html' %}
 
     <div class='row dash-desktop' style='padding:0px;margin:0px;height:100% !important;'>
-        <div class="col-xl-2 side-nav">
+        
+        <div class="col-lg-2 side-nav">
             <div>
                 <!-- Side Global Widget html-->
                 {% include 'dash/widgets/globals-wid.html' %}
             </div>
         </div>
 
-        <div class="col-xl-10 dash">
+        <div class="col-lg-10 dash">
             <!-- Main Dash Content html -->
             {% block content %}{% endblock content %}
         </div>
+
+        
     </div>
 
     <!-- Scripts html -->
