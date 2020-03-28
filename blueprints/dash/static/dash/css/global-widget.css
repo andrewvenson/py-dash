@@ -2,7 +2,6 @@
     padding-top:20px;
     padding-bottom:30px;
     margin-bottom:30px;
-    
 }
 
 .side-nav .sd-hgt-xtnd{
@@ -10,8 +9,17 @@
     /* width: 250px; */
     background-color: #242424;
     margin:0px !important;
-    padding:10px;
+    padding:5px 5px 0px 5px !important;
     border-radius:10px;
+}
+
+.side-nav .shrunkdv{
+    display:none;
+    height:40px;
+    background-color: #242424;
+    margin:0px !important;
+    padding:5px 5px 0px 5px;
+    border-radius:15px;
 }
 
 .global-sts p{
@@ -27,7 +35,9 @@
     scrollbar-color: #181616 #232323;
     scrollbar-width: thin;
     padding: 0px 5px 0px 5px;
+    
 }
+
 
 .global-sts div {
     border: 1px solid #181616;
@@ -50,6 +60,8 @@
     font-size: 15px;
 }
 
+
+
 @media only screen and (max-width: 1189px) {
     .side-nav{
         margin-bottom:10px;
@@ -58,4 +70,13 @@
     .global-sts{
         height: 200px !important;
     }
+
+    .minny{
+        height:22px !important;
+    }
+    .img-min{
+        width:20px !important;
+        height:20px !important;
+    }
 }
+

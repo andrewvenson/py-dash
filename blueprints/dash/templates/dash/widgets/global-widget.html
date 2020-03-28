@@ -1,11 +1,14 @@
 <div class='sd-hgt-xtnd'>
-    <div class="search-title" style='position:relative' >
+    <div class='minny' style='height:0px;'>
+        <a class='minimize'><img class='img-min' src="{{url_for('dash_bp.static', filename='images/shrink.png')}}" style='height: 0px; width:0px;' alt=""></a>
+    </div>
+    <div class="search-title" style='position:relative'>
         <input class='search-inp' type="text" placeholder='Search...' style='width:100%;display:none;border: 1px solid #181616;background-color: #242424;position: absolute; z-index: 0;border-radius: 10px;height:33px;color:white;padding-left:30px;'>
-        <a class='search' style='z-index: 999 !important;position:absolute;top:5px;left:5px;'><img src="{{ url_for('dash_bp.static', filename='images/search.png') }}" alt="Search" style='width: 20px; height:20px;z-index: 777 !important;'></a>
+        <a class='search' style='z-index: 999 !important;position:absolute;top:0;left:5px;'><img src="{{ url_for('dash_bp.static', filename='images/search.png') }}" alt="Search" style='width: 20px; height:20px;z-index: 777 !important;'></a>
         <a class='titles'>Global Cases</a>
     </div>
 
-    <div class='global-sts' style='margin-top:40px;'>
+    <div class='global-sts' style="margin-top:40px;">
     <!-- This is jinja templating | Here we're looping through the api data "https://api.covid19api.com/summary" our dashboard blueprint-->
         {% for x in data %}
             {% for y in data[x] %}
@@ -22,3 +25,8 @@
         {% endfor %}
     </div>
 </div> 
+
+<div class='shrunkdv'>
+    <a class='maximize' style='color:red;margin:0px;'><img src="{{url_for('dash_bp.static', filename='images/expand.png')}}" style='height:20px; width:20px;'></a>
+    <a class='titles'>Global Cases</a>
+</div>

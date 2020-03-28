@@ -8,5 +8,12 @@ $('.search').click(function(){
     }
 });
 
+$('.minimize').click(function(){
+    $('.sd-hgt-xtnd').css('display', 'none');
+    $('.shrunkdv').css('display', 'block');
+});
 
-
+$('.maximize').click(function(){
+    $('.shrunkdv').css('display', 'none');
+    $('.sd-hgt-xtnd').css('display', 'block');
+});
