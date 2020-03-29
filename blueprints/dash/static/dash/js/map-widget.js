@@ -45,6 +45,9 @@ $('#reset').click(function(){
  var map = new google.maps.Map(document.getElementById('map'), {
     center: new google.maps.LatLng(0,0),
     zoom: 1,
+    // disableDefaultUI: true,
+    streetViewControl: false,
+    mapTypeControl: false,
     styles: [
       {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
       {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
