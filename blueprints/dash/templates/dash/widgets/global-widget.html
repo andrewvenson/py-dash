@@ -36,10 +36,10 @@
                 {% if y['Country'] != ""%}
                 <div>
                     <p>{{y['Country']}}</p>
-                    <p> New Cases: <span>{{y['NewConfirmed']}}</span></p>
-                    <p>Total Cases: <span>{{y['TotalConfirmed']}}</span></p>
-                    <p>New Deaths: <span>{{y['NewDeaths']}}</span></p>
-                    <p>Total Deaths: <span>{{y['TotalDeaths']}}</span></p>
+                    <p style='background-color:black;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>{{y['NewConfirmed']}}</span></p>
+                    <p style='background-color:black;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>{{y['TotalConfirmed']}}</span></p>
+                    <p style='background-color: black; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>{{y['NewDeaths']}}</span></p>
+                    <p style='background-color: black; border-radius:10px;padding:3px;'>Total Deaths: <span style='color:whitesmoke;'>{{y['TotalDeaths']}}</span></p>
                 </div>
                 {%endif%}
             {% endfor %}
