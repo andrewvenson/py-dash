@@ -6,12 +6,12 @@
     padding:10px;
     padding-bottom:200px;
     margin-bottom: 200px;
+    scrollbar-color: #181616 #232323;
+    scrollbar-width: thin;
 }
-
-
 .widget .wid{
     background-color: #232323;
-    height: 300px;
+    height: 400px;
     border-radius:10px;
     box-shadow: 3px 4px 8px black;
     padding: 10px;
@@ -51,6 +51,19 @@
     top:-10px;
     right:-10px;
     text-align: center;
+}
+
+
+.dash::-webkit-scrollbar {
+    width: 5px;
+}
+   
+.dash::-webkit-scrollbar-track {
+    background: #232323;
+}
+   
+.dash::-webkit-scrollbar-thumb {
+    background: #181616;
 }
 
 

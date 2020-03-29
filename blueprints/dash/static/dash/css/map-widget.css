@@ -35,22 +35,11 @@ img {
     touch-action: none !important;
 }
 
-.map-scroll{
-    scrollbar-color: #181616 #232323;
-    scrollbar-width: thin;
-    
-}
 
-.map-scroll::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-
-}
-   
-.map-scroll::-webkit-scrollbar-track {
-    background: #232323;
-}
-   
-.map-scroll::-webkit-scrollbar-thumb {
-    background: #181616;
+#map{
+    height:90% !important;
+    width: 100% !important;
+    z-index:999 !important;
+    border-radius:5px;
+    margin-top:5px;
 }
