@@ -1,7 +1,29 @@
+
 <nav class='nav'>
     <a class="nav-logo" href="#" style="font-family: monospace !important;"><h5 style='font-weight:bold;'>PyVid</h5></a>
     <a style='color:#af0404;'>|</a>
-    <a class="nv-link" href="#">Dash</a>          
-    <a class="nv-link" href="#">News</a>
-    <a class="nv-link" href="#">Info</a>
+    {% if request.path == "/dash" or request.path == "/" %}
+        <a class="nv-link" href="#" style="color: #e95656 !important;">Dash</a>          
+    {% else %}
+        <a class="nv-link" href="#">Dash</a>          
+    {% endif %}
+
+    {% if request.path == "/coverage" %}
+        <a class="nv-link" href="#" style="color: #e95656 !important;">Coverage</a>
+    {% else %}
+        <a class="nv-link" href="#">Coverage</a>          
+    {% endif %}
+
+    {% if request.path == "/ventilaid"  %}
+        <a class="nv-link" href="#" style="color: #e95656 !important;">Ventilaid</a>
+    {% else %}
+        <a class="nv-link" href="#">Ventilaid</a>          
+    {% endif %}
+
+    {% if request.path == "/donate" %}
+        <a class="nv-link" href="#" style="color: #e95656 !important;">Donate</a>
+    {% else %}
+        <a class="nv-link" href="#">Donate</a>          
+    {% endif %}
+
 </nav>
