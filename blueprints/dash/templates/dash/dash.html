@@ -1,16 +1,11 @@
 {% extends 'dash/layouts/layout.html' %}
 {% block content %}
 
-<div class="row">
-    <div class="col-sm-8 widget">
-        {% include 'dash/widgets/map-widget.html' %}
-    </div>
-    <div class="col-sm-4 widget">
-        {% include 'dash/widgets/datavisual-widget.html' %}
-    </div>
+<div class="widget" style='padding:0px !important;margin: 10px 0px 10px 0px;'>
+    {% include 'dash/widgets/map-widget.html' %}
 </div>
 
-<div class="row">
+<div class="row" style='margin-bottom:200px !important;padding-bottom:200px!important;'>
     <div class="col-sm-6 widget">
         {% include 'dash/widgets/test1-widget.html' %}
     </div>
@@ -22,18 +17,4 @@
     </div>
 </div>
 
-<div class="row" style='margin-bottom:200px !important;padding-bottom:200px!important;'>
-    <div class="col-sm-4 widget">
-        <div class='wid'>
-            <div class='widget-tool'>...</div>
-            <p>Test</p>
-        </div>
-    </div>
-    <div class="col-sm-8 widget">
-        <div class='wid'>
-            <div class='widget-tool'>...</div>
-            <p>Test</p>
-        </div>
-    </div>
-</div>
 {% endblock content %}

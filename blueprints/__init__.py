@@ -22,6 +22,6 @@ db = SQLAlchemy(app)
 # import blueprint
 from blueprints.dash.dash_bp import dash_bp
 
-# Register Blueprint
+# Register Blueprints
 app.register_blueprint(dash_bp)
 

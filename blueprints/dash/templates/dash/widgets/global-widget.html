@@ -5,13 +5,13 @@
     <div class="search-title" style='position:relative'>
         <input class='search-inp' type="text" placeholder='Search...' style="width:100%;
         display:none;
-        border: 1px solid #181616;
-        background-color: #242424;
+        border: 1px solid   rgb(226, 226, 226);
+        background-color: whitesmoke;
         position: absolute; 
         z-index: 0;
         border-radius: 10px;
         height:33px;
-        color:white;
+        color:black;
         padding-left:30px;">
 
         <a class='search' style='z-index: 999 !important;
@@ -19,14 +19,8 @@
         top:5px;
         left:5px;'>
 
-        <img src="{{ url_for('dash_bp.static', filename='images/search.png') }}" alt="Search" style='width: 20px; height:20px;z-index: 777 !important;'></a>
-        <a class='titles1' style="color:#af0404 !important;
-        background-color: #181616;
-        float:right;
-        padding:3px;
-        border-radius: 10px;
-        font-size: 15px;
-        margin-top:3px;">Global Cases</a>
+        <img src="{{ url_for('dash_bp.static', filename='images/search1.png') }}" alt="Search" style='width: 20px; height:20px;z-index: 777 !important;'></a>
+        <a class='titles1'>Global Cases</a>
     </div>
 
     <div class='global-sts' style="margin-top:40px;">
@@ -36,10 +30,10 @@
                 {% if y['Country'] != ""%}
                 <div>
                     <p>{{y['Country']}}</p>
-                    <p style='background-color:black;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>{{y['NewConfirmed']}}</span></p>
-                    <p style='background-color:black;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>{{y['TotalConfirmed']}}</span></p>
-                    <p style='background-color: black; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>{{y['NewDeaths']}}</span></p>
-                    <p style='background-color: black; border-radius:10px;padding:3px;'>Total Deaths: <span style='color:whitesmoke;'>{{y['TotalDeaths']}}</span></p>
+                    <p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>{{y['NewConfirmed']}}</span></p>
+                    <p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>{{y['TotalConfirmed']}}</span></p>
+                    <p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>{{y['NewDeaths']}}</span></p>
+                    <p style='background-color: lightgray; border-radius:10px;padding:3px;'>Total Deaths: <span style='color:whitesmoke;'>{{y['TotalDeaths']}}</span></p>
                 </div>
                 {%endif%}
             {% endfor %}
