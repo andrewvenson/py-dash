@@ -36,7 +36,7 @@
                         <div class="col" style='position:relative;'>
                             <!-- Loop through country codes to append country flag to each block -->
                             {% if y['Country'] in cc  %}
-                                <img style='position:absolute; top:-17px;right:5px;' src="https://www.countryflags.io/{{ cc[y['Country']] }}/flat/64.png">        
+                                <img style='position:absolute; top:-17px;right: 8px;' src="https://www.countryflags.io/{{ cc[y['Country']] }}/flat/64.png">        
                             {% endif %}
                         </div>
                     </div>
@@ -55,6 +55,5 @@
 
 <div class='shrunkdv'>
     <a class='titles'>Global Cases</a>
-    <a class='maximize' style='color:red;margin:0px;float:right;'><img src="{{url_for('dash_bp.static', filename='images/expand.png')}}" style='height:20px; width:20px;'></a>
-
+    <a class='maximize' style='margin:0px;float:right;'><img src="{{url_for('dash_bp.static', filename='images/expand.png')}}" style='height:20px; width:20px;'></a>
 </div>

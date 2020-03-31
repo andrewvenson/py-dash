@@ -9,11 +9,16 @@ $('.search').click(function(){
 });
 
 $('.minimize').click(function(){
-    $('.sd-hgt-xtnd').css('display', 'none');
-    $('.shrunkdv').css('display', 'block');
+    // $('.sd-hgt-xtnd').css('display', 'none');
+    // $('.shrunkdv').css('display', 'block');
+    $('.sd-hgt-xtnd').css({'cssText':'display: none !important'});
+    $('.shrunkdv').css({'cssText':'display: block !important'});
+
 });
 
 $('.maximize').click(function(){
-    $('.shrunkdv').css('display', 'none');
-    $('.sd-hgt-xtnd').css('display', 'block');
+    // $('.shrunkdv').css('display', 'none');
+    $('.shrunkdv').css({'cssText':'display: none !important'});
+
+    $('.sd-hgt-xtnd').css({'cssText':'display: block !important'});
 });
