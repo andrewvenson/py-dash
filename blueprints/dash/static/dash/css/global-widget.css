@@ -20,6 +20,7 @@
     margin:0px !important;
     padding:5px 5px 0px 5px;
     border-radius:15px;
+    border: 1px solid rgb(226, 226, 226);
 }
 
 .global-sts p{
@@ -38,16 +39,22 @@
 }
 
 
-.global-sts div {
+.global-sts .country-block {
     border: 1px solid rgb(226, 226, 226);
     border-radius: 10px;
     margin-bottom: 10px;
     padding: 5px;
     background-color: rgb(240, 240, 240);
+    overflow:hidden;
 }
 
-.global-sts div:hover {
+.global-sts .country-block:hover {
     box-shadow: 2px 4px 6px rgb(221, 221, 221);
+}
+
+.country-block .col{
+    margin:0px;
+    padding:0px;
 }
 
 .titles{

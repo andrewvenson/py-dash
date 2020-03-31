@@ -28,8 +28,20 @@
         {% for x in data %}
             {% for y in data[x] %}
                 {% if y['Country'] != ""%}
-                <div>
-                    <p>{{y['Country']}}</p>
+                <div class='country-block'>
+                    <div class="row" style='height:64px;'>
+                        <div class="col">
+                            <p style='padding-left:12px;'>{{y['Country']}}</p>
+                        </div>
+                        <div class="col" style='position:relative;'>
+                            <!-- Loop through country codes to append country flag to each block -->
+                            {% if y['Country'] in cc  %}
+                                <img style='position:absolute; top:-17px;right:5px;' src="https://www.countryflags.io/{{ cc[y['Country']] }}/flat/64.png">        
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    
                     <p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>{{y['NewConfirmed']}}</span></p>
                     <p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>{{y['TotalConfirmed']}}</span></p>
                     <p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>{{y['NewDeaths']}}</span></p>

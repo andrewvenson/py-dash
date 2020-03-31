@@ -54,6 +54,7 @@
     right:-10px;
     text-align: center;
     color: #005EAA;
+    border: 1px solid lightgray;
 }
 
 .dash::-webkit-scrollbar {
