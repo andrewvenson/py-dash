@@ -71,4 +71,7 @@
     .covid-legend{
         display:none;
     }
+    .country-info{
+        width: 160px !important;
+    }
 }

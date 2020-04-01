@@ -2,8 +2,13 @@
 $(".map-tab").click(function(){
    $(".map-tab").css("background-color", "whitesmoke");
    $(this).css("background-color", "rgb(211, 211, 211)");
+   $(".country-info").css('display', 'none');
    initMap();
 });
+
+$(".close-cinfo").click(function(){
+    $(".country-info").css("display", "none");
+})
 
 var map;
 var infoWindow;
@@ -171,7 +176,7 @@ function initMap() {
 
         map.data.addListener('mouseout', function(event) {
             // map.data.overrideStyle(event.feature, {fillColor: 'blue',strokeColor: 'darkblue'});
-            $('.country-info').css('display', 'none');
+            // $('.country-info').css('display', 'none');
         }); 
 
         }else if($('#us-tab').css('background-color') == 'rgb(211, 211, 211)'){
