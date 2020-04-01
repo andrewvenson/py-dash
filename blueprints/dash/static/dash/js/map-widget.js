@@ -63,31 +63,31 @@ function initMap() {
                     });
                 }else if(json_countries[ccs[feature.getProperty('name')]] >= 10001 && json_countries[ccs[feature.getProperty('name')]] < 50000){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "yellow",
+                        fillColor: "orange",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
                 }else if(json_countries[ccs[feature.getProperty('name')]] >= 1001 && json_countries[ccs[feature.getProperty('name')]] < 10000){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "darkblue",
+                        fillColor: "yellow",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
                 }else if(json_countries[ccs[feature.getProperty('name')]] >= 101 && json_countries[ccs[feature.getProperty('name')]] < 1000){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "blue",
+                        fillColor: "darkblue",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
                 }else if(json_countries[ccs[feature.getProperty('name')]] >= 1 && json_countries[ccs[feature.getProperty('name')]] < 100){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "lightblue",
+                        fillColor: "green",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
                 }else if(json_countries[ccs[feature.getProperty('name')]] == 0 && feature.getProperty('name') != "Antarctica"){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "green",
+                        fillColor: "lightgreen",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
@@ -102,31 +102,31 @@ function initMap() {
             }
             else if (json_countries[feature.getProperty('name')] >= 10001 && json_countries[feature.getProperty('name')] < 50000) {
                 return /** @type {!google.maps.Data.StyleOptions} */({
-                    fillColor: "yellow",
+                    fillColor: "orange",
                     strokeColor: 'darkblue',
                     strokeWeight:1
                 });
             }else if(json_countries[feature.getProperty('name')] >= 1001 && json_countries[feature.getProperty('name')] < 10000){
                 return /** @type {!google.maps.Data.StyleOptions} */({
-                    fillColor: "darkblue",
+                    fillColor: "yellow",
                     strokeColor: 'darkblue',
                     strokeWeight:1
                 });
             }else if(json_countries[feature.getProperty('name')] >= 101 && json_countries[feature.getProperty('name')] < 1000){
                 return /** @type {!google.maps.Data.StyleOptions} */({
-                    fillColor: "blue",
+                    fillColor: "darkblue",
                     strokeColor: 'darkblue',
                     strokeWeight:1
                 });
             }else if(json_countries[feature.getProperty('name')] >= 1 && json_countries[feature.getProperty('name')] < 100){
                 return /** @type {!google.maps.Data.StyleOptions} */({
-                    fillColor: "lightblue",
+                    fillColor: "green",
                     strokeColor: 'darkblue',
                     strokeWeight:1
                 });
             }else if(json_countries[feature.getProperty('name')] == 0 && feature.getProperty('name') != "Antarctica"){
                 return /** @type {!google.maps.Data.StyleOptions} */({
-                    fillColor: "green",
+                    fillColor: "lightgreen",
                     strokeColor: 'darkblue',
                     strokeWeight:1
                 });
