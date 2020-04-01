@@ -1,29 +1,29 @@
 
 <nav class='nav'>
     <a class="nav-logo" href="#" style="font-family: monospace !important;"><h5 style='font-weight:bold;'>PyVid</h5></a>
-    <a style='color:#af0404;'>|</a>
+    <a style='color:rgb(0, 55, 100);'>|</a>
     {% if request.path == "/dash" or request.path == "/" %}
-        <a class="nv-link" href="#" style="color: #e95656 !important;">Dash</a>          
+        <a class="nv-link" href="#" style="color: rgb(0, 55, 100) !important;">Tab1</a>          
     {% else %}
-        <a class="nv-link" href="#">Dash</a>          
+        <a class="nv-link" href="#">Tab1</a>          
     {% endif %}
 
     {% if request.path == "/coverage" %}
-        <a class="nv-link" href="#" style="color: #e95656 !important;">Coverage</a>
+        <a class="nv-link" href="#" style="color: rgb(0, 55, 100) !important;">Tab2</a>
     {% else %}
-        <a class="nv-link" href="#">Coverage</a>          
+        <a class="nv-link" href="#">Tab2</a>          
     {% endif %}
 
     {% if request.path == "/ventilaid"  %}
-        <a class="nv-link" href="#" style="color: #e95656 !important;">Ventilaid</a>
+        <a class="nv-link" href="#" style="color: rgb(0, 55, 100) !important;">Tab3</a>
     {% else %}
-        <a class="nv-link" href="#">Ventilaid</a>          
+        <a class="nv-link" href="#">Tab3</a>          
     {% endif %}
 
     {% if request.path == "/donate" %}
-        <a class="nv-link" href="#" style="color: #e95656 !important;">Donate</a>
+        <a class="nv-link" href="#" style="color: rgb(0, 55, 100) !important;">Tab4</a>
     {% else %}
-        <a class="nv-link" href="#">Donate</a>          
+        <a class="nv-link" href="#">Tab4</a>          
     {% endif %}
 
 </nav>

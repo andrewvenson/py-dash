@@ -3,25 +3,27 @@
     height:100%;
     /* max-height:3000px; */
     padding-bottom:20px !important;
-    padding:10px;
+    padding:5px;
     padding-bottom:200px;
     margin-bottom: 200px;
-    scrollbar-color: #181616 #232323;
+    scrollbar-color: #005EAA whitesmoke;
     scrollbar-width: thin;
 }
 .widget .wid{
-    background-color: #232323;
-    height: 400px;
+    background-color: whitesmoke;
+    height: 460px;
     border-radius:10px;
-    box-shadow: 3px 4px 8px black;
-    padding: 10px;
+    box-shadow: 3px 4px 8px lightgray;
+    border: 1px solid rgb(226, 226, 226);
+    padding: 10px 0px 10px 0px;
     position:relative;
+    overflow:hidden !important;
 }
 
 .widget .wid:hover{
-    background-color: #222222;
+    background-color: rgb(240, 240, 240);
     border-radius:15px;
-    box-shadow: 5px 8px 16px black;
+    box-shadow: 5px 8px 16px lightgray;
 }
 
 .widget .wid:hover .widget-tool{
@@ -29,41 +31,42 @@
 }
 
 .widget .wid p{
-    color:#af0404;
-    background-color: #181616;
+    color:#005EAA;
+    background-color: rgb(231, 231, 231);
     display: inline-block;
     padding:3px;
     border-radius: 10px;
     font-size: 14px;
+    font-weight:bold;
 }
 
 .widget{
-    padding:10px !important;
+    padding:5px;
 }
 
 .widget-tool{
     display:none;
-    background-color:#131111;
-    border-radius: 50%; 
-    height: 30px; 
-    width:30px;
+    /* background-color:rgb(228, 228, 228); */
+    /* border-radius: 50%;  */
+    height: 20px; 
+    width:20px;
     position: absolute; 
-    top:-10px;
-    right:-10px;
+    top:0;
+    right:5px;
     text-align: center;
+    color: #005EAA;
 }
-
 
 .dash::-webkit-scrollbar {
     width: 5px;
 }
    
 .dash::-webkit-scrollbar-track {
-    background: #232323;
+    background: whitesmoke;
 }
    
 .dash::-webkit-scrollbar-thumb {
-    background: #181616;
+    background: #005EAA;
 }
 
 

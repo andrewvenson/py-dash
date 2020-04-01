@@ -1,23 +1,23 @@
 nav{
     height: 50px;
-    background-color: #242424;
+    background-color: whitesmoke;
     padding-left:10px !important;
-    box-shadow: 4px 6px 12px rgb(14, 14, 14);
+    box-shadow: 4px 6px 12px lightgray;
 }
 
 
 .nv-link{
-    color:#af0404 !important;
+    color:#005EAA !important;
     text-decoration:none;
 }
 
 .nv-link:hover{
-    color:#e95656 !important;
+    color:rgb(0, 55, 100) !important;
     text-decoration:none;
 }
 
 .nav-logo{
-    color:#af0404 !important;
+    color:#005EAA !important;
     font-weight: bold;
     font-family: monospace;
     text-decoration: none !important;

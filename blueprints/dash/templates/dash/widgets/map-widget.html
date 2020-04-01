@@ -1,15 +1,68 @@
 <!-- Map Widget -->
 <div class='wid'>
     <div class='widget-tool'>...</div>
-    <p style='margin-bottom:0px !important;'>World Map</p>
-    <div class="country-info" >
-        <h5 class='country-title' style='color:red'></h5>
+    <p class='map-tab' id='world-tab' style='margin-left:10px;margin-bottom:0px !important;border:1px solid lightgray; background-color:lightgray;'>World Map</p>
+    <span>|</span>
+    <p class='map-tab' id='us-tab' style='background-color:whitesmoke;border: 1px solid lightgray;'>US Map</p>
+    <span>|</span>
+    <p class='map-tab' id='loc-tab' style='background-color:whitesmoke;border: 1px solid lightgray;'>My Location</p>
+    <div class="country-info">
+        <h5 class='country-title' style='color:#005EAA;'></h5>
+        <a class='close-cinfo' style='position:absolute; top:0; right:5px;color:#005EAA;cursor:pointer;font-weight: bold;'>x</a>
+        <p>Total Cases: <span class='map-total'></span></p><br>
+        <p>New Cases: <span class='map-new'></span></p>
+        <button class="btn btn-primary" style='background-color:#005EAA;border-color:#005EAA;'>Coverage</button>
     </div>
-    
-    <!-- <div style='position:absolute;right:25px; bottom:25px;z-index:1111'>
-        <a id='max' ><img src="{{ url_for('dash_bp.static', filename='images/zoomin.png') }}" style='width:30px;height:30px;' alt=""></a>
-        <a id='min' ><img src="{{ url_for('dash_bp.static', filename='images/zoomout.png') }}" style='width:30px;height:30px;' alt=""></a>
-    </div> -->
+
+    <div class='covid-legend'>
+        <p style='margin:0px; padding:0px;font-size: 12px;font-weight: bold; background:none;text-shadow:2px 2px 2px rgb(128, 128, 128);'>Total # Cases</p>
+        <span style='color:lightgray;margin-left:20px;'>------------------------------------------------</span>
+        <div class="row">
+            <div class="col">
+                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: red;border: 1px solid darkred;'>>50000</p>
+            </div>
+            <div class="col">
+                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: orange;border: 1px solid darkorange'>50000-10001</p>
+            </div>
+            <div class="col">
+                <p style='color:black; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: yellow; border: 1px solid gold;'>10000-1001</p>
+            </div>
+            <div class="col">
+                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color:darkblue; border:1px solid navy'>1000-101</p>
+            </div>
+            <div class="col">
+                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: green;border: 1px solid darkgreen'>100-1</p>
+            </div>
+            <div class="col">
+                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: lightgreen;border: 1px solid green;'>0</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class='sdlegend'>
+      <p style='margin:0px;color:white; padding:0px;font-size: 12px;font-weight: bold; background:none;text-shadow:2px 2px 2px rgb(128, 128, 128);'>Total#Cases</p><br>
+      
+      <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: red;border: 1px solid darkred;  '>>50000</p><br>
+
+      <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: orange;border: 1px solid darkorange'>50000-10001</p><br>
+
+   
+      <p style='color:black; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: yellow; border: 1px solid orange;'>10000-1001</p><br>
+
+   
+      <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color:darkblue; border:1px solid navy'>1000-101</p><br>
+
+   
+      <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: green;border: 1px solid darkgreen'>100-1</p><br>
+
+   
+      <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: lightgreen;border: 1px solid green;'>0</p>
+
+
+   </div>
+   
+
 
     <div id='map'></div>
 </div>

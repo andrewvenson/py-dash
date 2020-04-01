@@ -1,44 +1,78 @@
 .country-info{
     padding:10px;
     position:absolute; 
-    height: 225px; 
-    width: 175px;
-    left:10px;
-    top:50px;
-    background-color:rgb(19, 18, 18);
+    height: 325px; 
+    width: 200px;
+    left:5px;
+    top:65px;
+    background-color:rgb(226, 226, 226);
     bottom:25px;
-    border-radius:5px;
+    border-radius:2px;
     display:none;
     z-index:1000;
-    opacity:.7;
+    opacity:.8;
+    box-shadow: 3px 7px 8px rgb(27, 27, 27);
 }
 
-#svg2 path:hover{
-    fill: #000 !important;
+.covid-legend{
+    padding:2px 20px 2px 20px;
+    position:absolute; 
+    height: 58px; 
+    width: 460px;
+    right:75px;
+    background-color:white;
+    bottom:25px;
+    border-radius:2px;
+    z-index:1001;
+}
+
+.sdlegend{
+    /* padding:2px 20px 2px 20px; */
+    position:absolute; 
+    display:none;
+    height: 400px; 
+    width: 70px;
+    right:15px;
+    top:60px;
+    border-radius:2px;
+    z-index:1001;
+    text-align:center !important;
+}
+
+.map-tab:hover{
+    background-color: lightgray !important;
+    color:white !important;
 }
 
 
-#svg2{
-    position:absolute;
-    z-index:888 !important;
-    min-width:500px !important;
+.covid-legend .row .col{
+    padding:0px;
+    text-align:center;
+
 }
 
-#min {
-    touch-action: none !important;
+.covid-legend .row .col p{
+    width: 75px;
+    /* box-shadow: 3px 4px 7px #000; */
 }
-#max {
-    touch-action: none !important;
-}
-
-img {
-    touch-action: none !important;
-}
-
 
 #map{
-    height:90% !important;
+    height:92% !important;
     width: 100% !important;
     z-index:999 !important;
-    margin-top:5px;
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .sdlegend{
+        display:block !important;
+    }
+    .covid-legend{
+        display:none;
+    }
+    .country-info{
+        width: 153px !important;
+        height:173px !important;
+        top:170px !important;
+    }
 }

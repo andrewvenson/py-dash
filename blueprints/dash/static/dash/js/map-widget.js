@@ -1,132 +1,253 @@
-$('#svg2 path').mouseenter(function(){
-    $('.country-info').css('display', 'block');
-    $('.country-title').text($(this).attr('data-name'));
-    $('.country-cases').text(this.id)
+
+$(".map-tab").click(function(){
+   $(".map-tab").css("background-color", "whitesmoke");
+   $(this).css("background-color", "rgb(211, 211, 211)");
+   $(".country-info").css('display', 'none');
+   initMap();
 });
 
-$('#svg2 path').mouseout(function(){
-    $('.country-info').css('display', 'none');
-});
+$(".close-cinfo").click(function(){
+    $(".country-info").css("display", "none");
+})
 
-$('#max').click(function(){
-    var img_width = $('#svg2').width();
-    var img_height = $('#svg2').height();
-    console.log(img_width)
-    console.log(img_height)
+var map;
+var infoWindow;
 
-    var wid_val = img_width + 100;
-    var hgt_val = img_height + 100;
+function initMap() {
+    if($("#world-tab").css('background-color') == 'rgb(211, 211, 211)'){
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: new google.maps.LatLng(31.8686,0),
+            zoom: 3,
+            streetViewControl: false,
+            mapTypeControl: false,
+            fullscreenControl: false,
+        });
 
-    document.getElementById('svg2').style.width = wid_val.toString() + "px" 
-    document.getElementById('svg2').style.height = hgt_val.toString() + "px" 
-});
+        // Load geojson file to display data layer over map
+        map.data.loadGeoJson('dash/json/countries.geo.json');
+        
+        // Api Url
+        getUrlSum = "https://api.covid19api.com/summary"
 
-$('#min').click(function(){
-    var img_width = $('#svg2').width();
-    var img_height = $('#svg2').height();
-    console.log(img_width)
-    console.log(img_height)
+        // store country and totalconfirmed in dict
+        var json_countries = {}
 
-    var wid_val = img_width - 100;
-    var hgt_val = img_height - 100;
+        // request json data from covid summary api url
+        $.getJSON(getUrlSum, function(data){
+            for(x in data['Countries']){
+                for(y in data['Countries'][x]){
+                    json_countries[data['Countries'][x]['Country']] = [data['Countries'][x]['TotalConfirmed'],data['Countries'][x]['NewConfirmed']] ;
+                }
+            }
+        }).done(function(){
+            var ccs = {
+                "Antarctica": "",
+                "French Southern and Antarctic Lands": "",
+                "Bermuda": "",
+                "Democratic Republic of the Congo": "",
+                "Czech Republic": "",
+                "Falkland Islands": "",
+                "Guinea Bissau": "",
+                "Lesotho": "",
+                "Macedonia": "",
+                "Myanmar": "",
+                "Malawi": "",
+                "New Caledonia": "",
+                "North Korea": "",
+                "Western Sahara": "",
+                "South Sudan": "",
+                "Solomon Islands": "",
+                "Somaliland": "",
+                "Republic of Serbia": "",
+                "Swaziland": "",
+                "Tajikistan": "",
+                "Turkmenistan": "",
+                "United Republic of Tanzania": "",
+                "United States of America": "US",
+                "Vanuatu": "",
+                "West Bank": "",
+                "Yemen": ""
+            }
+            // Set style of map
+            map.data.setStyle(function(feature){
+                // console.log(json_countries[feature.getProperty('name')]);
+                if(json_countries[feature.getProperty('name')] == undefined){
+                    console.log(feature.getProperty('name'));
+                    if(json_countries[ccs[feature.getProperty('name')]][0] > 50000){
 
-    document.getElementById('svg2').style.width = wid_val.toString() + "px" 
-    document.getElementById('svg2').style.height = hgt_val.toString() + "px" 
-});
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "red",
+                            strokeColor: 'red',
+                            strokeWeight:1
+                        });
+                    }else if(json_countries[ccs[feature.getProperty('name')]][0] >= 10001 && json_countries[ccs[feature.getProperty('name')]][0] < 50000){
+                        return /**= @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "orange",
+                            strokeColor: 'orange',
+                            strokeWeight:1
+                        });
+                    }else if(json_countries[ccs[feature.getProperty('name')]][0] >= 1001 && json_countries[ccs[feature.getProperty('name')]][0] < 10000){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "yellow",
+                            strokeColor: 'yellow',
+                            strokeWeight:1
+                        });
+                    }else if(json_countries[ccs[feature.getProperty('name')]][0] >= 101 && json_countries[ccs[feature.getProperty('name')]][0] < 1000){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "darkblue",
+                            strokeColor: 'darkblue',
+                            strokeWeight:1
+                        });
+                    }else if(json_countries[ccs[feature.getProperty('name')]][0] >= 1 && json_countries[ccs[feature.getProperty('name')]][0] < 100){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "green",
+                            strokeColor: 'green',
+                            strokeWeight:1
+                        });
+                    }else if(json_countries[ccs[feature.getProperty('name')]][0] == 0 && feature.getProperty('name') != "Antarctica"){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "lightgreen",
+                            strokeColor: 'lightgreen',
+                            strokeWeight:1
+                        });
+                    }
+                }
+                if(json_countries[feature.getProperty('name')][0] >= 50000){
+                    // feature.setProperty("fillColor") = "red";
+                    return /** @type {!google.maps.Data.StyleOptions} */({
+                        fillColor: "red",
+                        strokeColor: 'red',
+                        strokeWeight:1
+                    });
+                }
+                else if (json_countries[feature.getProperty('name')][0] >= 10001 && json_countries[feature.getProperty('name')][0] < 50000) {
+                    return /** @type {!google.maps.Data.StyleOptions} */({
+                        fillColor: "orange",
+                        strokeColor: 'orange',
+                        strokeWeight:1
+                    });
+                }else if(json_countries[feature.getProperty('name')][0] >= 1001 && json_countries[feature.getProperty('name')][0] < 10000){
+                    return /** @type {!google.maps.Data.StyleOptions} */({
+                        fillColor: "yellow",
+                        strokeColor: "yellow",
+                        strokeWeight:1
+                    });
+                }else if(json_countries[feature.getProperty('name')][0] >= 101 && json_countries[feature.getProperty('name')][0] < 1000){
+                    return /** @type {!google.maps.Data.StyleOptions} */({
+                        fillColor: "darkblue",
+                        strokeColor: 'darkblue',
+                        strokeWeight:1
+                    });
+                }else if(json_countries[feature.getProperty('name')][0] >= 1 && json_countries[feature.getProperty('name')][0] < 100){
+                    return /** @type {!google.maps.Data.StyleOptions} */({
+                        fillColor: "green",
+                        strokeColor: 'green',
+                        strokeWeight:1
+                    });
+                }else if(json_countries[feature.getProperty('name')][0] == 0 && feature.getProperty('name') != "Antarctica"){
+                    return /** @type {!google.maps.Data.StyleOptions} */({
+                        fillColor: "lightgreen",
+                        strokeColor: 'lightgreen',
+                        strokeWeight:1
+                    });
+                }
+            });
+            map.data.addListener('mouseover', function(event) {
+                if(event.feature.getProperty("name") != "Antarctica"){
+                    $('.country-info').css('display', 'block');
+                    $('.country-title').text(event.feature.getProperty("name"));
 
-$('#reset').click(function(){
-    document.getElementById('svg2').style.width = "100%";
-    document.getElementById('svg2').style.height = "100%"; 
-});
+                    if(json_countries[event.feature.getProperty('name')] == undefined){
+                        $('.map-total').text(json_countries[ccs[event.feature.getProperty("name")]][0]);
+                        $('.map-new').text(json_countries[ccs[event.feature.getProperty("name")]][1]);
+                    }else{
+                        $('.map-total').text(json_countries[event.feature.getProperty("name")][0]);
+                        $('.map-new').text(json_countries[event.feature.getProperty("name")][1]);
+                    }
+                }   
+            });
+        });
+
+        
+        map.data.addListener('mouseover', function(event){
+            // map.data.overrideStyle(event.feature, {fillColor: "darkblue",strokeColor: 'red',});
+            // console.log(event.feature.getProperty("fillColor"));
+        });
+
+        map.data.addListener('mouseout', function(event) {
+            // map.data.overrideStyle(event.feature, {fillColor: 'blue',strokeColor: 'darkblue'});
+            // $('.country-info').css('display', 'none');
+        }); 
+
+        }else if($('#us-tab').css('background-color') == 'rgb(211, 211, 211)'){
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: new google.maps.LatLng(39.0119,-98.4842),
+                zoom: 4,
+                streetViewControl: false,
+                mapTypeControl: false,
+            });
+
+            map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
+
+            map.data.setStyle(function(feature){
+                return /** @type {!google.maps.Data.StyleOptions} */({
+                    fillColor: "darkblue",
+                    strokeColor: 'darkblue',
+                    strokeWeight:1
+                });
+        })   
+    }else if($('#loc-tab').css('background-color') == 'rgb(211, 211, 211)'){
+        
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 7,
+            streetViewControl: false,
+            mapTypeControl: false,
+        });
+
+        infoWindow = new google.maps.InfoWindow;
 
 
- // Styles a map in night mode.
- function initMap() {
- var map = new google.maps.Map(document.getElementById('map'), {
-    center: new google.maps.LatLng(0,0),
-    zoom: 1,
-    // disableDefaultUI: true,
-    streetViewControl: false,
-    mapTypeControl: false,
-    styles: [
-      {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-      {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-      {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-      {
-        featureType: 'administrative.locality',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
-      },
-      {
-        featureType: 'poi',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
-      },
-      {
-        featureType: 'poi.park',
-        elementType: 'geometry',
-        stylers: [{color: '#263c3f'}]
-      },
-      {
-        featureType: 'poi.park',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#6b9a76'}]
-      },
-      {
-        featureType: 'road',
-        elementType: 'geometry',
-        stylers: [{color: '#38414e'}]
-      },
-      {
-        featureType: 'road',
-        elementType: 'geometry.stroke',
-        stylers: [{color: '#212a37'}]
-      },
-      {
-        featureType: 'road',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#9ca5b3'}]
-      },
-      {
-        featureType: 'road.highway',
-        elementType: 'geometry',
-        stylers: [{color: '#746855'}]
-      },
-      {
-        featureType: 'road.highway',
-        elementType: 'geometry.stroke',
-        stylers: [{color: '#1f2835'}]
-      },
-      {
-        featureType: 'road.highway',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#f3d19c'}]
-      },
-      {
-        featureType: 'transit',
-        elementType: 'geometry',
-        stylers: [{color: '#2f3948'}]
-      },
-      {
-        featureType: 'transit.station',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
-      },
-      {
-        featureType: 'water',
-        elementType: 'geometry',
-        stylers: [{color: '#17263c'}]
-      },
-      {
-        featureType: 'water',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#515c6d'}]
-      },
-      {
-        featureType: 'water',
-        elementType: 'labels.text.stroke',
-        stylers: [{color: '#17263c'}]
-      }
-    ]
-  });
+        map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
+
+        map.data.setStyle(function(feature){
+            return /** @type {!google.maps.Data.StyleOptions} */({
+                fillColor: "darkblue",
+                strokeColor: 'darkblue',
+                strokeWeight:1
+            });
+        });
+        console.log(navigator)
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+        
+            // infoWindow.setPosition(pos);
+            // infoWindow.setContent('Location found.');
+            // infoWindow.open(map);
+            map.setCenter(pos);
+            }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+        
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                                'Error: The Geolocation service failed.' :
+                                'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+        }
+    
+    
+    }   
 }
+
+
+
