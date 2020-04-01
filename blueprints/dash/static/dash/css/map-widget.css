@@ -15,28 +15,32 @@
 }
 
 .covid-legend{
-    padding:3px;
+    padding:2px 15px 2px 15px;
     position:absolute; 
-    height: 50px; 
-    width: 400px;
-    right:20%;
-    bottom:0px;
+    height: 58px; 
+    width: 460px;
+    right:75px;
     background-color:rgb(226, 226, 226);
-    bottom:25px;
+    bottom:45px;
     border-radius:2px;
     z-index:10001;
-    text-align:center;
 }
 
 .covid-legend .row .col{
     padding:0px;
+    text-align:center;
+
 }
 
-.covid-legend .row .col div{
-    position:absolute;
-    bottom:-17px;
-    right:24px;
+.covid-legend .row .col p{
+    width: 73px;
 }
+
+/* .covid-legend .row .col div{ */
+    /* position:absolute;
+    bottom:-17px;
+    right:24px; */
+/* } */
 
 #min {
     touch-action: none !important;
