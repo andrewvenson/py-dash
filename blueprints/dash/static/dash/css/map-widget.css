@@ -22,17 +22,16 @@
     right:75px;
     background-color:white;
     bottom:25px;
-    border-radius:4px;
+    border-radius:2px;
     z-index:10001;
 }
 
-.world-tab:hover{
+.map-tab:hover{
     background-color: lightgray !important;
+    color:white !important;
 }
 
-.us-tab:hover{
-    background-color: lightgray !important;
-}
+
 .covid-legend .row .col{
     padding:0px;
     text-align:center;
