@@ -10,7 +10,7 @@
     border-radius:2px;
     display:none;
     z-index:1000;
-    opacity:.9;
+    opacity:.8;
     box-shadow: 3px 7px 8px rgb(27, 27, 27);
 }
 
@@ -72,6 +72,8 @@
         display:none;
     }
     .country-info{
-        width: 160px !important;
+        width: 153px !important;
+        height:173px !important;
+        top:170px !important;
     }
 }
