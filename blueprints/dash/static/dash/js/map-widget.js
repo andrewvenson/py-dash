@@ -57,7 +57,7 @@ $('#reset').click(function(){
         });
 
     map.data.addListener('mouseover', function(event) {
-        map.data.overrideStyle(event.feature, {fillColor: 'red'});
+        map.data.overrideStyle(event.feature, {fillColor: "#005EAA"});
         $('.country-info').css('display', 'block');
         $('.country-title').text(event.feature.getProperty("NAME"));
         });
