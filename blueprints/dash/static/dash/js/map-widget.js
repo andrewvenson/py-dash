@@ -16,7 +16,7 @@ var infoWindow;
 function initMap() {
     if($("#world-tab").css('background-color') == 'rgb(211, 211, 211)'){
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng(31.8686,0),
+            center: new google.maps.LatLng(30.5994,-50.6731),
             zoom: 3,
             streetViewControl: false,
             mapTypeControl: false,
@@ -72,7 +72,7 @@ function initMap() {
             map.data.setStyle(function(feature){
                 // console.log(json_countries[feature.getProperty('name')]);
                 if(json_countries[feature.getProperty('name')] == undefined){
-                    console.log(feature.getProperty('name'));
+                    // console.log(feature.getProperty('name'));
                     if(json_countries[ccs[feature.getProperty('name')]][0] > 50000){
 
                         return /** @type {!google.maps.Data.StyleOptions} */({
@@ -180,6 +180,8 @@ function initMap() {
         }); 
 
         }else if($('#us-tab').css('background-color') == 'rgb(211, 211, 211)'){
+            
+
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: new google.maps.LatLng(39.0119,-98.4842),
                 zoom: 4,
@@ -187,15 +189,111 @@ function initMap() {
                 mapTypeControl: false,
             });
 
+            var json_states = {}
+
             map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
 
-            map.data.setStyle(function(feature){
-                return /** @type {!google.maps.Data.StyleOptions} */({
-                    fillColor: "darkblue",
-                    strokeColor: 'darkblue',
-                    strokeWeight:1
-                });
-        })   
+            $.getJSON("https://covidtracking.com/api/states", function(data){
+                for(x in data){
+                    json_states[data[x]["state"]] = data[x]["positive"];
+                }
+                // console.log(json_states);
+            }).done(function(){
+                var ssa = {
+                    "Alabama": 	"AL",
+                    "Alaska": 	"AK",
+                    "Arizona": 	"AZ",
+                    "Arkansas": 	"AR",
+                    "California": 	"CA",
+                    "Colorado": 	"CO",
+                    "Connecticut": 	"CT",
+                    "Delaware": 	"DE",
+                    "Florida": 	"FL",
+                    "Georgia": 	"GA",
+                    "Hawaii": 	"HI",
+                    "Idaho": 	"ID",
+                    "Illinois": 	"IL",
+                    "Indiana": 	"IN",
+                    "Iowa": 	"IA",
+                    "Kansas": 	"KS",
+                    "Kentucky": 	"KY",
+                    "Louisiana": 	"LA",
+                    "Maine": 	"ME",
+                    "Maryland": 	"MD",
+                    "Massachusetts": 	"MA",
+                    "Michigan": 	"MI",
+                    "Minnesota": 	"MN",
+                    "Mississippi": 	"MS",
+                    "Missouri": 	"MO",
+                    "Montana": 	"MT",
+                    "Nebraska": 	"NE",
+                    "Nevada": 	"NV",
+                    "New Hampshire": 	"NH",
+                    "New Jersey": 	"NJ",
+                    "New Mexico": 	"NM",
+                    "New York": 	"NY",
+                    "North Carolina": 	"NC",
+                    "North Dakota": 	"ND",
+                    "Ohio": 	"OH",
+                    "Oklahoma": 	"OK",
+                    "Oregon": 	"OR",
+                    "Pennsylvania": 	"PA",
+                    "Rhode Island": 	"RI",
+                    "South Carolina": 	"SC",
+                    "South Dakota": 	"SD",
+                    "Tennessee": 	"TN",
+                    "Texas": 	"TX",
+                    "Utah": 	"UT",
+                    "Vermont": 	"VT",
+                    "Virginia": 	"VA",
+                    "Washington": 	"WA",
+                    "West Virginia": 	"WV",
+                    "Wisconsin": 	"WI",
+                    "Wyoming": 	"WY"}
+
+                    map.data.setStyle(function(feature){
+                        if(json_states[ssa[feature.getProperty('NAME')]] > 50000){
+        
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "red",
+                            strokeColor: 'red',
+                            strokeWeight:1
+                        });
+                    }else if(json_states[ssa[feature.getProperty('NAME')]] >= 10001 && json_states[ssa[feature.getProperty('NAME')]] < 50000){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "orange",
+                            strokeColor: 'orange',
+                            strokeWeight:1
+                        });
+                    }else if(json_states[ssa[feature.getProperty('NAME')]] >= 1001 && json_states[ssa[feature.getProperty('NAME')]] < 10000){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "yellow",
+                            strokeColor: 'yellow',
+                            strokeWeight:1
+                        });
+                    }else if(json_states[ssa[feature.getProperty('NAME')]] >= 101 && json_states[ssa[feature.getProperty('NAME')]] < 1000){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "darkblue",
+                            strokeColor: 'darkblue',
+                            strokeWeight:1
+                        });
+                    }else if(json_states[ssa[feature.getProperty('NAME')]] >=1 && json_states[ssa[feature.getProperty('NAME')]] < 100){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "green",
+                            strokeColor: 'green',
+                            strokeWeight:1
+                        });
+                    }else if(json_states[ssa[feature.getProperty('NAME')]] == 0){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: "lightgreen",
+                            strokeColor: 'lightgreen',
+                            strokeWeight:1
+                        });
+                    }
+                }) 
+            });
+
+              
     }else if($('#loc-tab').css('background-color') == 'rgb(211, 211, 211)'){
         
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -209,6 +307,8 @@ function initMap() {
 
 
         map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
+
+        
 
         map.data.setStyle(function(feature){
             return /** @type {!google.maps.Data.StyleOptions} */({
@@ -244,8 +344,6 @@ function initMap() {
                                 'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
         }
-    
-    
     }   
 }
 
