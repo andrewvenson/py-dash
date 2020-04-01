@@ -17,6 +17,7 @@
     border: 1px solid rgb(226, 226, 226);
     padding: 10px 0px 10px 0px;
     position:relative;
+    overflow:hidden !important;
 }
 
 .widget .wid:hover{
@@ -45,16 +46,15 @@
 
 .widget-tool{
     display:none;
-    background-color:rgb(228, 228, 228);
-    border-radius: 50%; 
-    height: 30px; 
-    width:30px;
+    /* background-color:rgb(228, 228, 228); */
+    /* border-radius: 50%;  */
+    height: 20px; 
+    width:20px;
     position: absolute; 
-    top:-10px;
-    right:-10px;
+    top:0;
+    right:5px;
     text-align: center;
     color: #005EAA;
-    border: 1px solid lightgray;
 }
 
 .dash::-webkit-scrollbar {
