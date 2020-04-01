@@ -1,7 +1,7 @@
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(0,0),
-        zoom: 2,
+        center: new google.maps.LatLng(31.8686,0),
+        zoom: 3,
         streetViewControl: false,
         mapTypeControl: false,
     });
@@ -58,19 +58,19 @@ function initMap() {
                 if(json_countries[ccs[feature.getProperty('name')]] > 50000){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "red",
-                        strokeColor: 'darkblue',
+                        strokeColor: 'red',
                         strokeWeight:1
                     });
                 }else if(json_countries[ccs[feature.getProperty('name')]] >= 10001 && json_countries[ccs[feature.getProperty('name')]] < 50000){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "orange",
-                        strokeColor: 'darkblue',
+                        strokeColor: 'orange',
                         strokeWeight:1
                     });
                 }else if(json_countries[ccs[feature.getProperty('name')]] >= 1001 && json_countries[ccs[feature.getProperty('name')]] < 10000){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "yellow",
-                        strokeColor: 'darkblue',
+                        strokeColor: 'yellow',
                         strokeWeight:1
                     });
                 }else if(json_countries[ccs[feature.getProperty('name')]] >= 101 && json_countries[ccs[feature.getProperty('name')]] < 1000){
@@ -82,13 +82,13 @@ function initMap() {
                 }else if(json_countries[ccs[feature.getProperty('name')]] >= 1 && json_countries[ccs[feature.getProperty('name')]] < 100){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "green",
-                        strokeColor: 'darkblue',
+                        strokeColor: 'green',
                         strokeWeight:1
                     });
                 }else if(json_countries[ccs[feature.getProperty('name')]] == 0 && feature.getProperty('name') != "Antarctica"){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "lightgreen",
-                        strokeColor: 'darkblue',
+                        strokeColor: 'lightgreen',
                         strokeWeight:1
                     });
                 }
@@ -96,20 +96,20 @@ function initMap() {
             if(json_countries[feature.getProperty('name')] >= 50000){
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "red",
-                    strokeColor: 'darkblue',
+                    strokeColor: 'red',
                     strokeWeight:1
                 });
             }
             else if (json_countries[feature.getProperty('name')] >= 10001 && json_countries[feature.getProperty('name')] < 50000) {
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "orange",
-                    strokeColor: 'darkblue',
+                    strokeColor: 'orange',
                     strokeWeight:1
                 });
             }else if(json_countries[feature.getProperty('name')] >= 1001 && json_countries[feature.getProperty('name')] < 10000){
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "yellow",
-                    strokeColor: 'darkblue',
+                    strokeColor: "yellow",
                     strokeWeight:1
                 });
             }else if(json_countries[feature.getProperty('name')] >= 101 && json_countries[feature.getProperty('name')] < 1000){
@@ -121,13 +121,13 @@ function initMap() {
             }else if(json_countries[feature.getProperty('name')] >= 1 && json_countries[feature.getProperty('name')] < 100){
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "green",
-                    strokeColor: 'darkblue',
+                    strokeColor: 'green',
                     strokeWeight:1
                 });
             }else if(json_countries[feature.getProperty('name')] == 0 && feature.getProperty('name') != "Antarctica"){
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "lightgreen",
-                    strokeColor: 'darkblue',
+                    strokeColor: 'lightgreen',
                     strokeWeight:1
                 });
             }
