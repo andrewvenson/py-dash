@@ -5,13 +5,37 @@
     width: 200px;
     left:14px;
     top:47px;
-    background-color:whitesmoke;
+    background-color:rgb(226, 226, 226);
     bottom:25px;
-    border-radius:5px;
+    border-radius:2px;
     display:none;
     z-index:1000;
-    opacity:.8;
+    opacity:.9;
     box-shadow: 3px 7px 8px rgb(27, 27, 27);
+}
+
+.covid-legend{
+    padding:3px;
+    position:absolute; 
+    height: 50px; 
+    width: 400px;
+    right:20%;
+    bottom:0px;
+    background-color:rgb(226, 226, 226);
+    bottom:25px;
+    border-radius:2px;
+    z-index:10001;
+    text-align:center;
+}
+
+.covid-legend .row .col{
+    padding:0px;
+}
+
+.covid-legend .row .col div{
+    position:absolute;
+    bottom:-17px;
+    right:24px;
 }
 
 #min {

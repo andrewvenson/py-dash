@@ -18,7 +18,7 @@ function initMap() {
     $.getJSON(getUrlSum, function(data){
         for(x in data['Countries']){
             for(y in data['Countries'][x]){
-                json_countries[data['Countries'][x]['Country']] = data['Countries'][x]['TotalConfirmed'];
+                json_countries[data['Countries'][x]['Country']] = [data['Countries'][x]['TotalConfirmed'],data['Countries'][x]['NewConfirmed']] ;
             }
         }
     }).done(function(){
@@ -55,37 +55,38 @@ function initMap() {
             // console.log(json_countries[feature.getProperty('name')]);
             if(json_countries[feature.getProperty('name')] == undefined){
                 console.log(feature.getProperty('name'));
-                if(json_countries[ccs[feature.getProperty('name')]] > 50000){
+                if(json_countries[ccs[feature.getProperty('name')]][0] > 50000){
+
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "red",
                         strokeColor: 'red',
                         strokeWeight:1
                     });
-                }else if(json_countries[ccs[feature.getProperty('name')]] >= 10001 && json_countries[ccs[feature.getProperty('name')]] < 50000){
-                    return /** @type {!google.maps.Data.StyleOptions} */({
+                }else if(json_countries[ccs[feature.getProperty('name')]][0] >= 10001 && json_countries[ccs[feature.getProperty('name')]][0] < 50000){
+                    return /**= @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "orange",
                         strokeColor: 'orange',
                         strokeWeight:1
                     });
-                }else if(json_countries[ccs[feature.getProperty('name')]] >= 1001 && json_countries[ccs[feature.getProperty('name')]] < 10000){
+                }else if(json_countries[ccs[feature.getProperty('name')]][0] >= 1001 && json_countries[ccs[feature.getProperty('name')]][0] < 10000){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "yellow",
                         strokeColor: 'yellow',
                         strokeWeight:1
                     });
-                }else if(json_countries[ccs[feature.getProperty('name')]] >= 101 && json_countries[ccs[feature.getProperty('name')]] < 1000){
+                }else if(json_countries[ccs[feature.getProperty('name')]][0] >= 101 && json_countries[ccs[feature.getProperty('name')]][0] < 1000){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "darkblue",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
-                }else if(json_countries[ccs[feature.getProperty('name')]] >= 1 && json_countries[ccs[feature.getProperty('name')]] < 100){
+                }else if(json_countries[ccs[feature.getProperty('name')]][0] >= 1 && json_countries[ccs[feature.getProperty('name')]][0] < 100){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "green",
                         strokeColor: 'green',
                         strokeWeight:1
                     });
-                }else if(json_countries[ccs[feature.getProperty('name')]] == 0 && feature.getProperty('name') != "Antarctica"){
+                }else if(json_countries[ccs[feature.getProperty('name')]][0] == 0 && feature.getProperty('name') != "Antarctica"){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "lightgreen",
                         strokeColor: 'lightgreen',
@@ -93,38 +94,39 @@ function initMap() {
                     });
                 }
             }
-            if(json_countries[feature.getProperty('name')] >= 50000){
+            if(json_countries[feature.getProperty('name')][0] >= 50000){
+                // feature.setProperty("fillColor") = "red";
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "red",
                     strokeColor: 'red',
                     strokeWeight:1
                 });
             }
-            else if (json_countries[feature.getProperty('name')] >= 10001 && json_countries[feature.getProperty('name')] < 50000) {
+            else if (json_countries[feature.getProperty('name')][0] >= 10001 && json_countries[feature.getProperty('name')][0] < 50000) {
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "orange",
                     strokeColor: 'orange',
                     strokeWeight:1
                 });
-            }else if(json_countries[feature.getProperty('name')] >= 1001 && json_countries[feature.getProperty('name')] < 10000){
+            }else if(json_countries[feature.getProperty('name')][0] >= 1001 && json_countries[feature.getProperty('name')][0] < 10000){
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "yellow",
                     strokeColor: "yellow",
                     strokeWeight:1
                 });
-            }else if(json_countries[feature.getProperty('name')] >= 101 && json_countries[feature.getProperty('name')] < 1000){
+            }else if(json_countries[feature.getProperty('name')][0] >= 101 && json_countries[feature.getProperty('name')][0] < 1000){
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "darkblue",
                     strokeColor: 'darkblue',
                     strokeWeight:1
                 });
-            }else if(json_countries[feature.getProperty('name')] >= 1 && json_countries[feature.getProperty('name')] < 100){
+            }else if(json_countries[feature.getProperty('name')][0] >= 1 && json_countries[feature.getProperty('name')][0] < 100){
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "green",
                     strokeColor: 'green',
                     strokeWeight:1
                 });
-            }else if(json_countries[feature.getProperty('name')] == 0 && feature.getProperty('name') != "Antarctica"){
+            }else if(json_countries[feature.getProperty('name')][0] == 0 && feature.getProperty('name') != "Antarctica"){
                 return /** @type {!google.maps.Data.StyleOptions} */({
                     fillColor: "lightgreen",
                     strokeColor: 'lightgreen',
@@ -132,20 +134,30 @@ function initMap() {
                 });
             }
         });
+        map.data.addListener('mouseover', function(event) {
+            if(event.feature.getProperty("name") != "Antarctica"){
+                $('.country-info').css('display', 'block');
+                $('.country-title').text(event.feature.getProperty("name"));
+
+                if(json_countries[event.feature.getProperty('name')] == undefined){
+                    $('.map-total').text(json_countries[ccs[event.feature.getProperty("name")]][0]);
+                    $('.map-new').text(json_countries[ccs[event.feature.getProperty("name")]][1]);
+                }else{
+                    $('.map-total').text(json_countries[event.feature.getProperty("name")][0]);
+                    $('.map-new').text(json_countries[event.feature.getProperty("name")][1]);
+                }
+            }   
+        });
     });
 
-    map.data.addListener('mouseover', function(event) {
-        if(event.feature.getProperty("name") != "Antarctica"){
-            // map.data.overrideStyle(event.feature, {fillColor: "darkblue",strokeColor: 'red',});
-            $('.country-info').css('display', 'block');
-            $('.country-title').text(event.feature.getProperty("name"));
-        }   
-    });
     
+    map.data.addListener('mouseover', function(event){
+        // map.data.overrideStyle(event.feature, {fillColor: "darkblue",strokeColor: 'red',});
+        // console.log(event.feature.getProperty("fillColor"));
+    });
+
     map.data.addListener('mouseout', function(event) {
         // map.data.overrideStyle(event.feature, {fillColor: 'blue',strokeColor: 'darkblue'});
         $('.country-info').css('display', 'none');
-    });
-
-    
+    });    
 }   
