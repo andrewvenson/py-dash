@@ -15,17 +15,24 @@
 }
 
 .covid-legend{
-    padding:2px 15px 2px 15px;
+    padding:2px 20px 2px 20px;
     position:absolute; 
     height: 58px; 
     width: 460px;
     right:75px;
     background-color:white;
-    bottom:45px;
-    border-radius:2px;
+    bottom:25px;
+    border-radius:4px;
     z-index:10001;
 }
 
+.world-tab:hover{
+    background-color: lightgray !important;
+}
+
+.us-tab:hover{
+    background-color: lightgray !important;
+}
 .covid-legend .row .col{
     padding:0px;
     text-align:center;
@@ -33,7 +40,8 @@
 }
 
 .covid-legend .row .col p{
-    width: 73px;
+    width: 75px;
+    /* box-shadow: 3px 4px 7px #000; */
 }
 
 /* .covid-legend .row .col div{ */
