@@ -3,8 +3,8 @@
     position:absolute; 
     height: 325px; 
     width: 200px;
-    left:14px;
-    top:70px;
+    left:5px;
+    top:65px;
     background-color:rgb(226, 226, 226);
     bottom:25px;
     border-radius:2px;
@@ -60,7 +60,6 @@
     height:90% !important;
     width: 100% !important;
     z-index:999 !important;
-    margin-top:5px;
 }
 
 
