@@ -85,9 +85,9 @@ function initMap() {
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
-                }else if(json_countries[ccs[feature.getProperty('name')]] == 0){
+                }else if(json_countries[ccs[feature.getProperty('name')]] == 0 && feature.getProperty('name') != "Antarctica"){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "white",
+                        fillColor: "green",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
@@ -124,9 +124,9 @@ function initMap() {
                     strokeColor: 'darkblue',
                     strokeWeight:1
                 });
-            }else if(json_countries[feature.getProperty('name')] == 0){
+            }else if(json_countries[feature.getProperty('name')] == 0 && feature.getProperty('name') != "Antarctica"){
                 return /** @type {!google.maps.Data.StyleOptions} */({
-                    fillColor: "white",
+                    fillColor: "green",
                     strokeColor: 'darkblue',
                     strokeWeight:1
                 });
