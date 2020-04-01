@@ -11,7 +11,7 @@
     display:none;
     z-index:1000;
     opacity:.8;
-    box-shadow: 3px 7px 8px gray;
+    box-shadow: 3px 7px 8px rgb(27, 27, 27);
 }
 
 #min {
