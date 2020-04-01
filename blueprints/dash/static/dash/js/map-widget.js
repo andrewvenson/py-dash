@@ -15,6 +15,7 @@ function initMap() {
             zoom: 3,
             streetViewControl: false,
             mapTypeControl: false,
+            fullscreenControl: false,
         });
 
         // Load geojson file to display data layer over map
