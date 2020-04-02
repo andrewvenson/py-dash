@@ -7,20 +7,20 @@ $(".map-tab").click(function(){
    console.log($(this).text())
    if($(this).text() == "US Map"){
         $(".covid-legend").css("display", "block")
-       $('.highest').text('>5000');
-       $('.higher').text('5000-1001');
-       $('.high').text('1000-501');
-       $('.mid').text('500-101');
-       $('.low').text('100-51');
-       $('.lowest').text('0');
+        $('.highest').text('>5000');
+        $('.higher').text('5000-1001');
+        $('.high').text('1000-501');
+        $('.mid').text('500-101');
+        $('.low').text('100-51');
+        $('.lowest').text('0');
    }else if($(this).text() == "World Map"){
-    $(".covid-legend").css("display", "block")
-    $('.highest').text('>50000');
-    $('.higher').text('50000-10001');
-    $('.high').text('10000-1001');
-    $('.mid').text('1000-101');
-    $('.low').text('100-1');
-    $('.lowest').text('0');
+        $(".covid-legend").css("display", "block")
+        $('.highest').text('>50000');
+        $('.higher').text('50000-10001');
+        $('.high').text('10000-1001');
+        $('.mid').text('1000-101');
+        $('.low').text('100-1');
+        $('.lowest').text('0');
     }else if($(this).text() == "My Location"){
         $(".covid-legend").css("display", "none")
     }
