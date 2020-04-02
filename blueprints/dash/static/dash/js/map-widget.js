@@ -1,4 +1,5 @@
 
+// Select map tab
 $(".map-tab").click(function(){
    $(".map-tab").css("background-color", "whitesmoke");
    $(this).css("background-color", "rgb(211, 211, 211)");
@@ -27,13 +28,7 @@ $(".map-tab").click(function(){
    initMap();
 });
 
-$(".close-cinfo").click(function(){
-    $(".country-info").css("display", "none");
-})
-
-// var map;
-// var infoWindow;
-
+// initialize map and datalayer
 function initMap() {
     if($("#world-tab").css('background-color') == 'rgb(211, 211, 211)'){
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -237,109 +232,120 @@ function initMap() {
 
             $.getJSON("https://covidtracking.com/api/states/daily", function(data){
                 for(x in data){
-                    console.log("todays", today_dt);
+                    // console.log("todays", today_dt);
                     if(data[x]["dateChecked"] == today_dt + "T20:00:00Z"){
-                        // console.log(data[x]["state"]);
+                        
                         json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"]];
-                        // console.log(data[x]["positive"]);
-                }
-            }
-                // console.log(json_states[0]);
-            }).done(function(){
-                var ssa = {
-                    "Alabama": 	"AL",
-                    "Alaska": 	"AK",
-                    "Arizona": 	"AZ",
-                    "Arkansas": 	"AR",
-                    "California": 	"CA",
-                    "Colorado": 	"CO",
-                    "Connecticut": 	"CT",
-                    "Delaware": 	"DE",
-                    "Florida": 	"FL",
-                    "Georgia": 	"GA",
-                    "Hawaii": 	"HI",
-                    "Idaho": 	"ID",
-                    "Illinois": 	"IL",
-                    "Indiana": 	"IN",
-                    "Iowa": 	"IA",
-                    "Kansas": 	"KS",
-                    "Kentucky": 	"KY",
-                    "Louisiana": 	"LA",
-                    "Maine": 	"ME",
-                    "Maryland": 	"MD",
-                    "Massachusetts": 	"MA",
-                    "Michigan": 	"MI",
-                    "Minnesota": 	"MN",
-                    "Mississippi": 	"MS",
-                    "Missouri": 	"MO",
-                    "Montana": 	"MT",
-                    "Nebraska": 	"NE",
-                    "Nevada": 	"NV",
-                    "New Hampshire": 	"NH",
-                    "New Jersey": 	"NJ",
-                    "New Mexico": 	"NM",
-                    "New York": 	"NY",
-                    "North Carolina": 	"NC",
-                    "North Dakota": 	"ND",
-                    "Ohio": 	"OH",
-                    "Oklahoma": 	"OK",
-                    "Oregon": 	"OR",
-                    "Pennsylvania": 	"PA",
-                    "Rhode Island": 	"RI",
-                    "South Carolina": 	"SC",
-                    "South Dakota": 	"SD",
-                    "Tennessee": 	"TN",
-                    "Texas": 	"TX",
-                    "Utah": 	"UT",
-                    "Vermont": 	"VT",
-                    "Virginia": 	"VA",
-                    "Washington": 	"WA",
-                    "West Virginia": 	"WV",
-                    "Wisconsin": 	"WI",
-                    "Wyoming": 	"WY"}
-
-                    map.data.setStyle(function(feature){
-                        // console.log(json_states["DE"])
-                        // console.log(json_states[ssa[feature.getProperty('NAME')]]);
-                        if(json_states[ssa[feature.getProperty('NAME')]][0] >= 5001){
-        
-                        return /** @type {!google.maps.Data.StyleOptions} */({
-                            fillColor: "red",
-                            strokeColor: 'red',
-                            strokeWeight:1
-                        });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 1001 && json_states[ssa[feature.getProperty('NAME')]][0] < 5001){
-                        return /** @type {!google.maps.Data.StyleOptions} */({
-                            fillColor: "orange",
-                            strokeColor: 'orange',
-                            strokeWeight:1
-                        });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 501 && json_states[ssa[feature.getProperty('NAME')]][0] < 1001){
-                        return /** @type {!google.maps.Data.StyleOptions} */({
-                            fillColor: "yellow",
-                            strokeColor: 'gold',
-                            strokeWeight:1
-                        });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 101 && json_states[ssa[feature.getProperty('NAME')]][0] < 501){
-                        return /** @type {!google.maps.Data.StyleOptions} */({
-                            fillColor: "darkblue",
-                            strokeColor: 'darkblue',
-                            strokeWeight:1
-                        });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >=51 && json_states[ssa[feature.getProperty('NAME')]][0] < 101){
-                        return /** @type {!google.maps.Data.StyleOptions} */({
-                            fillColor: "green",
-                            strokeColor: 'green',
-                            strokeWeight:1
-                        });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] == 0){
-                        return /** @type {!google.maps.Data.StyleOptions} */({
-                            fillColor: "lightgreen",
-                            strokeColor: 'lightgreen',
-                            strokeWeight:1
-                        });
                     }
-                });
+                }
+                    // console.log(json_states[0]);
+                }).done(function(){
+                    var ssa = {
+                        "Alabama": 	"AL",
+                        "Alaska": 	"AK",
+                        "Arizona": 	"AZ",
+                        "Arkansas": 	"AR",
+                        "California": 	"CA",
+                        "Colorado": 	"CO",
+                        "Connecticut": 	"CT",
+                        "Delaware": 	"DE",
+                        "Florida": 	"FL",
+                        "Georgia": 	"GA",
+                        "Hawaii": 	"HI",
+                        "Idaho": 	"ID",
+                        "Illinois": 	"IL",
+                        "Indiana": 	"IN",
+                        "Iowa": 	"IA",
+                        "Kansas": 	"KS",
+                        "Kentucky": 	"KY",
+                        "Louisiana": 	"LA",
+                        "Maine": 	"ME",
+                        "Maryland": 	"MD",
+                        "Massachusetts": 	"MA",
+                        "Michigan": 	"MI",
+                        "Minnesota": 	"MN",
+                        "Mississippi": 	"MS",
+                        "Missouri": 	"MO",
+                        "Montana": 	"MT",
+                        "Nebraska": 	"NE",
+                        "Nevada": 	"NV",
+                        "New Hampshire": 	"NH",
+                        "New Jersey": 	"NJ",
+                        "New Mexico": 	"NM",
+                        "New York": 	"NY",
+                        "North Carolina": 	"NC",
+                        "North Dakota": 	"ND",
+                        "Ohio": 	"OH",
+                        "Oklahoma": 	"OK",
+                        "Oregon": 	"OR",
+                        "Pennsylvania": 	"PA",
+                        "Rhode Island": 	"RI",
+                        "South Carolina": 	"SC",
+                        "South Dakota": 	"SD",
+                        "Tennessee": 	"TN",
+                        "Texas": 	"TX",
+                        "Utah": 	"UT",
+                        "Vermont": 	"VT",
+                        "Virginia": 	"VA",
+                        "Washington": 	"WA",
+                        "West Virginia": 	"WV",
+                        "Wisconsin": 	"WI",
+                        "Wyoming": 	"WY"}
+
+                        map.data.setStyle(function(feature){
+                        // console.log(json_states["DE"])
+                        if(json_states[ssa[feature.getProperty('NAME')]] == undefined){
+                            return /** @type {!google.maps.Data.StyleOptions} */({
+                                fillColor: "navy",
+                                strokeColor: 'darkblue',
+                                strokeWeight:1
+                            });
+                        }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 5001){
+        
+                            return /** @type {!google.maps.Data.StyleOptions} */({
+                                fillColor: "red",
+                                strokeColor: 'red',
+                                strokeWeight:1
+                            });
+                        }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 1001 && json_states[ssa[feature.getProperty('NAME')]][0] < 5001){
+                            return /** @type {!google.maps.Data.StyleOptions} */({
+                                fillColor: "orange",
+                                strokeColor: 'orange',
+                                strokeWeight:1
+                            });
+                        }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 501 && json_states[ssa[feature.getProperty('NAME')]][0] < 1001){
+                            return /** @type {!google.maps.Data.StyleOptions} */({
+                                fillColor: "yellow",
+                                strokeColor: 'gold',
+                                strokeWeight:1
+                            });
+                        }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 101 && json_states[ssa[feature.getProperty('NAME')]][0] < 501){
+                            return /** @type {!google.maps.Data.StyleOptions} */({
+                                fillColor: "darkblue",
+                                strokeColor: 'darkblue',
+                                strokeWeight:1
+                            });
+                        }else if(json_states[ssa[feature.getProperty('NAME')]][0] >=51 && json_states[ssa[feature.getProperty('NAME')]][0] < 101){
+                            return /** @type {!google.maps.Data.StyleOptions} */({
+                                fillColor: "green",
+                                strokeColor: 'green',
+                                strokeWeight:1
+                            });
+                        }else if(json_states[ssa[feature.getProperty('NAME')]][0] == 0){
+                            return /** @type {!google.maps.Data.StyleOptions} */({
+                                fillColor: "lightgreen",
+                                strokeColor: 'lightgreen',
+                                strokeWeight:1
+                            });
+                        }else{
+                            return /** @type {!google.maps.Data.StyleOptions} */({
+                                fillColor: "lightblue",
+                                strokeColor: 'navyblue',
+                                strokeWeight:1
+                            });
+                        }
+                        console.log("you niggas crazy")
+                    });
 
                 map.data.addListener('mouseover', function(event) {
                     
@@ -349,8 +355,6 @@ function initMap() {
                     $('.map-total').text(json_states[ssa[event.feature.getProperty("NAME")]][0]);
                     $('.map-new').text(json_states[ssa[event.feature.getProperty("NAME")]][1]);
                 
-                    // $('.map-total').text(json_countries[event.feature.getProperty("name")][0]);
-                    // $('.map-new').text(json_countries[event.feature.getProperty("name")][1]);
             });
         }); 
     }else if($('#loc-tab').css('background-color') == 'rgb(211, 211, 211)'){
