@@ -10,8 +10,8 @@ $(".close-cinfo").click(function(){
     $(".country-info").css("display", "none");
 })
 
-var map;
-var infoWindow;
+// var map;
+// var infoWindow;
 
 function initMap() {
     if($("#world-tab").css('background-color') == 'rgb(211, 211, 211)'){
@@ -193,11 +193,15 @@ function initMap() {
 
             map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
 
-            $.getJSON("https://covidtracking.com/api/states", function(data){
+            $.getJSON("https://covidtracking.com/api/states/daily", function(data){
                 for(x in data){
-                    json_states[data[x]["state"]] = data[x]["positive"];
+
+                    if(data[x]["dateChecked"] == "2020-04-01T20:00:00Z")
+                    // console.log(data[x]["state"]);
+                    json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"]];
+                    // console.log(data[x]["positive"]);
                 }
-                // console.log(json_states);
+                // console.log(json_states[0]);
             }).done(function(){
                 var ssa = {
                     "Alabama": 	"AL",
@@ -252,48 +256,60 @@ function initMap() {
                     "Wyoming": 	"WY"}
 
                     map.data.setStyle(function(feature){
-                        if(json_states[ssa[feature.getProperty('NAME')]] > 50000){
+                        // console.log(json_states["DE"])
+                        // console.log(json_states[ssa[feature.getProperty('NAME')]]);
+                        if(json_states[ssa[feature.getProperty('NAME')]][0] > 50000){
         
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "red",
                             strokeColor: 'red',
                             strokeWeight:1
                         });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]] >= 10001 && json_states[ssa[feature.getProperty('NAME')]] < 50000){
+                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 10001 && json_states[ssa[feature.getProperty('NAME')]][0] < 50000){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "orange",
                             strokeColor: 'orange',
                             strokeWeight:1
                         });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]] >= 1001 && json_states[ssa[feature.getProperty('NAME')]] < 10000){
+                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 1001 && json_states[ssa[feature.getProperty('NAME')]][0] < 10000){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "yellow",
                             strokeColor: 'yellow',
                             strokeWeight:1
                         });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]] >= 101 && json_states[ssa[feature.getProperty('NAME')]] < 1000){
+                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 101 && json_states[ssa[feature.getProperty('NAME')]][0] < 1000){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "darkblue",
                             strokeColor: 'darkblue',
                             strokeWeight:1
                         });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]] >=1 && json_states[ssa[feature.getProperty('NAME')]] < 100){
+                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >=1 && json_states[ssa[feature.getProperty('NAME')]][0] < 100){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "green",
                             strokeColor: 'green',
                             strokeWeight:1
                         });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]] == 0){
+                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] == 0){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "lightgreen",
                             strokeColor: 'lightgreen',
                             strokeWeight:1
                         });
                     }
-                }) 
-            });
+                });
 
-              
+                map.data.addListener('mouseover', function(event) {
+                    
+                    $('.country-info').css('display', 'block');
+                    $('.country-title').text(event.feature.getProperty("NAME"));
+
+                    $('.map-total').text(json_states[ssa[event.feature.getProperty("NAME")]][0]);
+                    $('.map-new').text(json_states[ssa[event.feature.getProperty("NAME")]][1]);
+                
+                    // $('.map-total').text(json_countries[event.feature.getProperty("name")][0]);
+                    // $('.map-new').text(json_countries[event.feature.getProperty("name")][1]);
+            });
+        }); 
     }else if($('#loc-tab').css('background-color') == 'rgb(211, 211, 211)'){
         
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -308,7 +324,6 @@ function initMap() {
 
         map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
 
-        
 
         map.data.setStyle(function(feature){
             return /** @type {!google.maps.Data.StyleOptions} */({
