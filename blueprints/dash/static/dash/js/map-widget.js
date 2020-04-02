@@ -193,14 +193,34 @@ function initMap() {
 
             map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
 
+            var today = new Date();
+            var month = "";
+            var date = "";
+
+            if(today.getMonth().toString().length == 1){
+                month = "0" + (today.getMonth()+1).toString();
+            }else{
+                month = (today.getMonth()+1).toString();
+            }
+            
+            if(today.getDate().toString().length == 1){
+                date = "0" + today.getDate().toString();
+            }else{
+                date = today.getDate().toString();
+            }
+
+
+            var today_dt = today.getFullYear() + "-" + month + "-" + date;
+
             $.getJSON("https://covidtracking.com/api/states/daily", function(data){
                 for(x in data){
-
-                    if(data[x]["dateChecked"] == "2020-04-01T20:00:00Z")
-                    // console.log(data[x]["state"]);
-                    json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"]];
-                    // console.log(data[x]["positive"]);
+                    console.log("todays", today_dt);
+                    if(data[x]["dateChecked"] == today_dt + "T20:00:00Z"){
+                        // console.log(data[x]["state"]);
+                        json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"]];
+                        // console.log(data[x]["positive"]);
                 }
+            }
                 // console.log(json_states[0]);
             }).done(function(){
                 var ssa = {
@@ -274,7 +294,7 @@ function initMap() {
                     }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 1001 && json_states[ssa[feature.getProperty('NAME')]][0] < 10000){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "yellow",
-                            strokeColor: 'yellow',
+                            strokeColor: 'gold',
                             strokeWeight:1
                         });
                     }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 101 && json_states[ssa[feature.getProperty('NAME')]][0] < 1000){
