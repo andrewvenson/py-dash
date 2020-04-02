@@ -4,7 +4,7 @@
     height: 325px; 
     width: 200px;
     left:5px;
-    top:65px;
+    bottom:25px;
     background-color:rgb(226, 226, 226);
     bottom:25px;
     border-radius:2px;
@@ -18,7 +18,7 @@
     padding:2px 20px 2px 20px;
     position:absolute; 
     height: 58px; 
-    width: 500px;
+    width: 520px;
     right:75px;
     background-color:white;
     bottom:25px;
@@ -52,7 +52,7 @@
 }
 
 .covid-legend .row .col p{
-    width: 80px;
+    width: 83px;
     /* box-shadow: 3px 4px 7px #000; */
 }
 
@@ -73,6 +73,6 @@
     .country-info{
         width: 153px !important;
         height:173px !important;
-        top:170px !important;
+        bottom:25px !important;
     }
 }
