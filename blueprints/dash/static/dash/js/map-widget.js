@@ -33,7 +33,7 @@ function initMap() {
     if($("#world-tab").css('background-color') == 'rgb(211, 211, 211)'){
         var map = new google.maps.Map(document.getElementById('map'), {
             center: new google.maps.LatLng(30.5994,-50.6731),
-            zoom: 3,
+            zoom: 2,
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
@@ -212,6 +212,7 @@ function initMap() {
                 fullscreenControl: false,
             });
 
+            // holds states
             var json_states = {}
 
             map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
