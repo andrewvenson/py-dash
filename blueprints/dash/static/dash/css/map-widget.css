@@ -76,3 +76,10 @@
         bottom:25px !important;
     }
 }
+
+@media only screen and (max-width: 700px) {
+    
+    .country-info p{
+        font-size:12px !important;
+    }
+}
