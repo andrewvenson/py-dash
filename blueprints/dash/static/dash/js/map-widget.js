@@ -250,9 +250,9 @@ function initMap() {
                 for(x in data){
                     // console.log("todays", today_dt);
                     if(data[x]["dateChecked"] == today_dt + "T20:00:00Z"){
-                        json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"]];
+                        json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"],data[x]["death"],data[x]["deathIncrease"]];
                     }else if(data[x]["dateChecked"] == yest_dt + "T20:00:00Z"){
-                        json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"]];
+                        json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"],data[x]["death"],data[x]["deathIncrease"]];
                     }
                 }
                     // console.log(json_states[0]);
@@ -364,6 +364,8 @@ function initMap() {
 
                     $('.map-total').text(json_states[ssa[event.feature.getProperty("NAME")]][0]);
                     $('.map-new').text(json_states[ssa[event.feature.getProperty("NAME")]][1]);
+                    $('.map-totaldeaths').text(json_states[ssa[event.feature.getProperty("NAME")]][2]);
+                    $('.map-newdeaths').text(json_states[ssa[event.feature.getProperty("NAME")]][3]);
                 
             });
         }); 
