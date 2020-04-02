@@ -68,7 +68,7 @@
         display:block !important;
     }
     .covid-legend{
-        display:none;
+        display:none !important;
     }
     .country-info{
         width: 153px !important;
