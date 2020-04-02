@@ -5,19 +5,19 @@ $(".map-tab").click(function(){
 
    console.log($(this).text())
    if($(this).text() == "US Map"){
-       $('#highest').text('>5000');
-       $('#higher').text('5000-1001');
-       $('#high').text('1000-501');
-       $('#mid').text('500-101');
-       $('#low').text('100-51');
-       $('#lowest').text('0');
+       $('.highest').text('>5000');
+       $('.higher').text('5000-1001');
+       $('.high').text('1000-501');
+       $('.mid').text('500-101');
+       $('.low').text('100-51');
+       $('.lowest').text('0');
    }else if($(this).text() == "World Map"){
-    $('#highest').text('>50000');
-    $('#higher').text('50000-10001');
-    $('#high').text('10000-1001');
-    $('#mid').text('1000-101');
-    $('#low').text('100-1');
-    $('#lowest').text('0');
+    $('.highest').text('>50000');
+    $('.higher').text('50000-10001');
+    $('.high').text('10000-1001');
+    $('.mid').text('1000-101');
+    $('.low').text('100-1');
+    $('.lowest').text('0');
 }
    $(".country-info").css('display', 'none');
    initMap();
@@ -204,6 +204,8 @@ function initMap() {
                 zoom: 4,
                 streetViewControl: false,
                 mapTypeControl: false,
+                fullscreenControl: false,
+
             });
 
             var json_states = {}
@@ -354,6 +356,8 @@ function initMap() {
             zoom: 7,
             streetViewControl: false,
             mapTypeControl: false,
+            fullscreenControl: false,
+
         });
 
         infoWindow = new google.maps.InfoWindow;
