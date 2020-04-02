@@ -11,7 +11,7 @@
         <!-- <a class='close-cinfo' style='position:absolute; top:0; right:5px;color:#005EAA;cursor:pointer;font-weight: bold;'>x</a> -->
         <p>Total Cases: <span class='map-total'></span></p><br>
         <p>New Cases: <span class='map-new'></span></p>
-        <button class="btn btn-primary" style='background-color:covid19 cases by state api#005EAA;border-color:#005EAA;'>Coverage</button>
+        <button class="btn btn-primary" style='background-color:#005EAA;border-color:#005EAA;position:absolute;bottom:3px;width:97%;left:3px;'>Coverage</button>
     </div>
 
     <div class='covid-legend'>
@@ -19,24 +19,24 @@
         <span style='color:lightgray;margin-left:20px;'>------------------------------------------------</span>
         <div class="row">
             <div class="col">
-                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: red;border: 1px solid darkred;'>>50000</p>
+                <p id='highest' style='color:white; font-size: 12px;;padding:3px;margin:0px;background-color: red;border: 1px solid darkred;font-weight:bold;'>>50000</p>
+                <!-- <p class='highest' style='display:none;color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: red;border: 1px solid darkred;'>>5000</p> -->
+               </div>
+            <div class="col">
+                <p id='higher' style='color:white; font-size: 12px;font-weight: bold;padding:3px;margin:0px;background-color: orange;border: 1px solid darkorange'>50000-10001</p>
             </div>
             <div class="col">
-                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: orange;border: 1px solid darkorange'>50000-10001</p>
+                <p id='high' style='color:black; font-size: 12px;font-weight: bold;padding:3px;margin:0px;background-color: yellow; border: 1px solid gold;'>10000-1001</p>
             </div>
             <div class="col">
-                <p style='color:black; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: yellow; border: 1px solid gold;'>10000-1001</p>
+                <p id='mid' style='color:white; font-size: 12px;font-weight: bold;padding:3px;margin:0px;background-color:darkblue; border:1px solid navy'>1000-101</p>
             </div>
             <div class="col">
-                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color:darkblue; border:1px solid navy'>1000-101</p>
+                <p id='low' style='color:white; font-size: 12px;font-weight: bold;padding:3px;margin:0px;background-color: green;border: 1px solid darkgreen;'>100-1</p>
             </div>
             <div class="col">
-                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: green;border: 1px solid darkgreen'>100-1</p>
+                <p id='lowest' style='color:white; font-size: 12px;font-weight: bold;padding:3px;margin:0px;background-color: lightgreen;border: 1px solid green;'>0</p>
             </div>
-            <div class="col">
-                <p style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: lightgreen;border: 1px solid green;'>0</p>
-            </div>
-
         </div>
     </div>
 

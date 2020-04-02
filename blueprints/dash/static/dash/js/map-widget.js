@@ -2,6 +2,23 @@
 $(".map-tab").click(function(){
    $(".map-tab").css("background-color", "whitesmoke");
    $(this).css("background-color", "rgb(211, 211, 211)");
+
+   console.log($(this).text())
+   if($(this).text() == "US Map"){
+       $('#highest').text('>5000');
+       $('#higher').text('5000-1001');
+       $('#high').text('1000-501');
+       $('#mid').text('500-101');
+       $('#low').text('100-51');
+       $('#lowest').text('0');
+   }else if($(this).text() == "World Map"){
+    $('#highest').text('>50000');
+    $('#higher').text('50000-10001');
+    $('#high').text('10000-1001');
+    $('#mid').text('1000-101');
+    $('#low').text('100-1');
+    $('#lowest').text('0');
+}
    $(".country-info").css('display', 'none');
    initMap();
 });
@@ -278,32 +295,32 @@ function initMap() {
                     map.data.setStyle(function(feature){
                         // console.log(json_states["DE"])
                         // console.log(json_states[ssa[feature.getProperty('NAME')]]);
-                        if(json_states[ssa[feature.getProperty('NAME')]][0] > 50000){
+                        if(json_states[ssa[feature.getProperty('NAME')]][0] >= 5001){
         
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "red",
                             strokeColor: 'red',
                             strokeWeight:1
                         });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 10001 && json_states[ssa[feature.getProperty('NAME')]][0] < 50000){
+                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 1001 && json_states[ssa[feature.getProperty('NAME')]][0] < 5001){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "orange",
                             strokeColor: 'orange',
                             strokeWeight:1
                         });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 1001 && json_states[ssa[feature.getProperty('NAME')]][0] < 10000){
+                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 501 && json_states[ssa[feature.getProperty('NAME')]][0] < 1001){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "yellow",
                             strokeColor: 'gold',
                             strokeWeight:1
                         });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 101 && json_states[ssa[feature.getProperty('NAME')]][0] < 1000){
+                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 101 && json_states[ssa[feature.getProperty('NAME')]][0] < 501){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "darkblue",
                             strokeColor: 'darkblue',
                             strokeWeight:1
                         });
-                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >=1 && json_states[ssa[feature.getProperty('NAME')]][0] < 100){
+                    }else if(json_states[ssa[feature.getProperty('NAME')]][0] >=51 && json_states[ssa[feature.getProperty('NAME')]][0] < 101){
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "green",
                             strokeColor: 'green',
