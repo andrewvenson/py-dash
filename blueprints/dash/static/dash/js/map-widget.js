@@ -128,7 +128,13 @@ function initMap() {
                         });
                     }
                 }
-                if(json_countries[feature.getProperty('name')][0] >= 50000){
+                if(json_countries[feature.getProperty('name')] == undefined){
+                    return /** @type {!google.maps.Data.StyleOptions} */({
+                        fillColor: "navy",
+                        strokeColor: 'darkblue',
+                        strokeWeight:1
+                    });
+                }else if(json_countries[feature.getProperty('name')][0] >= 50000){
                     // feature.setProperty("fillColor") = "red";
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "red",
@@ -204,7 +210,6 @@ function initMap() {
                 streetViewControl: false,
                 mapTypeControl: false,
                 fullscreenControl: false,
-
             });
 
             var json_states = {}
@@ -217,24 +222,31 @@ function initMap() {
 
             if(today.getMonth().toString().length == 1){
                 month = "0" + (today.getMonth()+1).toString();
+
             }else{
                 month = (today.getMonth()+1).toString();
             }
             
             if(today.getDate().toString().length == 1){
                 date = "0" + today.getDate().toString();
+                yester_date = "0" + (today.getDate()-1).toString();
+                
             }else{
                 date = today.getDate().toString();
+                yester_date = (today.getDate()-1).toString();
+
             }
 
 
             var today_dt = today.getFullYear() + "-" + month + "-" + date;
+            var yest_dt = today.getFullYear() + "-" + month + "-" + yester_date;
 
             $.getJSON("https://covidtracking.com/api/states/daily", function(data){
                 for(x in data){
                     // console.log("todays", today_dt);
                     if(data[x]["dateChecked"] == today_dt + "T20:00:00Z"){
-                        
+                        json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"]];
+                    }else if(data[x]["dateChecked"] == yest_dt + "T20:00:00Z"){
                         json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"]];
                     }
                 }
@@ -337,14 +349,7 @@ function initMap() {
                                 strokeColor: 'lightgreen',
                                 strokeWeight:1
                             });
-                        }else{
-                            return /** @type {!google.maps.Data.StyleOptions} */({
-                                fillColor: "lightblue",
-                                strokeColor: 'navyblue',
-                                strokeWeight:1
-                            });
                         }
-                        console.log("you niggas crazy")
                     });
 
                 map.data.addListener('mouseover', function(event) {
