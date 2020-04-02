@@ -52,7 +52,7 @@ function initMap() {
         $.getJSON(getUrlSum, function(data){
             for(x in data['Countries']){
                 for(y in data['Countries'][x]){
-                    json_countries[data['Countries'][x]['Country']] = [data['Countries'][x]['TotalConfirmed'],data['Countries'][x]['NewConfirmed']] ;
+                    json_countries[data['Countries'][x]['Country']] = [data['Countries'][x]['TotalConfirmed'],data['Countries'][x]['NewConfirmed'],data['Countries'][x]['TotalDeaths'],data['Countries'][x]['NewDeaths']] ;
                 }
             }
         }).done(function(){
@@ -182,9 +182,13 @@ function initMap() {
                     if(json_countries[event.feature.getProperty('name')] == undefined){
                         $('.map-total').text(json_countries[ccs[event.feature.getProperty("name")]][0]);
                         $('.map-new').text(json_countries[ccs[event.feature.getProperty("name")]][1]);
+                        $('.map-totaldeaths').text(json_countries[ccs[event.feature.getProperty("name")]][2]);
+                        $('.map-newdeaths').text(json_countries[ccs[event.feature.getProperty("name")]][3]);
                     }else{
                         $('.map-total').text(json_countries[event.feature.getProperty("name")][0]);
                         $('.map-new').text(json_countries[event.feature.getProperty("name")][1]);
+                        $('.map-totaldeaths').text(json_countries[event.feature.getProperty("name")][2]);
+                        $('.map-newdeaths').text(json_countries[event.feature.getProperty("name")][3]);
                     }
                 }   
             });
