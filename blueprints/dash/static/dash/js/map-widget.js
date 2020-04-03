@@ -22,7 +22,13 @@ $(".map-tab").click(function(){
         $('.low').text('100-1');
         $('.lowest').text('0');
     }else if($(this).text() == "My Location"){
-        $(".covid-legend").css("display", "none")
+        $(".covid-legend").css("display", "block")
+        $('.highest').text('>50000');
+        $('.higher').text('50000-10001');
+        $('.high').text('10000-1001');
+        $('.mid').text('1000-101');
+        $('.low').text('5-1');
+        $('.lowest').text('0');
     }
    $(".country-info").css('display', 'none');
    initMap();
@@ -372,7 +378,7 @@ function initMap() {
         
         var map = new google.maps.Map(document.getElementById('map'), {
             center: new google.maps.LatLng(39.0119,-98.4842),
-            zoom: 4.7,
+            zoom: 5,
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
@@ -389,73 +395,66 @@ function initMap() {
                 }
             }
         }).done(function(){
-
-
             map.data.setStyle(function(feature){
-
-                // console.log(json_counties[feature.getProperty('name')]);
-
-                if(json_counties[feature.getProperty('name')][0] == undefined){
+                if(json_counties[feature.getProperty('name')] == undefined){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "navy",
-                        strokeColor: 'darkblue',
+                        fillColor: "black",
+                        strokeColor: 'black',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >= 5001){
+                }else if(json_counties[feature.getProperty('name')][0] >= 101){
+
+                    return /** @type {!google.maps.Data.StyleOptions} */({
+                        fillColor: "darkred",
+                        strokeColor: 'darkred',
+                        strokeWeight:1
+                    });
+                }else if(json_counties[feature.getProperty('name')][0] >= 51 &&  json_counties[feature.getProperty('name')][0] < 101){
 
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "red",
                         strokeColor: 'red',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >= 81 && json_counties[feature.getProperty('name')][0] < ){
+                }else if(json_counties[feature.getProperty('name')][0] >= 31 && json_counties[feature.getProperty('name')][0] < 51){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "orange",
                         strokeColor: 'orange',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >= 51 && json_counties[feature.getProperty('name')][0] < 81){
+                }else if(json_counties[feature.getProperty('name')][0] >= 11 && json_counties[feature.getProperty('name')][0] < 31){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "yellow",
                         strokeColor: 'gold',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >= 21 && json_counties[feature.getProperty('name')][0] < 51){
+                }else if(json_counties[feature.getProperty('name')][0] >= 3 && json_counties[feature.getProperty('name')][0] < 11){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "darkblue",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >=11 && json_counties[feature.getProperty('name')][0] < 21){
+                }else if(json_counties[feature.getProperty('name')][0] >=1 && json_counties[feature.getProperty('name')][0] < 3){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "green",
                         strokeColor: 'green',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >= 0 && json_counties[feature.getProperty('name')][0] < 11){
+                }else if(json_counties[feature.getProperty('name')][0] <= 0){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "lightgreen",
-                        strokeColor: 'lightgreen',
+                        fillColor: "white",
+                        strokeColor: 'lightgray',
                         strokeWeight:1
                     });
                 }
-                // return /** @type {!google.maps.Data.StyleOptions} */({
-                //     fillColor: "navy",
-                //     strokeColor: 'darkblue',
-                //     strokeWeight:1
-                // }); 
             });
 
             map.data.addListener('mouseover', function(event) {
-                    
                 $('.country-info').css('display', 'block');
-                $('.country-title').text(event.feature.getProperty("NAME"));
-
-                $('.map-total').text(json_counties[feature.getProperty('name')][0]);
-                $('.map-totaldeaths').text(json_counties[feature.getProperty('name')][1]);
-            
+                $('.country-title').text(event.feature.getProperty("name"));
+                $('.map-total').text(json_counties[event.feature.getProperty('name')][0]);
+                $('.map-totaldeaths').text(json_counties[event.feature.getProperty('name')][1]);
             });
-
         });
     }   
 }
