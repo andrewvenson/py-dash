@@ -1,7 +1,7 @@
 .country-info{
     padding:10px;
     position:absolute; 
-    height: 325px; 
+    height: 275px; 
     width: 200px;
     left:5px;
     bottom:25px;
@@ -38,7 +38,7 @@
 
 #mapic{
     -webkit-filter: drop-shadow(5px 5px 5px #666666);
-      filter: drop-shadow(5px 5px 5px #666666);
+    filter: drop-shadow(5px 5px 5px #666666);
 }
 
 #map-icon{

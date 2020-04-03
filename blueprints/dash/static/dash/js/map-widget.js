@@ -1,4 +1,3 @@
-
 // Select map tab
 $(".map-tab").click(function(){
    $(".map-tab").css("background-color", "whitesmoke");
@@ -7,6 +6,7 @@ $(".map-tab").click(function(){
    console.log($(this).text())
    if($(this).text() == "US Map"){
         $(".covid-legend").css("display", "block")
+        $("#search").attr("placeholder", "Search state ...");
         $('.highest').text('>5000');
         $('.higher').text('5000-1001');
         $('.high').text('1000-501');
@@ -16,7 +16,8 @@ $(".map-tab").click(function(){
         $('#mn').css('display', 'block');
         $('#nd').css('display', 'block');
    }else if($(this).text() == "World Map"){
-        $(".covid-legend").css("display", "block")
+        $(".covid-legend").css("display", "block");
+        $("#search").attr("placeholder", "Search country ...");
         $('.highest').text('>50000');
         $('.higher').text('50000-10001');
         $('.high').text('10000-1001');
@@ -27,6 +28,7 @@ $(".map-tab").click(function(){
         $('#nd').css('display', 'block');
     }else if($(this).text() == "US County"){
         $(".covid-legend").css("display", "block")
+        $("#search").attr("placeholder", "Search county ...");
         $('.highest').text('>100');
         $('.higher').text('100-51');
         $('.high').text('50-31');
