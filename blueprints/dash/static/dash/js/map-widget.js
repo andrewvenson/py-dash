@@ -379,49 +379,56 @@ function initMap() {
             fullscreenControl: false,
 
         });
+        
+        map.data.loadGeoJson('dash/json/us-county-boundaries.geojson');
 
-        infoWindow = new google.maps.InfoWindow;
-
-
-        map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
-
-
-        map.data.setStyle(function(feature){
-            return /** @type {!google.maps.Data.StyleOptions} */({
-                fillColor: "darkblue",
-                strokeColor: 'darkblue',
-                strokeWeight:1
+        json_counties = {}
+        $.getJSON("/counties", function(data){
+            
+            for (x in data){
+                if(data[x]["date"] == "2020-04-01"){
+                    json_counties[data[x]["county"]] = [data[x]["cases"], data[x]["deaths"]]
+                }
+            }
+        }).done(function(){
+            console.log("wheee")
+            map.data.setStyle(function(feature){
+                return /** @type {!google.maps.Data.StyleOptions} */({
+                    fillColor: "yellow",
+                    strokeColor: 'gold',
+                    strokeWeight:1
+                }); 
             });
         });
-        console.log(navigator)
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-        
-            // infoWindow.setPosition(pos);
-            // infoWindow.setContent('Location found.');
-            // infoWindow.open(map);
-            map.setCenter(pos);
-            }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-            });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-        
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                                'Error: The Geolocation service failed.' :
-                                'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-        }
     }   
 }
 
+ // console.log(navigator)
+        // if (navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(function(position) {
+        //     var pos = {
+        //         lat: position.coords.latitude,
+        //         lng: position.coords.longitude
+        //     };
+        
+        //     // infoWindow.setPosition(pos);
+        //     // infoWindow.setContent('Location found.');
+        //     // infoWindow.open(map);
+        //     map.setCenter(pos);
+        //     }, function() {
+        //     handleLocationError(true, infoWindow, map.getCenter());
+        //     });
+        // } else {
+        //     // Browser doesn't support Geolocation
+        //     handleLocationError(false, infoWindow, map.getCenter());
+        // }
+        
+        // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        // infoWindow.setPosition(pos);
+        // infoWindow.setContent(browserHasGeolocation ?
+        //                         'Error: The Geolocation service failed.' :
+        //                         'Error: Your browser doesn\'t support geolocation.');
+        // infoWindow.open(map);
+        // }
 
 

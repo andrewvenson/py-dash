@@ -4,9 +4,10 @@ from flask import Blueprint, render_template, url_for, current_app
 from .models import Data
 # Import db instance of our app
 from .. import db
-import json
+import json, csv
 import requests
 import urllib.request as request
+import os
 
 # Dash Blueprint Creation
 dash_bp = Blueprint('dash_bp', __name__,
@@ -272,9 +273,57 @@ def index():
 
     # response_all = requests.get(getUrlAll)
     response_sum = requests.get(getUrlSum)
-   
     # all_data = json.loads(response_all.text)
     sum_data = json.loads(response_sum.text)
+    # covidpath = os.path.abspath("covid-19-data")
+    csv_file_path = os.path.abspath(".") + "/blueprints/dash/templates/dash/covid-19-data/us-counties.csv"
+    json_file_path = os.path.abspath(".") + "/blueprints/dash/templates/dash/covid-19-data/us-counties.json"
+    data = []
 
+    
+
+    # convert csv into array dict format
+    with open(csv_file_path) as csvFile:
+        csvReader = csv.DictReader(csvFile)
+        counter = 0
+        assign = 0
+        for rows in csvReader:
+            x = {}
+            for key,val in rows.items():
+                if assign == 0:
+                    x["date"] = val
+                    print(val)
+                elif assign == 1:
+                    x["county"] = val
+                    print(val)
+                elif assign == 2:
+                    x["state"] = val
+                    print(val)
+                elif assign == 3:
+                    x["fips"] = val
+                    print(val)
+                elif assign == 4:
+                    x["cases"] = val
+                    print(val)
+                elif assign == 5:
+                    x["deaths"] = val
+                    print(val)
+                assign+=1
+            data.append(x)
+            counter+=1
+            assign = 0
+
+    # convert data array to json file
+    with open(json_file_path, 'w') as jsonFile:
+        jsonFile.write(json.dumps(data, indent=4))
     # return html template to browser with covid summary data
     return render_template('dash/dash.html', data = sum_data, cc = country_codes)
+
+
+# get counties json
+@dash_bp.route('/counties')
+def getcounties():
+    return render_template('/dash/covid-19-data/us-counties.json')
+	
+	
+	
