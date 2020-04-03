@@ -37,11 +37,12 @@ $(".map-tab").click(function(){
         $('.lowest').text('0');
         $('#mn').css('display', 'none');
         $('#nd').css('display', 'none');
-
     }
    $(".country-info").css('display', 'none');
    initMap();
 });
+
+
 
 // initialize map and datalayer
 function initMap() {
