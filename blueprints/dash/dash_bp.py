@@ -292,22 +292,16 @@ def index():
             for key,val in rows.items():
                 if assign == 0:
                     x["date"] = val
-                    print(val)
                 elif assign == 1:
                     x["county"] = val
-                    print(val)
                 elif assign == 2:
                     x["state"] = val
-                    print(val)
                 elif assign == 3:
                     x["fips"] = val
-                    print(val)
                 elif assign == 4:
                     x["cases"] = val
-                    print(val)
                 elif assign == 5:
                     x["deaths"] = val
-                    print(val)
                 assign+=1
             data.append(x)
             counter+=1
