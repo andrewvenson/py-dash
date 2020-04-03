@@ -135,8 +135,8 @@ function initMap() {
                         });
                     }else if(json_countries[ccs[feature.getProperty('name')]][0] == 0 && feature.getProperty('name') != "Antarctica"){
                         return /** @type {!google.maps.Data.StyleOptions} */({
-                            fillColor: "lightgreen",
-                            strokeColor: 'lightgreen',
+                            fillColor: "white",
+                            strokeColor: 'white',
                             strokeWeight:1
                         });
                     }
@@ -181,8 +181,8 @@ function initMap() {
                     });
                 }else if(json_countries[feature.getProperty('name')][0] == 0 && feature.getProperty('name') != "Antarctica"){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "lightgreen",
-                        strokeColor: 'lightgreen',
+                        fillColor: "white",
+                        strokeColor: 'white',
                         strokeWeight:1
                     });
                 }
@@ -362,8 +362,8 @@ function initMap() {
                             });
                         }else if(json_states[ssa[feature.getProperty('NAME')]][0] == 0){
                             return /** @type {!google.maps.Data.StyleOptions} */({
-                                fillColor: "lightgreen",
-                                strokeColor: 'lightgreen',
+                                fillColor: "white",
+                                strokeColor: 'white',
                                 strokeWeight:1
                             });
                         }
@@ -412,38 +412,38 @@ function initMap() {
                 }else if(json_counties[feature.getProperty('name')][0] >= 101){
 
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "darkred",
-                        strokeColor: 'darkred',
+                        fillColor: "red",
+                        strokeColor: 'red',
                         strokeWeight:1
                     });
                 }else if(json_counties[feature.getProperty('name')][0] >= 51 &&  json_counties[feature.getProperty('name')][0] < 101){
 
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "red",
-                        strokeColor: 'red',
-                        strokeWeight:1
-                    });
-                }else if(json_counties[feature.getProperty('name')][0] >= 31 && json_counties[feature.getProperty('name')][0] < 51){
-                    return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "orange",
                         strokeColor: 'orange',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >= 11 && json_counties[feature.getProperty('name')][0] < 31){
+                }else if(json_counties[feature.getProperty('name')][0] >= 31 && json_counties[feature.getProperty('name')][0] < 51){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "yellow",
                         strokeColor: 'gold',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >= 1 && json_counties[feature.getProperty('name')][0] < 11){
+                }else if(json_counties[feature.getProperty('name')][0] >= 11 && json_counties[feature.getProperty('name')][0] < 31){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "darkblue",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
+                }else if(json_counties[feature.getProperty('name')][0] >= 1 && json_counties[feature.getProperty('name')][0] < 11){
+                    return /** @type {!google.maps.Data.StyleOptions} */({
+                        fillColor: "darkgreen",
+                        strokeColor: 'darkgreen',
+                        strokeWeight:1
+                    });
                 }else if(json_counties[feature.getProperty('name')][0] == 0){
                     return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "white",
+                        fillColor: "lightgray",
                         strokeColor: 'lightgray',
                         strokeWeight:1
                     });
