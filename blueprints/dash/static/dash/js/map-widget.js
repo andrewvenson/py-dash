@@ -13,6 +13,8 @@ $(".map-tab").click(function(){
         $('.mid').text('500-101');
         $('.low').text('100-51');
         $('.lowest').text('0');
+        $('#mn').css('display', 'block');
+        $('#nd').css('display', 'block');
    }else if($(this).text() == "World Map"){
         $(".covid-legend").css("display", "block")
         $('.highest').text('>50000');
@@ -21,14 +23,19 @@ $(".map-tab").click(function(){
         $('.mid').text('1000-101');
         $('.low').text('100-1');
         $('.lowest').text('0');
-    }else if($(this).text() == "My Location"){
+        $('#mn').css('display', 'block');
+        $('#nd').css('display', 'block');
+    }else if($(this).text() == "US County"){
         $(".covid-legend").css("display", "block")
-        $('.highest').text('>50000');
-        $('.higher').text('50000-10001');
-        $('.high').text('10000-1001');
-        $('.mid').text('1000-101');
-        $('.low').text('5-1');
+        $('.highest').text('>100');
+        $('.higher').text('100-51');
+        $('.high').text('50-31');
+        $('.mid').text('30-11');
+        $('.low').text('10-1');
         $('.lowest').text('0');
+        $('#mn').css('display', 'none');
+        $('#nd').css('display', 'none');
+
     }
    $(".country-info").css('display', 'none');
    initMap();
@@ -428,19 +435,13 @@ function initMap() {
                         strokeColor: 'gold',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >= 3 && json_counties[feature.getProperty('name')][0] < 11){
+                }else if(json_counties[feature.getProperty('name')][0] >= 1 && json_counties[feature.getProperty('name')][0] < 11){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "darkblue",
                         strokeColor: 'darkblue',
                         strokeWeight:1
                     });
-                }else if(json_counties[feature.getProperty('name')][0] >=1 && json_counties[feature.getProperty('name')][0] < 3){
-                    return /** @type {!google.maps.Data.StyleOptions} */({
-                        fillColor: "green",
-                        strokeColor: 'green',
-                        strokeWeight:1
-                    });
-                }else if(json_counties[feature.getProperty('name')][0] <= 0){
+                }else if(json_counties[feature.getProperty('name')][0] == 0){
                     return /** @type {!google.maps.Data.StyleOptions} */({
                         fillColor: "white",
                         strokeColor: 'lightgray',
@@ -450,10 +451,15 @@ function initMap() {
             });
 
             map.data.addListener('mouseover', function(event) {
-                $('.country-info').css('display', 'block');
-                $('.country-title').text(event.feature.getProperty("name"));
-                $('.map-total').text(json_counties[event.feature.getProperty('name')][0]);
-                $('.map-totaldeaths').text(json_counties[event.feature.getProperty('name')][1]);
+                if(json_counties[event.feature.getProperty('name')] == undefined){
+                    $('.map-total').text("no data");
+                    $('.map-totaldeaths').text("no data");
+                }else{
+                    $('.country-info').css('display', 'block');
+                    $('.country-title').text(event.feature.getProperty("name"));
+                    $('.map-total').text(json_counties[event.feature.getProperty('name')][0]);
+                    $('.map-totaldeaths').text(json_counties[event.feature.getProperty('name')][1]);
+                }
             });
         });
     }   
