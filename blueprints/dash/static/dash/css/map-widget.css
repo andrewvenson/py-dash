@@ -34,7 +34,19 @@
     top:70px;
     border-radius:5px;
     z-index:1000 !important;
+}
 
+#mapic{
+    -webkit-filter: drop-shadow(5px 5px 5px #666666);
+      filter: drop-shadow(5px 5px 5px #666666);
+}
+
+#map-icon{
+    position:absolute; 
+    right:10px;
+    top:60px;
+    border-radius:5px;
+    z-index:1000 !important;
 }
 
 .covid-legend{
@@ -54,12 +66,17 @@
     position:absolute; 
     display:none;
     height: 400px; 
-    width: 70px;
-    right:15px;
-    top:60px;
+    width: 90px;
+    right:2px;
+    top:120px;
     border-radius:2px;
     z-index:1001;
-    text-align:center !important;
+    /* text-align:center !important; */
+}
+
+.sdlegend p{
+    float:right;
+    width:75px;
 }
 
 .map-tab:hover{

@@ -8,7 +8,8 @@
     <p class='map-tab' id='county-tab' style='background-color:whitesmoke;border: 1px solid lightgray;'>US County</p>
     <input id="search" type="text" placeholder="Search country...">
     <img id="search-icon" src="{{ url_for('dash_bp.static', filename='images/search1.png') }}" alt="Search" style='width: 20px; height:20px'>
-
+    <a id="map-icon" href=""><img  id='mapic' src="{{ url_for('dash_bp.static', filename='images/map.png') }}" alt="Search" style='width: 25px; height:25px'></a>
+    
     <div class="country-info">
         <p class='country-title' style='color:#005EAA;font-size:14px;font-weight:bold;'></p><br>
         <p>Total Cases: <span class='map-total'></span></p><br>
@@ -50,7 +51,7 @@
     </div>
 
     <div class='sdlegend'>
-      <p style='margin:0px;color:white; padding:0px;font-size: 12px;font-weight: bold; background:none;text-shadow:2px 2px 2px rgb(128, 128, 128);'>Reported Cases</p><br>
+      <p style='margin:0px;color:white; padding:0px;font-size: 10px;font-weight: bold; background:none;text-shadow:2px 2px 2px rgb(128, 128, 128);'>Reported Cases</p><br>
       <p class='highest'style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: red;border: 1px solid darkred;  '>>50000</p><br>
       <p class='higher'style='color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: orange;border: 1px solid darkorange'>50000-10001</p><br>
       <p class='high'style='color:black; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: yellow; border: 1px solid orange;'>10000-1001</p><br>
