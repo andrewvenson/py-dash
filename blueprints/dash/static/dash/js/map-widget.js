@@ -369,15 +369,14 @@ function initMap() {
                 
             });
         }); 
-    }else if($('#loc-tab').css('background-color') == 'rgb(211, 211, 211)'){
+    }else if($('#county-tab').css('background-color') == 'rgb(211, 211, 211)'){
         
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 7,
+            center: new google.maps.LatLng(39.0119,-98.4842),
+            zoom: 4.7,
             streetViewControl: false,
             mapTypeControl: false,
             fullscreenControl: false,
-
         });
         
         map.data.loadGeoJson('dash/json/us-county-boundaries.geojson');
