@@ -6,7 +6,10 @@
     <p class='map-tab' id='us-tab' style='background-color:whitesmoke;border: 1px solid lightgray;'>US Map</p>
     <span>|</span>
     <p class='map-tab' id='county-tab' style='background-color:whitesmoke;border: 1px solid lightgray;'>US County</p>
-    <input id="search" type="text" placeholder="Search country...">
+    <input id="search" onkeyup="searchIt()" type="text" placeholder="Search country...">
+    <div id="search-results" style='background-color: white;;'>
+
+    </div>
     <img id="search-icon" src="{{ url_for('dash_bp.static', filename='images/search1.png') }}" alt="Search" style='width: 20px; height:20px'>
     <a id="map-icon"><img  id='mapic' src="{{ url_for('dash_bp.static', filename='images/map.png') }}" alt="Search" style='width: 25px; height:25px'></a>
     
@@ -37,7 +40,6 @@
         <div class="row">
             <div class="col">
                 <p class='highest' style='color:white; font-size: 12px;;padding:3px;margin:0px;background-color: red;border: 1px solid darkred;font-weight:bold;'>>50000</p>
-                <!-- <p class='highest' style='display:none;color:white; font-size: 12px;font-weight: normal;padding:3px;margin:0px;background-color: red;border: 1px solid darkred;'>>5000</p> -->
             </div>
             <div class="col">
                 <p class='higher' style='color:white; font-size: 12px;font-weight: bold;padding:3px;margin:0px;background-color: orange;border: 1px solid darkorange'>50000-10001</p>

@@ -1,3 +1,63 @@
+
+$("#search").click(function(){
+    getUrlSum = "https://api.covid19api.com/summary"
+
+    var country_dict = {};
+
+    $.getJSON(getUrlSum, function(data){
+        for(x in data['Countries']){
+            for(y in data['Countries'][x]){
+                country_dict[data['Countries'][x]['Country']] = "";
+                if ((data['Countries'][x]['Country'] in country_dict) && data['Countries'][x]['Country'] != ""){
+                    
+                    console.log(data['Countries'][x]['Country'] );
+                }
+            }
+        }
+    }).done(function(){
+        console.log("whattt")
+
+        for(country in country_dict){
+            var countries = $("<p><a>" + country + "</a></p>");
+
+            $("#search-results").append(countries);
+        }           
+    });
+});
+
+
+// $("#search-icon").click(function(){
+//     $("#search-results").css('display', 'block');
+// })
+
+
+function searchIt() {
+    $("#search-results").css('display', 'block');
+    // Declare variables
+    var input, filter, results, result, a, i, txtValue;
+    input = document.getElementById('search');
+    filter = input.value.toUpperCase();
+    results = document.getElementById("search-results");
+    result = results.getElementsByTagName('p');
+  
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < result.length; i++) {
+        a = result[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          result[i].style.display = "";
+        } else {
+          result[i].style.display = "none";
+        }
+      }
+
+      console.log(filter)
+      if(filter == ""){
+          $("#search-results").css('display', 'none');
+      }
+  }
+
 // Select map tab
 $(".map-tab").click(function(){
    $(".map-tab").css("background-color", "whitesmoke");

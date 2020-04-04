@@ -51,6 +51,27 @@
     z-index:1000 !important;
 }
 
+#search-results{
+    display:none;
+    z-index:1010 !important;
+    position:absolute;
+    top: 98px;
+    width: 190px;
+    left: 10px;
+    background-color: whitesmoke;
+    max-height:160px !important;
+    overflow:hidden;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#search-results p:hover{
+    background-color: gray;
+    box-shadow: 2px 4px 8px darkgray;
+    color: white;
+    cursor: pointer;
+}
+
 #mapic{
     -webkit-filter: drop-shadow(5px 5px 5px #666666);
     filter: drop-shadow(5px 5px 5px #666666);
@@ -64,9 +85,7 @@
     z-index:1000 !important;
 }
 
-#map-icon:hover{
 
-}
 
 
 .covid-legend{
