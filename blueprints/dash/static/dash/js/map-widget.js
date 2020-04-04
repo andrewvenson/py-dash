@@ -1,34 +1,27 @@
 
-$("#search").click(function(){
-    getUrlSum = "https://api.covid19api.com/summary"
+// $("#search").click(function(){
+//     getUrlSum = "https://api.covid19api.com/summary"
 
-    var country_dict = {};
+//     var country_dict = {};
 
-    $.getJSON(getUrlSum, function(data){
-        for(x in data['Countries']){
-            for(y in data['Countries'][x]){
-                country_dict[data['Countries'][x]['Country']] = "";
-                if ((data['Countries'][x]['Country'] in country_dict) && data['Countries'][x]['Country'] != ""){
+//     $.getJSON(getUrlSum, function(data){
+//         for(x in data['Countries']){
+//             for(y in data['Countries'][x]){
+//                 if ((data['Countries'][x]['Country'] in country_dict) && data['Countries'][x]['Country'] != ""){
                     
-                    console.log(data['Countries'][x]['Country'] );
-                }
-            }
-        }
-    }).done(function(){
-        console.log("whattt")
+//                     console.log(data['Countries'][x]['Country'] );
+//                 }
+//             }
+//         }
+//     }).done(function(){
+//         for(country in country_dict){
+//             var countries = $("<p><a>" + country + "</a></p>");
 
-        for(country in country_dict){
-            var countries = $("<p><a>" + country + "</a></p>");
+//             $("#search-results").append(countries);
+//         }           
+//     });
+// });
 
-            $("#search-results").append(countries);
-        }           
-    });
-});
-
-
-// $("#search-icon").click(function(){
-//     $("#search-results").css('display', 'block');
-// })
 
 
 function searchIt() {
@@ -63,8 +56,8 @@ $(".map-tab").click(function(){
    $(".map-tab").css("background-color", "whitesmoke");
    $(this).css("background-color", "rgb(211, 211, 211)");
 
-   console.log($(this).text())
    if($(this).text() == "US Map"){
+        $("#search-results").html("");
         $(".covid-legend").css("display", "block")
         $('.county-info').css('display', 'none');
 
@@ -76,6 +69,7 @@ $(".map-tab").click(function(){
         $('.low').text('100-51');
         $('.lowest').text('0');
    }else if($(this).text() == "World Map"){
+        $("#search-results").html();
         $(".covid-legend").css("display", "block");
         $('.county-info').css('display', 'none');
 
@@ -87,9 +81,9 @@ $(".map-tab").click(function(){
         $('.low').text('100-1');
         $('.lowest').text('0');
     }else if($(this).text() == "US County"){
+        $("#search-results").html("");
         $(".covid-legend").css("display", "block")
         $('.county-info').css('display', 'none');
-
         $("#search").attr("placeholder", "Search county ...");
         $('.highest').text('>100');
         $('.higher').text('100-51');
@@ -110,10 +104,6 @@ $("#map-icon").click(function(){
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-        
-            // infoWindow.setPosition(pos);
-            // infoWindow.setContent('Location found.');
-            // infoWindow.open(map);
             initMap(pos);
 
             }, function() {
@@ -139,7 +129,6 @@ function initMap(pos) {
                 fullscreenControl: false,
             });
             map.setCenter(pos);
-            console.log("iIt's a go")
         }else{
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: new google.maps.LatLng(39.0119,-30.4842),
@@ -157,16 +146,29 @@ function initMap(pos) {
         getUrlSum = "https://api.covid19api.com/summary"
 
         // store country and totalconfirmed in dict
-        var json_countries = {}
+        var json_countries = {};
+
+        // countries to search from 
+        var country_dict = {};
 
         // request json data from covid summary api url
         $.getJSON(getUrlSum, function(data){
             for(x in data['Countries']){
                 for(y in data['Countries'][x]){
+                    // append coutnries for searching
+                    country_dict[data['Countries'][x]['Country']] = "";
+
                     json_countries[data['Countries'][x]['Country']] = [data['Countries'][x]['TotalConfirmed'],data['Countries'][x]['NewConfirmed'],data['Countries'][x]['TotalDeaths'],data['Countries'][x]['NewDeaths']] ;
                 }
             }
         }).done(function(){
+
+            for(country in country_dict){
+                var results = $("<p><a>" + country + "</a></p>");
+    
+                $("#search-results").append(results);
+            } 
+
             var ccs = {
                 "Antarctica": "",
                 "French Southern and Antarctic Lands": "",
@@ -307,13 +309,11 @@ function initMap(pos) {
 
         
         map.data.addListener('mouseover', function(event){
-            // map.data.overrideStyle(event.feature, {fillColor: "darkblue",strokeColor: 'red',});
-            // console.log(event.feature.getProperty("fillColor"));
+            map.data.overrideStyle(event.feature, {fillColor: "purple",});
         });
 
         map.data.addListener('mouseout', function(event) {
-            // map.data.overrideStyle(event.feature, {fillColor: 'blue',strokeColor: 'darkblue'});
-            // $('.country-info').css('display', 'none');
+            map.data.revertStyle();
         }); 
 
         }else if($('#us-tab').css('background-color') == 'rgb(211, 211, 211)'){
@@ -340,6 +340,9 @@ function initMap(pos) {
 
             // holds states
             var json_states = {}
+
+            // states to search from 
+            var state_dict = {};
 
             map.data.loadGeoJson('dash/json/gz_2010_us_040_00_500k.json');
 
@@ -370,15 +373,24 @@ function initMap(pos) {
 
             $.getJSON("https://covidtracking.com/api/states/daily", function(data){
                 for(x in data){
-                    // console.log("todays", today_dt);
+                    state_dict[data[x]["state"]] = "";
+
                     if(data[x]["dateChecked"] == today_dt + "T20:00:00Z"){
                         json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"],data[x]["death"],data[x]["deathIncrease"]];
                     }else if(data[x]["dateChecked"] == yest_dt + "T20:00:00Z"){
                         json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"],data[x]["death"],data[x]["deathIncrease"]];
                     }
                 }
-                    // console.log(json_states[0]);
                 }).done(function(){
+
+                    for(state in state_dict){
+                        var results = $("<p><a>" + state + "</a></p>");
+
+                        console.log("state")
+            
+                        $("#search-results").append(results);
+                    } 
+
                     var ssa = {
                         "Alabama": 	"AL",
                         "Alaska": 	"AK",
@@ -489,6 +501,14 @@ function initMap(pos) {
                     $('.map-newdeaths').text(json_states[ssa[event.feature.getProperty("NAME")]][3]);
                 
             });
+
+            map.data.addListener('mouseover', function(event){
+                map.data.overrideStyle(event.feature, {fillColor: "purple",});
+            });
+    
+            map.data.addListener('mouseout', function(event) {
+                map.data.revertStyle();
+            }); 
         }); 
     }else if($('#county-tab').css('background-color') == 'rgb(211, 211, 211)'){
         
@@ -516,14 +536,26 @@ function initMap(pos) {
         map.data.loadGeoJson('dash/json/us-countiesgeo.json');
 
         json_counties = {}
+
+        // states to search from 
+        var county_dict = {};
+
         $.getJSON("/counties", function(data){
             
             for (x in data){
                 if(data[x]["date"] == "2020-04-01"){
+                    county_dict[data[x]["county"]] = ""
                     json_counties[data[x]["county"]] = [data[x]["cases"], data[x]["deaths"]]
                 }
             }
         }).done(function(){
+
+            for(county in county_dict){
+                var results = $("<p><a>" + county + "</a></p>");
+
+                $("#search-results").append(results);
+            } 
+
             map.data.setStyle(function(feature){
                 if(json_counties[feature.getProperty('name')] == undefined){
                     return /** @type {!google.maps.Data.StyleOptions} */({
@@ -583,19 +615,14 @@ function initMap(pos) {
                     $('.county-totaldeaths').text(json_counties[event.feature.getProperty('name')][1]);
                 }
             });
+
+            map.data.addListener('mouseover', function(event){
+                map.data.overrideStyle(event.feature, {fillColor: "purple",});
+            });
+    
+            map.data.addListener('mouseout', function(event) {
+                map.data.revertStyle();
+            }); 
         });
     }   
 }
-
- // console.log(navigator)
-        
-        
-        // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        // infoWindow.setPosition(pos);
-        // infoWindow.setContent(browserHasGeolocation ?
-        //                         'Error: The Geolocation service failed.' :
-        //                         'Error: Your browser doesn\'t support geolocation.');
-        // infoWindow.open(map);
-        // }
-
-
