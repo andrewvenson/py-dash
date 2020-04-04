@@ -173,17 +173,21 @@ function initMap(pos) {
                 }
             }
         }).done(function(){
+            var x = 0;
 
             for(country in country_dict){
-                var results = $("<p class='result'><a>" + country + "</a></p>");
+                var results = $("<p id='" +  x +  "'><a>" + country + "</a></p>");
     
                 $("#search-results").append(results);
 
-                // var el = document.getElementById("result")
-
-                // el.addEventListener("click", function(){
-                //     console.log("yay");
-                // })
+                if(country != ""){
+                    var el = document.getElementById(x);
+                    el.addEventListener("click", function(){
+                        $("#search-results").css("display", "none");
+                        $("#search").val("")
+                    });
+                }
+                x = x + 1;
             } 
 
             var ccs = {
@@ -399,11 +403,20 @@ function initMap(pos) {
                     }
                 }
                 }).done(function(){
-
+                    var x = 0;
                     for(state in state_dict){
-                        var results = $("<p class='result'><a>" + state + "</a></p>");
+                        var results = $("<p id='" + x +  "'><a>" + state + "</a></p>");
             
                         $("#search-results").append(results);
+
+                        if(state != ""){
+                            var el = document.getElementById(x);
+                            el.addEventListener("click", function(){
+                                $("#search-results").css("display", "none");
+                                $("#search").val("")
+                            });
+                        }
+                        x = x + 1;
                     } 
 
                     var ssa = {
@@ -564,11 +577,20 @@ function initMap(pos) {
                 }
             }
         }).done(function(){
-
+            var x = 0;
             for(county in county_dict){
-                var results = $("<p class='result'><a>" + county + "</a></p>");
+                var results = $("<p id='" + x + "'><a>" + county + "</a></p>");
 
                 $("#search-results").append(results);
+
+                if(county != ""){
+                    var el = document.getElementById(x);
+                    el.addEventListener("click", function(){
+                        $("#search-results").css("display", "none");
+                        $("#search").val("")
+                    });
+                }
+                x = x + 1;
             } 
 
             map.data.setStyle(function(feature){

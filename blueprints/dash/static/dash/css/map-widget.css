@@ -129,6 +129,7 @@
 .sdlegend p{
     float:right;
     width:75px;
+    margin-bottom:2px !important;
 }
 
 .map-tab:hover{
