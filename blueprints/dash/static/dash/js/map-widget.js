@@ -53,6 +53,8 @@ $(".map-tab").click(function(){
         $('.mid').text('500-101');
         $('.low').text('100-51');
         $('.lowest').text('0');
+       initMap();
+
    }else if($(this).text() == "World Map"){
         $("#search-results").html();
         $(".covid-legend").css("display", "block");
@@ -65,6 +67,8 @@ $(".map-tab").click(function(){
         $('.mid').text('1000-101');
         $('.low').text('100-1');
         $('.lowest').text('0');
+        initMap();
+
     }else if($(this).text() == "US County"){
         $("#search-results").html("");
         $(".covid-legend").css("display", "block")
@@ -76,9 +80,10 @@ $(".map-tab").click(function(){
         $('.mid').text('30-11');
         $('.low').text('10-1');
         $('.lowest').text('0');
+       initMap();
+
     }
    $(".country-info").css('display', 'none');
-   initMap();
 });
 
 $("#map-icon").click(function(){
@@ -339,7 +344,10 @@ function initMap(pos) {
 
         
         map.data.addListener('mouseover', function(event){
-            map.data.overrideStyle(event.feature, {fillColor: "purple",});
+            if (event.feature.getProperty("name") != "Antarctica"){
+                // $('.country-title').text(event.feature.getProperty("name"));
+                map.data.overrideStyle(event.feature, {fillColor: "purple",});
+            }
         });
 
         map.data.addListener('mouseout', function(event) {
