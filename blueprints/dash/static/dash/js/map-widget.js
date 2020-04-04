@@ -167,6 +167,7 @@ function initMap(pos) {
                 if(country != ""){
                     var el = document.getElementById(x);
                     el.addEventListener("click", function(){
+                        $("#search-icon").css("display", "block")
                         $("#search-results").css("display", "none");
                         $("#search").val("")
 
