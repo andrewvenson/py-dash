@@ -13,6 +13,21 @@
     box-shadow: 3px 7px 8px rgb(27, 27, 27);
 }
 
+.county-info{
+    padding:10px;
+    position:absolute; 
+    height: 275px; 
+    width: 200px;
+    left:5px;
+    bottom:25px;
+    background-color:rgb(226, 226, 226);
+    border-radius:2px;
+    display:none;
+    z-index:1000;
+    opacity:.8;
+    box-shadow: 3px 7px 8px rgb(27, 27, 27);
+}
+
 #search{
     position:absolute; 
     height: 30px; 
@@ -49,6 +64,11 @@
     z-index:1000 !important;
 }
 
+#map-icon:hover{
+
+}
+
+
 .covid-legend{
     padding:2px 20px 2px 20px;
     position:absolute; 
@@ -83,6 +103,8 @@
     background-color: lightgray !important;
     color:white !important;
 }
+
+
 
 
 .covid-legend .row .col{
@@ -133,4 +155,19 @@
         height:200px !important;
         bottom:25px !important;
     }
+    .county-info p{
+        font-size:12px !important;
+        margin:0px;
+    }
+
+    .county-title{
+        margin:0px;
+    }
+
+    .county-info{
+        width: 153px !important;
+        height:200px !important;
+        bottom:25px !important;
+    }
+
 }

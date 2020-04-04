@@ -6,6 +6,8 @@ $(".map-tab").click(function(){
    console.log($(this).text())
    if($(this).text() == "US Map"){
         $(".covid-legend").css("display", "block")
+        $('.county-info').css('display', 'none');
+
         $("#search").attr("placeholder", "Search state ...");
         $('.highest').text('>5000');
         $('.higher').text('5000-1001');
@@ -13,10 +15,10 @@ $(".map-tab").click(function(){
         $('.mid').text('500-101');
         $('.low').text('100-51');
         $('.lowest').text('0');
-        $('#mn').css('display', 'block');
-        $('#nd').css('display', 'block');
    }else if($(this).text() == "World Map"){
         $(".covid-legend").css("display", "block");
+        $('.county-info').css('display', 'none');
+
         $("#search").attr("placeholder", "Search country ...");
         $('.highest').text('>50000');
         $('.higher').text('50000-10001');
@@ -24,10 +26,10 @@ $(".map-tab").click(function(){
         $('.mid').text('1000-101');
         $('.low').text('100-1');
         $('.lowest').text('0');
-        $('#mn').css('display', 'block');
-        $('#nd').css('display', 'block');
     }else if($(this).text() == "US County"){
         $(".covid-legend").css("display", "block")
+        $('.county-info').css('display', 'none');
+
         $("#search").attr("placeholder", "Search county ...");
         $('.highest').text('>100');
         $('.higher').text('100-51');
@@ -35,25 +37,58 @@ $(".map-tab").click(function(){
         $('.mid').text('30-11');
         $('.low').text('10-1');
         $('.lowest').text('0');
-        $('#mn').css('display', 'none');
-        $('#nd').css('display', 'none');
     }
    $(".country-info").css('display', 'none');
    initMap();
 });
 
+$("#map-icon").click(function(){
+    console.log(navigator)
+    if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+        
+            // infoWindow.setPosition(pos);
+            // infoWindow.setContent('Location found.');
+            // infoWindow.open(map);
+            initMap(pos);
 
+            }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+});
 
 // initialize map and datalayer
-function initMap() {
-    if($("#world-tab").css('background-color') == 'rgb(211, 211, 211)'){
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng(30.5994,-50.6731),
-            zoom: 2,
-            streetViewControl: false,
-            mapTypeControl: false,
-            fullscreenControl: false,
-        });
+function initMap(pos) {
+    
+    if($("#world-tab").css('background-color') == 'rgb(211, 211, 211)'){        
+        if(pos!=undefined){
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: new google.maps.LatLng(39.0119,-30.4842),
+                zoom: 8,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false,
+            });
+            map.setCenter(pos);
+            console.log("iIt's a go")
+        }else{
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: new google.maps.LatLng(39.0119,-30.4842),
+                zoom: 3,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false,
+            });
+        }
 
         // Load geojson file to display data layer over map
         map.data.loadGeoJson('dash/json/countries.geo.json');
@@ -223,14 +258,25 @@ function initMap() {
 
         }else if($('#us-tab').css('background-color') == 'rgb(211, 211, 211)'){
             
-
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(39.0119,-98.4842),
-                zoom: 4,
-                streetViewControl: false,
-                mapTypeControl: false,
-                fullscreenControl: false,
-            });
+            if(pos!=undefined){
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: new google.maps.LatLng(39.0119,-98.4842),
+                    zoom: 8,
+                    streetViewControl: false,
+                    mapTypeControl: false,
+                    fullscreenControl: false,
+                });
+                map.setCenter(pos);
+                console.log("iIt's a go")
+            }else{
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: new google.maps.LatLng(39.0119,-98.4842),
+                    zoom: 4,
+                    streetViewControl: false,
+                    mapTypeControl: false,
+                    fullscreenControl: false,
+                });
+            }
 
             // holds states
             var json_states = {}
@@ -386,13 +432,26 @@ function initMap() {
         }); 
     }else if($('#county-tab').css('background-color') == 'rgb(211, 211, 211)'){
         
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng(39.0119,-98.4842),
-            zoom: 5,
-            streetViewControl: false,
-            mapTypeControl: false,
-            fullscreenControl: false,
-        });
+
+        if(pos!=undefined){
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: new google.maps.LatLng(39.0119,-98.4842),
+                zoom: 10,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false,
+            });
+            map.setCenter(pos);
+            console.log("iIt's a go")
+        }else{
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: new google.maps.LatLng(39.0119,-98.4842),
+                zoom: 5,
+                streetViewControl: false,
+                mapTypeControl: false,
+                fullscreenControl: false,
+            });
+        }
         
         map.data.loadGeoJson('dash/json/us-countiesgeo.json');
 
@@ -455,13 +514,13 @@ function initMap() {
 
             map.data.addListener('mouseover', function(event) {
                 if(json_counties[event.feature.getProperty('name')] == undefined){
-                    $('.map-total').text("no data");
-                    $('.map-totaldeaths').text("no data");
+                    $('.county-total').text("no data");
+                    $('.county-totaldeaths').text("no data");
                 }else{
-                    $('.country-info').css('display', 'block');
-                    $('.country-title').text(event.feature.getProperty("name"));
-                    $('.map-total').text(json_counties[event.feature.getProperty('name')][0]);
-                    $('.map-totaldeaths').text(json_counties[event.feature.getProperty('name')][1]);
+                    $('.county-info').css('display', 'block');
+                    $('.county-title').text(event.feature.getProperty("name"));
+                    $('.county-total').text(json_counties[event.feature.getProperty('name')][0]);
+                    $('.county-totaldeaths').text(json_counties[event.feature.getProperty('name')][1]);
                 }
             });
         });
@@ -469,24 +528,7 @@ function initMap() {
 }
 
  // console.log(navigator)
-        // if (navigator.geolocation) {
-        //     navigator.geolocation.getCurrentPosition(function(position) {
-        //     var pos = {
-        //         lat: position.coords.latitude,
-        //         lng: position.coords.longitude
-        //     };
         
-        //     // infoWindow.setPosition(pos);
-        //     // infoWindow.setContent('Location found.');
-        //     // infoWindow.open(map);
-        //     map.setCenter(pos);
-        //     }, function() {
-        //     handleLocationError(true, infoWindow, map.getCenter());
-        //     });
-        // } else {
-        //     // Browser doesn't support Geolocation
-        //     handleLocationError(false, infoWindow, map.getCenter());
-        // }
         
         // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         // infoWindow.setPosition(pos);
