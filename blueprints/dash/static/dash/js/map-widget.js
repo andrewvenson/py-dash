@@ -125,8 +125,9 @@ $("#map-icon").click(function(){
 
 // initialize map and datalayer
 function initMap(pos) {
-    
+    // On world tab
     if($("#world-tab").css('background-color') == 'rgb(211, 211, 211)'){        
+        // Set map 
         if(pos!=undefined){
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: new google.maps.LatLng(39.0119,-30.4842),
@@ -167,8 +168,8 @@ function initMap(pos) {
                         country_dict["United States"] = "";
                     }else{
                         country_dict[data['Countries'][x]['Country']] = "";
+                        
                     }
-
                     json_countries[data['Countries'][x]['Country']] = [data['Countries'][x]['TotalConfirmed'],data['Countries'][x]['NewConfirmed'],data['Countries'][x]['TotalDeaths'],data['Countries'][x]['NewDeaths']] ;
                 }
             }
@@ -185,6 +186,14 @@ function initMap(pos) {
                     el.addEventListener("click", function(){
                         $("#search-results").css("display", "none");
                         $("#search").val("")
+
+                        $('.country-info').css('display', 'block');
+                        $('.country-title').text(country);
+                        $('.map-total').text(json_countries[country][0]);
+                        $('.map-new').text(json_countries[country][1]);
+                        $('.map-totaldeaths').text(json_countries[country][2]);
+                        $('.map-newdeaths').text(json_countries[country][3]);
+                    
                     });
                 }
                 x = x + 1;
@@ -308,7 +317,7 @@ function initMap(pos) {
                     });
                 }
             });
-            map.data.addListener('mouseover', function(event) {
+            map.data.addListener('click', function(event) {
                 if(event.feature.getProperty("name") != "Antarctica"){
                     $('.country-info').css('display', 'block');
                     $('.country-title').text(event.feature.getProperty("name"));
@@ -337,8 +346,10 @@ function initMap(pos) {
             map.data.revertStyle();
         }); 
 
-        }else if($('#us-tab').css('background-color') == 'rgb(211, 211, 211)'){
-            
+        }
+        // on US tab
+        else if($('#us-tab').css('background-color') == 'rgb(211, 211, 211)'){
+            // Set map
             if(pos!=undefined){
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: new google.maps.LatLng(39.0119,-98.4842),
@@ -518,7 +529,7 @@ function initMap(pos) {
                         }
                     });
 
-                map.data.addListener('mouseover', function(event) {
+                map.data.addListener('click', function(event) {
                     
                     $('.country-info').css('display', 'block');
                     $('.country-title').text(event.feature.getProperty("NAME"));
@@ -538,9 +549,11 @@ function initMap(pos) {
                 map.data.revertStyle();
             }); 
         }); 
-    }else if($('#county-tab').css('background-color') == 'rgb(211, 211, 211)'){
+    }
+    // on US county tab
+    else if($('#county-tab').css('background-color') == 'rgb(211, 211, 211)'){
         
-
+        // Set map
         if(pos!=undefined){
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: new google.maps.LatLng(39.0119,-98.4842),
@@ -641,7 +654,7 @@ function initMap(pos) {
                 }
             });
 
-            map.data.addListener('mouseover', function(event) {
+            map.data.addListener('click', function(event) {
                 if(json_counties[event.feature.getProperty('name')] == undefined){
                     $('.county-total').text("no data");
                     $('.county-totaldeaths').text("no data");
