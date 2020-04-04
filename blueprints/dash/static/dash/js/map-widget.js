@@ -50,9 +50,11 @@ function searchIt() {
       }
   }
 
-//   $(".result").click(function(){
-//       $("#search-results").css("display", "none");
-//   })
+  $(".result").click(function(){
+      $("#search-results").css("display", "none");
+
+      console.log("whoa")
+  })
 
 
 
@@ -161,7 +163,11 @@ function initMap(pos) {
             for(x in data['Countries']){
                 for(y in data['Countries'][x]){
                     // append coutnries for searching
-                    country_dict[data['Countries'][x]['Country']] = "";
+                    if (data['Countries'][x]['Country'] == "US"){
+                        country_dict["United States"] = "";
+                    }else{
+                        country_dict[data['Countries'][x]['Country']] = "";
+                    }
 
                     json_countries[data['Countries'][x]['Country']] = [data['Countries'][x]['TotalConfirmed'],data['Countries'][x]['NewConfirmed'],data['Countries'][x]['TotalDeaths'],data['Countries'][x]['NewDeaths']] ;
                 }
@@ -169,15 +175,15 @@ function initMap(pos) {
         }).done(function(){
 
             for(country in country_dict){
-                var results = $("<p id='result'><a>" + country + "</a></p>");
+                var results = $("<p class='result'><a>" + country + "</a></p>");
     
                 $("#search-results").append(results);
 
-                var el = document.getElementById("result")
+                // var el = document.getElementById("result")
 
-                el.addEventListener("click", function(){
-                    console.log("yay");
-                })
+                // el.addEventListener("click", function(){
+                //     console.log("yay");
+                // })
             } 
 
             var ccs = {
