@@ -317,6 +317,7 @@ def index():
 # get counties json
 @dash_bp.route('/counties')
 def getcounties():
+    
     return render_template('/dash/covid-19-data/us-counties.json')
 	
 	

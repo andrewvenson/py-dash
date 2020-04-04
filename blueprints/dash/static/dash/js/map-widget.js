@@ -1,31 +1,7 @@
-
-// $("#search").click(function(){
-//     getUrlSum = "https://api.covid19api.com/summary"
-
-//     var country_dict = {};
-
-//     $.getJSON(getUrlSum, function(data){
-//         for(x in data['Countries']){
-//             for(y in data['Countries'][x]){
-//                 if ((data['Countries'][x]['Country'] in country_dict) && data['Countries'][x]['Country'] != ""){
-                    
-//                     console.log(data['Countries'][x]['Country'] );
-//                 }
-//             }
-//         }
-//     }).done(function(){
-//         for(country in country_dict){
-//             var countries = $("<p><a>" + country + "</a></p>");
-
-//             $("#search-results").append(countries);
-//         }           
-//     });
-// });
-
-
-
 function searchIt() {
     $("#search-results").css('display', 'block');
+    $("#search-icon").css('display', 'none');
+
     // Declare variables
     var input, filter, results, result, a, i, txtValue;
     input = document.getElementById('search');
@@ -47,13 +23,15 @@ function searchIt() {
 
       if(filter == ""){
           $("#search-results").css('display', 'none');
+          $("#search-icon").css('display', 'block');
+
       }
   }
 
   $(".result").click(function(){
-      $("#search-results").css("display", "none");
+    $("#search-results").css("display", "none");
+    $("#search-icon").css('display', 'block');
 
-      console.log("whoa")
   })
 
 
@@ -187,18 +165,27 @@ function initMap(pos) {
                         $("#search-results").css("display", "none");
                         $("#search").val("")
 
-                        $('.country-info').css('display', 'block');
-                        $('.country-title').text(country);
-                        $('.map-total').text(json_countries[country][0]);
-                        $('.map-new').text(json_countries[country][1]);
-                        $('.map-totaldeaths').text(json_countries[country][2]);
-                        $('.map-newdeaths').text(json_countries[country][3]);
-                    
+                        if($(this).text() == "United States"){
+                            $('.country-info').css('display', 'block');
+                            $('.country-title').text($(this).text());
+                            $('.map-total').text(json_countries["US"][0]);
+                            $('.map-new').text(json_countries["US"][1]);
+                            $('.map-totaldeaths').text(json_countries["US"][2]);
+                            $('.map-newdeaths').text(json_countries["US"][3]);
+                        }else{
+                            $('.country-info').css('display', 'block');
+                            $('.country-title').text($(this).text());
+                            $('.map-total').text(json_countries[$(this).text()][0]);
+                            $('.map-new').text(json_countries[$(this).text()][1]);
+                            $('.map-totaldeaths').text(json_countries[$(this).text()][2]);
+                            $('.map-newdeaths').text(json_countries[$(this).text()][3]);
+                        }
                     });
                 }
                 x = x + 1;
             } 
 
+       
             var ccs = {
                 "Antarctica": "",
                 "French Southern and Antarctic Lands": "",
@@ -229,10 +216,14 @@ function initMap(pos) {
             }
             // Set style of map
             map.data.setStyle(function(feature){
-                // console.log(json_countries[feature.getProperty('name')]);
                 if(json_countries[feature.getProperty('name')] == undefined){
-                    // console.log(feature.getProperty('name'));
-                    if(json_countries[ccs[feature.getProperty('name')]][0] > 50000){
+                    if(json_countries[ccs[feature.getProperty('name')]] == undefined){
+                        return /** @type {!google.maps.Data.StyleOptions} */({
+                            fillColor: 'black',
+                            strokeColor: 'black',
+                            strokeWeight:1
+                        });
+                    }else if(json_countries[ccs[feature.getProperty('name')]][0] > 50000){
 
                         return /** @type {!google.maps.Data.StyleOptions} */({
                             fillColor: "red",
@@ -318,22 +309,31 @@ function initMap(pos) {
                 }
             });
             map.data.addListener('click', function(event) {
+                // console.log(event.feature.getProperty("name"));
                 if(event.feature.getProperty("name") != "Antarctica"){
                     $('.country-info').css('display', 'block');
                     $('.country-title').text(event.feature.getProperty("name"));
 
                     if(json_countries[event.feature.getProperty('name')] == undefined){
-                        $('.map-total').text(json_countries[ccs[event.feature.getProperty("name")]][0]);
-                        $('.map-new').text(json_countries[ccs[event.feature.getProperty("name")]][1]);
-                        $('.map-totaldeaths').text(json_countries[ccs[event.feature.getProperty("name")]][2]);
-                        $('.map-newdeaths').text(json_countries[ccs[event.feature.getProperty("name")]][3]);
+                        // console.log(json_countries[ccs[event.feature.getProperty("name")]], event.feature.getProperty("name"))
+                        if(json_countries[ccs[event.feature.getProperty("name")]] != undefined){
+                            $('.map-total').text(json_countries[ccs[event.feature.getProperty("name")]][0]);
+                            $('.map-new').text(json_countries[ccs[event.feature.getProperty("name")]][1]);
+                            $('.map-totaldeaths').text(json_countries[ccs[event.feature.getProperty("name")]][2]);
+                            $('.map-newdeaths').text(json_countries[ccs[event.feature.getProperty("name")]][3]);
+                        }else{
+                            $('.map-total').text('no data');
+                            $('.map-new').text('no data');
+                            $('.map-totaldeaths').text('no data');
+                            $('.map-newdeaths').text('no data');
+                        }
                     }else{
                         $('.map-total').text(json_countries[event.feature.getProperty("name")][0]);
                         $('.map-new').text(json_countries[event.feature.getProperty("name")][1]);
                         $('.map-totaldeaths').text(json_countries[event.feature.getProperty("name")][2]);
                         $('.map-newdeaths').text(json_countries[event.feature.getProperty("name")][3]);
                     }
-                }   
+                }
             });
         });
 
@@ -425,6 +425,13 @@ function initMap(pos) {
                             el.addEventListener("click", function(){
                                 $("#search-results").css("display", "none");
                                 $("#search").val("")
+
+                                $('.country-info').css('display', 'block');
+                                $('.country-title').text($(this).text());
+                                $('.map-total').text(json_states[$(this).text()][0]);
+                                $('.map-new').text(json_states[$(this).text()][1]);
+                                $('.map-totaldeaths').text(json_states[$(this).text()][2]);
+                                $('.map-newdeaths').text(json_states[$(this).text()][3]);
                             });
                         }
                         x = x + 1;
@@ -600,7 +607,12 @@ function initMap(pos) {
                     var el = document.getElementById(x);
                     el.addEventListener("click", function(){
                         $("#search-results").css("display", "none");
-                        $("#search").val("")
+                        $("#search").val("");
+
+                        $('.country-info').css('display', 'block');
+                        $('.country-title').text($(this).text());
+                        $('.map-total').text(json_counties[$(this).text()][0]);
+                        $('.map-totaldeaths').text(json_counties[$(this).text()][1]);
                     });
                 }
                 x = x + 1;
