@@ -63,6 +63,8 @@
     overflow:hidden;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    padding:5px;
+    opacity:.9;
 }
 
 #search-results p:hover{
@@ -81,10 +83,17 @@
     position:absolute; 
     right:10px;
     top:60px;
-    border-radius:5px;
     z-index:1000 !important;
+    width:25px;
+    height:30px;
 }
 
+#map-icon:hover{
+    background-color:lightblue;
+    border-radius:50%;
+    opacity:.7;
+    cursor:pointer;
+}
 
 
 
@@ -121,6 +130,7 @@
 .map-tab:hover{
     background-color: lightgray !important;
     color:white !important;
+    cursor:pointer;
 }
 
 
