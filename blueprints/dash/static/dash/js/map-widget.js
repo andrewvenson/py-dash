@@ -45,11 +45,16 @@ function searchIt() {
         }
       }
 
-      console.log(filter)
       if(filter == ""){
           $("#search-results").css('display', 'none');
       }
   }
+
+//   $(".result").click(function(){
+//       $("#search-results").css("display", "none");
+//   })
+
+
 
 // Select map tab
 $(".map-tab").click(function(){
@@ -164,9 +169,15 @@ function initMap(pos) {
         }).done(function(){
 
             for(country in country_dict){
-                var results = $("<p><a>" + country + "</a></p>");
+                var results = $("<p id='result'><a>" + country + "</a></p>");
     
                 $("#search-results").append(results);
+
+                var el = document.getElementById("result")
+
+                el.addEventListener("click", function(){
+                    console.log("yay");
+                })
             } 
 
             var ccs = {
@@ -384,9 +395,7 @@ function initMap(pos) {
                 }).done(function(){
 
                     for(state in state_dict){
-                        var results = $("<p><a>" + state + "</a></p>");
-
-                        console.log("state")
+                        var results = $("<p class='result'><a>" + state + "</a></p>");
             
                         $("#search-results").append(results);
                     } 
@@ -551,7 +560,7 @@ function initMap(pos) {
         }).done(function(){
 
             for(county in county_dict){
-                var results = $("<p><a>" + county + "</a></p>");
+                var results = $("<p class='result'><a>" + county + "</a></p>");
 
                 $("#search-results").append(results);
             } 

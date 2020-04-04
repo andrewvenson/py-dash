@@ -74,6 +74,10 @@
     cursor: pointer;
 }
 
+#search-results p{
+    margin:2px;
+}
+
 #mapic{
     -webkit-filter: drop-shadow(5px 5px 5px #666666);
     filter: drop-shadow(5px 5px 5px #666666);
