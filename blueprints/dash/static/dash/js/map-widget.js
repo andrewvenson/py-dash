@@ -609,10 +609,10 @@ function initMap(pos) {
                         $("#search-results").css("display", "none");
                         $("#search").val("");
 
-                        $('.country-info').css('display', 'block');
-                        $('.country-title').text($(this).text());
-                        $('.map-total').text(json_counties[$(this).text()][0]);
-                        $('.map-totaldeaths').text(json_counties[$(this).text()][1]);
+                        $('.county-info').css('display', 'block');
+                        $('.county-title').text($(this).text());
+                        $('.county-total').text(json_counties[$(this).text()][0]);
+                        $('.county-totaldeaths').text(json_counties[$(this).text()][1]);
                     });
                 }
                 x = x + 1;
