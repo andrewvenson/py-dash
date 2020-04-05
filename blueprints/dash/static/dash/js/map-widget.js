@@ -32,9 +32,7 @@ function searchIt() {
     $("#search-results").css("display", "none");
     $("#search-icon").css('display', 'block');
 
-  })
-
-
+  });
 
 // Select map tab
 $(".map-tab").click(function(){
@@ -432,6 +430,7 @@ function initMap(pos) {
                         if(state != ""){
                             var el = document.getElementById(x);
                             el.addEventListener("click", function(){
+                                $("#search-icon").css("display", "block");
                                 $("#search-results").css("display", "none");
                                 $("#search").val("")
 
@@ -609,12 +608,13 @@ function initMap(pos) {
             var x = 0;
             for(county in county_dict){
                 var results = $("<p id='" + x + "'><a>" + county + "</a></p>");
-
+                
                 $("#search-results").append(results);
 
                 if(county != ""){
                     var el = document.getElementById(x);
                     el.addEventListener("click", function(){
+                        $("#search-icon").css("display", "block");
                         $("#search-results").css("display", "none");
                         $("#search").val("");
 
