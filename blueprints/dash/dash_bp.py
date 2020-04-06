@@ -283,7 +283,7 @@ def index():
     
 
     # convert csv into array dict format
-    with open(csv_file_path) as csvFile:
+    with open(csv_file_path, encoding='utf-8') as csvFile:
         csvReader = csv.DictReader(csvFile)
         counter = 0
         assign = 0
