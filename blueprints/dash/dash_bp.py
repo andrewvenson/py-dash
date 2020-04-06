@@ -9,6 +9,8 @@ import requests
 import urllib.request as request
 import os
 
+from blueprints.tab3.tab3_bp import tab3_bp
+
 # Dash Blueprint Creation
 dash_bp = Blueprint('dash_bp', __name__,
     template_folder='templates',
@@ -270,6 +272,8 @@ def index():
     # Covid all/summary Urls
     getUrlAll = "https://api.covid19api.com/all"
     getUrlSum = "https://api.covid19api.com/summary"
+
+    tab3_url = url_for('tab3_bp.index')
 
     # response_all = requests.get(getUrlAll)
     response_sum = requests.get(getUrlSum)

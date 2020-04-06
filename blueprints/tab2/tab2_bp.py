@@ -15,7 +15,7 @@ tab2_bp = Blueprint('tab2_bp', __name__,
 
 
 # Dash Blueprint Routes
-@tab2_bp.route('/')
+@tab2_bp.route('/tab2')
 def index():
     
     return render_template('tab2/tab2.html')
