@@ -29,25 +29,28 @@
     <!-- This is jinja templating | Here we're looping through the api data "https://api.covid19api.com/summary" our dashboard blueprint-->
         {% for x in data %}
             {% for y in data[x] %}
-                {% if (y['Country'] != "" and y['Country'] != " Azerbaijan") %}
-                <div class='country-block'>
-                    <div class="row" style='height:50px;'>
-                        <div class="col">
-                            <p style='padding-left:12px;'>{{y['Country']}}</p>
+                {% if (y['Country'] != "" ) %}
+                    {% if data[x]["NewConfirmed"] %}
+                    {% else %}
+                        <div class='country-block'>
+                            <div class="row" style='height:50px;'>
+                                <div class="col">
+                                    <p style='padding-left:12px;'>{{y['Country']}}</p>
+                                </div>
+                                <div class="col" style='position:relative;'>
+                                    <!-- Loop through country codes to append country flag to each block -->
+                                    {% if y['Country'] in cc  %}
+                                        <img style='position:absolute; top:-17px;right: 8px;' src="https://www.countryflags.io/{{ cc[y['Country']] }}/flat/64.png">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>{{y['NewConfirmed']}}</span></p>
+                            <p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>{{y['TotalConfirmed']}}</span></p>
+                            <p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>{{y['NewDeaths']}}</span></p>
+                            <p style='background-color: lightgray; border-radius:10px;padding:3px;margin-bottom:0px !important;'>Total Deaths: <span style='color:whitesmoke;'>{{y['TotalDeaths']}}</span></p>
                         </div>
-                        <div class="col" style='position:relative;'>
-                            <!-- Loop through country codes to append country flag to each block -->
-                            {% if y['Country'] in cc  %}
-                                <img style='position:absolute; top:-17px;right: 8px;' src="https://www.countryflags.io/{{ cc[y['Country']] }}/flat/64.png">
-                            {% endif %}
-                        </div>
-                    </div>
-                    
-                    <p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>{{y['NewConfirmed']}}</span></p>
-                    <p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>{{y['TotalConfirmed']}}</span></p>
-                    <p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>{{y['NewDeaths']}}</span></p>
-                    <p style='background-color: lightgray; border-radius:10px;padding:3px;margin-bottom:0px !important;'>Total Deaths: <span style='color:whitesmoke;'>{{y['TotalDeaths']}}</span></p>
-                </div>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         {% endfor %}
