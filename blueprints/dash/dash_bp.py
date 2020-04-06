@@ -283,8 +283,6 @@ def index():
     #json_file_path = "var/www/html/py-dash/blueprints/dash/templates/dash/covid-19-data/us-counties.json"
     data = []
 
-    
-
     # convert csv into array dict format
     with open(csv_file_path, encoding='utf-8') as csvFile:
         csvReader = csv.DictReader(csvFile)
