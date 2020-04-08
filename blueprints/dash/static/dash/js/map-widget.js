@@ -43,7 +43,7 @@ $(".map-tab").click(function(){
         $("#search-results").html("");
         $(".covid-legend").css("display", "block")
         $('.county-info').css('display', 'none');
-
+        $('.country-info').css('display', 'none');
         $("#search").attr("placeholder", "Search state ...");
         $('.highest').text('>5000');
         $('.higher').text('5000-1001');
@@ -54,10 +54,10 @@ $(".map-tab").click(function(){
        initMap();
 
    }else if($(this).text() == "World Map"){
-        $("#search-results").html();
+        $("#search-results").html("");
         $(".covid-legend").css("display", "block");
         $('.county-info').css('display', 'none');
-
+        $('.country-info').css('display', 'none');
         $("#search").attr("placeholder", "Search country ...");
         $('.highest').text('>50000');
         $('.higher').text('50000-10001');
@@ -71,6 +71,7 @@ $(".map-tab").click(function(){
         $("#search-results").html("");
         $(".covid-legend").css("display", "block")
         $('.county-info').css('display', 'none');
+        $('.country-info').css('display', 'none');
         $("#search").attr("placeholder", "Search county ...");
         $('.highest').text('>100');
         $('.higher').text('100-51');
@@ -677,6 +678,8 @@ function initMap(pos) {
 
             map.data.addListener('click', function(event) {
                 if(json_counties[event.feature.getProperty('name')] == undefined){
+                    $('.county-title').text(event.feature.getProperty("name"));
+                    $('.county-info').css('display', 'block');
                     $('.county-total').text("no data");
                     $('.county-totaldeaths').text("no data");
                 }else{
