@@ -1,8 +1,27 @@
-.assist .col{
+.assist .col-lg{
     background-color: whitesmoke !important;
-    min-height:300px !important;
+    min-height:400px !important;
+    max-height:400px;
     margin:5px;
     border-radius:5px;
     border: 1px solid rgb(230, 230, 230);
     box-shadow: 3px 7px 8px rgb(230, 230, 230);
+    overflow-y:scroll;
+    padding:5px;
+}
+
+.col-lg p{
+    color:#005EAA;
+    background-color: rgb(231, 231, 231);
+    display: inline-block;
+    padding:3px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight:bold;
+}
+
+
+.col-lg h5{
+    font-weight:bold;
+    color:#005EAA !important;
 }
