@@ -190,7 +190,6 @@ function initMap(pos) {
                 x = x + 1;
             } 
 
-       
             var ccs = {
                 "Antarctica": "",
                 "French Southern and Antarctic Lands": "",
@@ -615,14 +614,14 @@ function initMap(pos) {
             
             for (x in data){
                 if(data[x]["date"] == "2020-04-01"){
-                    county_dict[data[x]["county"]] = ""
-                    json_counties[data[x]["county"]] = [data[x]["cases"], data[x]["deaths"]]
+                    county_dict[data[x]["county"]] = data[x]["state"];
+                    json_counties[data[x]["county"]] = [data[x]["cases"], data[x]["deaths"], data[x]["state"]];
                 }
             }
         }).done(function(){
             var x = 0;
             for(county in county_dict){
-                var results = $("<p id='" + x + "'><a>" + county + "</a></p>");
+                var results = $("<p class='" + county  +  "' id='" + x + "'><a>" + county + ", " + county_dict[county] + "</a></p>");
                 
                 $("#search-results").append(results);
 
@@ -635,8 +634,8 @@ function initMap(pos) {
 
                         $('.county-info').css('display', 'block');
                         $('.county-title').text($(this).text());
-                        $('.county-total').text(json_counties[$(this).text()][0]);
-                        $('.county-totaldeaths').text(json_counties[$(this).text()][1]);
+                        $('.county-total').text(json_counties[$(this).attr('class')][0]);
+                        $('.county-totaldeaths').text(json_counties[$(this).attr('class')][1]);
                     });
                 }
                 x = x + 1;
@@ -692,13 +691,13 @@ function initMap(pos) {
 
             map.data.addListener('click', function(event) {
                 if(json_counties[event.feature.getProperty('name')] == undefined){
-                    $('.county-title').text(event.feature.getProperty("name"));
-                    $('.county-info').css('display', 'block');
+                    // $('.county-title').text(event.feature.getProperty("name"));
+                    // $('.county-info').css('display', 'block');
                     $('.county-total').text("no data");
                     $('.county-totaldeaths').text("no data");
                 }else{
                     $('.county-info').css('display', 'block');
-                    $('.county-title').text(event.feature.getProperty("name"));
+                    $('.county-title').text(event.feature.getProperty("name") + ", " + json_counties[event.feature.getProperty('name')][2]);
                     $('.county-total').text(json_counties[event.feature.getProperty('name')][0]);
                     $('.county-totaldeaths').text(json_counties[event.feature.getProperty('name')][1]);
                 }
