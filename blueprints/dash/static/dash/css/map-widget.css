@@ -118,7 +118,7 @@
     position:absolute; 
     display:none;
     height: 400px; 
-    width: 90px;
+    width: 95px;
     right:2px;
     top:120px;
     border-radius:2px;
@@ -128,7 +128,7 @@
 
 .sdlegend p{
     float:right;
-    width:75px;
+    width:80px;
     margin-bottom:2px !important;
 }
 
