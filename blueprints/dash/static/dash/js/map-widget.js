@@ -422,87 +422,99 @@ function initMap(pos) {
                     }
                 }
                 }).done(function(){
+
+                    var ssa = {
+                        "Alabama": 	    "AL",
+                        "Alaska": 	    "AK",
+                        "Arizona": 	    "AZ",
+                        "Arkansas": 	"AR",
+                        "California": 	"CA",
+                        "Colorado": 	"CO",
+                        "Connecticut": 	"CT",
+                        "Delaware": 	"DE",
+                        "Florida": 	    "FL",
+                        "Georgia": 	    "GA",
+                        "Hawaii": 	    "HI",
+                        "Idaho": 	    "ID",
+                        "Illinois": 	"IL",
+                        "Indiana": 	    "IN",
+                        "Iowa": 	    "IA",
+                        "Kansas": 	    "KS",
+                        "Kentucky": 	"KY",
+                        "Louisiana": 	"LA",
+                        "Maine": 	    "ME",
+                        "Maryland": 	"MD",
+                        "Massachusetts":"MA",
+                        "Michigan": 	"MI",
+                        "Minnesota": 	"MN",
+                        "Mississippi": 	"MS",
+                        "Missouri": 	"MO",
+                        "Montana": 	    "MT",
+                        "Nebraska": 	"NE",
+                        "Nevada": 	    "NV",
+                        "New Hampshire": "NH",
+                        "New Jersey": 	"NJ",
+                        "New Mexico": 	"NM",
+                        "New York": 	"NY",
+                        "North Carolina": "NC",
+                        "North Dakota": "ND",
+                        "Ohio": 	    "OH",
+                        "Oklahoma": 	"OK",
+                        "Oregon": 	    "OR",
+                        "Pennsylvania": "PA",
+                        "Rhode Island": "RI",
+                        "South Carolina": "SC",
+                        "South Dakota": "SD",
+                        "Tennessee": 	"TN",
+                        "Texas": 	    "TX",
+                        "Utah": 	    "UT",
+                        "Vermont": 	    "VT",
+                        "Virginia": 	"VA",
+                        "Washington": 	"WA",
+                        "West Virginia": "WV",
+                        "Wisconsin": 	"WI",
+                        "Wyoming": 	    "WY"
+                    }
+
                     var x = 0;
+                    var state_ = '';
+
                     for(state in state_dict){
-                        var results = $("<p id='" + x +  "'><a>" + state + "</a></p>");
+                        for(st in ssa){
+                            if(ssa[st] == state){
+                               state_ = st; 
+                            }
+                        }
+                        var results = $("<p id='" + x +  "'><a>" + state_ + "</a></p>");
+                        // console.log(state)
             
                         $("#search-results").append(results);
 
                         if(state != ""){
                             var el = document.getElementById(x);
                             el.addEventListener("click", function(){
+                                console.log(ssa[$(this).text()]);
                                 $("#search-icon").css("display", "block");
                                 $("#search-results").css("display", "none");
                                 $("#search").val("")
 
                                 $('.country-info').css('display', 'block');
                                 $('.country-title').text($(this).text());
-                                $('.map-total').text(json_states[$(this).text()][0]);
-                                $('.map-new').text(json_states[$(this).text()][1]);
-                                $('.map-totaldeaths').text(json_states[$(this).text()][2]);
-                                $('.map-newdeaths').text(json_states[$(this).text()][3]);
+                                $('.map-total').text(json_states[ssa[$(this).text()]][0]);
+                                $('.map-new').text(json_states[ssa[$(this).text()]][1]);
+                                $('.map-totaldeaths').text(json_states[ssa[$(this).text()]][2]);
+                                $('.map-newdeaths').text(json_states[ssa[$(this).text()]][3]);
                             });
                         }
                         x = x + 1;
                     } 
 
-                    var ssa = {
-                        "Alabama": 	"AL",
-                        "Alaska": 	"AK",
-                        "Arizona": 	"AZ",
-                        "Arkansas": 	"AR",
-                        "California": 	"CA",
-                        "Colorado": 	"CO",
-                        "Connecticut": 	"CT",
-                        "Delaware": 	"DE",
-                        "Florida": 	"FL",
-                        "Georgia": 	"GA",
-                        "Hawaii": 	"HI",
-                        "Idaho": 	"ID",
-                        "Illinois": 	"IL",
-                        "Indiana": 	"IN",
-                        "Iowa": 	"IA",
-                        "Kansas": 	"KS",
-                        "Kentucky": 	"KY",
-                        "Louisiana": 	"LA",
-                        "Maine": 	"ME",
-                        "Maryland": 	"MD",
-                        "Massachusetts": 	"MA",
-                        "Michigan": 	"MI",
-                        "Minnesota": 	"MN",
-                        "Mississippi": 	"MS",
-                        "Missouri": 	"MO",
-                        "Montana": 	"MT",
-                        "Nebraska": 	"NE",
-                        "Nevada": 	"NV",
-                        "New Hampshire": 	"NH",
-                        "New Jersey": 	"NJ",
-                        "New Mexico": 	"NM",
-                        "New York": 	"NY",
-                        "North Carolina": 	"NC",
-                        "North Dakota": 	"ND",
-                        "Ohio": 	"OH",
-                        "Oklahoma": 	"OK",
-                        "Oregon": 	"OR",
-                        "Pennsylvania": 	"PA",
-                        "Rhode Island": 	"RI",
-                        "South Carolina": 	"SC",
-                        "South Dakota": 	"SD",
-                        "Tennessee": 	"TN",
-                        "Texas": 	"TX",
-                        "Utah": 	"UT",
-                        "Vermont": 	"VT",
-                        "Virginia": 	"VA",
-                        "Washington": 	"WA",
-                        "West Virginia": 	"WV",
-                        "Wisconsin": 	"WI",
-                        "Wyoming": 	"WY"}
-
+                    
                         map.data.setStyle(function(feature){
                         if(json_states[ssa[feature.getProperty('NAME')]] == undefined){
                             return /** @type {!google.maps.Data.StyleOptions} */({
-                                fillColor: "navy",
-                                strokeColor: 'darkblue',
+                                fillColor: "black",
+                                strokeColor: 'black',
                                 strokeWeight:1
                             });
                         }else if(json_states[ssa[feature.getProperty('NAME')]][0] >= 5001){
@@ -549,6 +561,8 @@ function initMap(pos) {
                     
                     $('.country-info').css('display', 'block');
                     $('.country-title').text(event.feature.getProperty("NAME"));
+
+                    console.log(event.feature.getProperty("NAME"));
 
                     $('.map-total').text(json_states[ssa[event.feature.getProperty("NAME")]][0]);
                     $('.map-new').text(json_states[ssa[event.feature.getProperty("NAME")]][1]);
