@@ -53,3 +53,27 @@
     background: #005EAA;
 }
 
+.wrapper{
+    white-space: nowrap;
+    overflow-x:auto;
+    scrollbar-color: #005EAA whitesmoke;
+    scrollbar-width: thin;
+}
+
+.wrapper::-webkit-scrollbar{
+    display:none;
+}
+
+.wrapper p{
+    margin-bottom:5px;
+    cursor:pointer;
+}
+
+.wrapper p:hover{
+    background-color: gray;
+    color: white;
+}
+
+#donate{
+    margin-bottom:10px;
+}
