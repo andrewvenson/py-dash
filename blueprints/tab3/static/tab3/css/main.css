@@ -8,6 +8,8 @@
     box-shadow: 3px 7px 8px rgb(230, 230, 230);
     overflow-y:scroll;
     padding:5px;
+    scrollbar-color: #005EAA whitesmoke;
+    scrollbar-width: thin;
 }
 
 .assist .col-lg:hover{
@@ -24,6 +26,9 @@
     font-weight:bold;
 }
 
+.donate{
+    box-shadow: 2px 2px 2px lightgray;
+}
 
 .col-lg h5{
     font-weight:bold;
@@ -35,3 +40,16 @@
     color:rgb(100, 10, 10);
     cursor:pointer;
 }
+
+.assist .col-lg::-webkit-scrollbar {
+    width: 5px;
+}
+   
+.assist .col-lg::-webkit-scrollbar-track {
+    background: whitesmoke;
+}
+   
+.assist .col-lg::-webkit-scrollbar-thumb {
+    background: #005EAA;
+}
+
