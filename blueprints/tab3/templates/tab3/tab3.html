@@ -24,10 +24,8 @@
                 <h5>{{x}}</h5>
             </div>
                 {% for y in donation_dict[x] %}
-                    {% if y[1] != "" %}
+                    {% if y[1]|length !=1 %}
                         <a href="{{y[1]}}" target="_blank"><p class='donate'>{{y[0]}}</p></a>
-                    {% else %}
-                        <a><p class='donate'>{{y[0]}}</p></a>
                     {% endif %}
                 {% endfor %}
             {% endfor %}
