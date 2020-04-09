@@ -300,7 +300,6 @@ def index():
             else:
                 donation_group.append(x.p.text)
     
-    print(donation_dict)
 
     response_sum = requests.get(getUrlSum)
     sum_data = json.loads(response_sum.text)

@@ -2,7 +2,7 @@
 {% block content %}
 
     
-<h2 style="color:#005EAA !important;text-shadow: 2px 2px 2px lightgray;font-weight:bold;">Assist</h2>
+<!-- <h2 style="color:#005EAA !important;text-shadow: 2px 2px 2px lightgray;font-weight:bold;">Assist</h2> -->
 <div class='row assist'>
     <div class="col-lg">
         <p>Prevention</p>
@@ -16,10 +16,10 @@
     <div class="col-lg">
         <p>Assist</p>
     </div>
-    <div class="col-lg" style='position:relative;'>
+    <div class="col-lg donate-block">
         <p id='donate'>Donate</p>
         <div class='wrapper'>
-            <p>Arts</p>
+            <p>Arts/Culture</p>
             <p>Seniors/Disabilities</p>
             <p>Meals/Food support</p>
             <p>Homeless</p>
@@ -29,7 +29,7 @@
             <p>Restaurants/Food workers</p>
             
         </div>
-        <div>
+        <div class='donate-content'>
             {% for x in donation_dict %}
             <div style="text-align:center">
                 <h5>{{x}}</h5>
