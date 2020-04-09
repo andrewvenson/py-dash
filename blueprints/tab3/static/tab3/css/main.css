@@ -3,11 +3,15 @@
     min-height:400px !important;
     max-height:400px;
     margin:5px;
-    border-radius:5px;
+    border-radius:10px !important;
     border: 1px solid rgb(230, 230, 230);
     box-shadow: 3px 7px 8px rgb(230, 230, 230);
     overflow-y:scroll;
     padding:5px;
+}
+
+.assist .col-lg:hover{
+    box-shadow: 4px 8px 10px darkgray;
 }
 
 .col-lg p{
@@ -24,4 +28,10 @@
 .col-lg h5{
     font-weight:bold;
     color:#005EAA !important;
+}
+
+.donate:hover{
+    box-shadow: 3px 4px 5px lightgray;
+    color:rgb(100, 10, 10);
+    cursor:pointer;
 }

@@ -15,57 +15,23 @@
     <div class="col-lg">
         <p>Assist</p>
     </div>
-    <div class="col-lg">
+    <div class="col-lg" style='position:relative;'>
         <p>Donate</p>
+
         <div>
+            {% for x in donation_dict %}
             <div style="text-align:center">
-                <h5>The Arts</h5>
+                <h5>{{x}}</h5>
             </div>
-        
-            <p><a href="">American Guild of Musical Arts Relief Fund</a>: The AGMA is a labor union that represents artists involved in America’s operatic, choral and dance heritages. Their relief fund will support members who have lost opportunities and income during the coronavirus crisis.</p>
-            <p><a href="">ArtsFund COVID-19 Arts Emergency Relief Fund</a>: This fund will help stabilize the arts sector in Seattle, where the coronavirus has been especially devastating.</p>
-            <p><a href="">Broadway Cares</a>: This non-profit helps vulnerable people in the performing arts community, and has created an emergency fund for creative industry workers in New York who are impacted by the coronavirus crisis.</p>
-            <p><a href="">ArtsFund COVID-19 Arts Emergency Relief Fund</a>: This non-profit helps vulnerable people in the performing arts community, and has created an emergency fund for creative industry workers in New York who are impacted by the coronavirus crisis.</p>
-            <p><a href="">ArtsFund COVID-19 Arts Emergency Relief Fund</a>: This fund will help stabilize the arts sector in Seattle, where the coronavirus has been especially devastating.</p>
-            <p><a href="">ArtsFund COVID-19 Arts Emergency Relief Fund</a>: This fund will help stabilize the arts sector in Seattle, where the coronavirus has been especially devastating.</p>
-            <p><a href="">ArtsFund COVID-19 Arts Emergency Relief Fund</a>: This fund will help stabilize the arts sector in Seattle, where the coronavirus has been especially devastating.</p>
-            <p><a href="">ArtsFund COVID-19 Arts Emergency Relief Fund</a>: This fund will help stabilize the arts sector in Seattle, where the coronavirus has been especially devastating.</p>
-            <p><a href="">ArtsFund COVID-19 Arts Emergency Relief Fund</a>: This fund will help stabilize the arts sector in Seattle, where the coronavirus has been especially devastating.</p>
-            <p><a href="">ArtsFund COVID-19 Arts Emergency Relief Fund</a>: This fund will help stabilize the arts sector in Seattle, where the coronavirus has been especially devastating.</p>
-            
-        </div>
+                {% for y in donation_dict[x] %}
+                    {% if y[1] != "" %}
+                        <a href="{{y[1]}}" target="_blank"><p class='donate'>{{y[0]}}</p></a>
+                    {% else %}
+                        <a><p class='donate'>{{y[0]}}</p></a>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
         <div>
-            <div style="text-align:center">
-                <h5>The Arts</h5>
-            </div>
-        
-            <p><a href="">American Guild of Musical Arts Relief Fund</a>: : This fund will help stabilize the arts sector in Seattle, where the coronavirus has been especially devastating.</p>
-        
-        </div>
-        <div>
-            <div style="text-align:center">
-                <h5>The Arts</h5>
-            </div>
-        
-            <p><a href="">American Guild of Musical Arts Relief Fund</a>: The AGMA is a labor union that represents artists involved in America’s operatic, choral and dance heritages. Their relief fund will support members who have lost opportunities and income during the coronavirus crisis.</p>
-        
-        </div>
-        <div>
-            <div style="text-align:center">
-                <h5>The Arts</h5>
-            </div>
-        
-            <p><a href="">American Guild of Musical Arts Relief Fund</a>: The AGMA is a labor union that represents artists involved in America’s operatic, choral and dance heritages. Their relief fund will support members who have lost opportunities and income during the coronavirus crisis.</p>
-        
-        </div>
-        <div>
-            <div style="text-align:center">
-                <h5>The Arts</h5>
-            </div>
-        
-            <p><a href="">American Guild of Musical Arts Relief Fund</a>: The AGMA is a labor union that represents artists involved in America’s operatic, choral and dance heritages. Their relief fund will support members who have lost opportunities and income during the coronavirus crisis.</p>
-        
-        </div>
     </div>
 </div>
 {% endblock content %}

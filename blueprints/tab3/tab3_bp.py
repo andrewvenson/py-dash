@@ -271,14 +271,38 @@ def index():
     donateUrl = "https://www.cnn.com/interactive/2020/health/coronavirus-how-to-help/"
 
     page = requests.get(donateUrl)
-    
-    soup = BeautifulSoup(page.content, 'html.parser')
 
-    results= soup.find_all(class_="cnnix__article__paragraph")
+ 
+    soup = BeautifulSoup(page.content, "html.parser")
 
+    results = soup.find_all(class_="cnnix__article__paragraph")
     
+    donation_dict = {}
+    donation_group = []
+    donation_heading = ''
+    counter = 0
+
+    links = []
+
+    for x in results:
+        if x.h2:
+            if counter > 0:
+                donation_dict[donation_heading] = donation_group
+                donation_group = []
+                donation_heading = x.h2.text
+                counter = 0
+            else:
+                donation_heading = x.h2.text
+            counter+=1
+        if x.p and x.p != "":
+            if x.a:
+                donation_group.append([x.p.text, x.a['href']])
+            else:
+                donation_group.append(x.p.text)
+    
+    print(donation_dict)
 
     response_sum = requests.get(getUrlSum)
     sum_data = json.loads(response_sum.text)
     
-    return render_template('tab3/tab3.html', data = sum_data, cc = country_codes)
+    return render_template('tab3/tab3.html', data = sum_data, cc = country_codes, donation_dict = donation_dict)

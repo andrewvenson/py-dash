@@ -691,8 +691,8 @@ function initMap(pos) {
 
             map.data.addListener('click', function(event) {
                 if(json_counties[event.feature.getProperty('name')] == undefined){
-                    // $('.county-title').text(event.feature.getProperty("name"));
-                    // $('.county-info').css('display', 'block');
+                    $('.county-title').text(event.feature.getProperty("name"));
+                    $('.county-info').css('display', 'block');
                     $('.county-total').text("no data");
                     $('.county-totaldeaths').text("no data");
                 }else{
