@@ -281,6 +281,18 @@ def index():
     donation_group = []
     donation_heading = ''
     counter = 0
+    donation_header_ids = {
+        "Arts and culture": "arts",
+        "Seniors and people with disabilities": "seniors",
+        "Meals and food support": "food",
+        "Homeless communities": "homeless",
+        "Medical efforts": "medical",
+        "Mental health": "mental",
+        "Refugees and international relief": "refugees",
+        "Restaurants and food workers": "restuarants",
+        "Service workers": "service",
+        "Small businesses": "business"
+    }
 
     links = []
 
@@ -300,8 +312,7 @@ def index():
             else:
                 donation_group.append(x.p.text)
     
-
     response_sum = requests.get(getUrlSum)
     sum_data = json.loads(response_sum.text)
     
-    return render_template('tab3/tab3.html', data = sum_data, cc = country_codes, donation_dict = donation_dict)
+    return render_template('tab3/tab3.html', data = sum_data, cc = country_codes, donation_dict = donation_dict, donation_header_ids=donation_header_ids)

@@ -41,21 +41,26 @@
 
 .donate{
     box-shadow: 2px 2px 2px lightgray;
+    margin:5px;
+    margin-bottom:20px;
+    color:white !important;
+    background-color: #005EAA !important;
 }
 
 .col-lg h5{
     font-weight:bold;
-    color:rgb(100, 10, 10) !important;
-    text-shadow: 2px 3px 4px gray;
+    color:red !important;
+    text-shadow: 2px 3px 4px rgb(202, 202, 202);
 }
 
 .donate:hover{
     box-shadow: 3px 4px 5px lightgray;
-    color:rgb(100, 10, 10);
+    color:#005EAA;
+    background-color: white;
     cursor:pointer;
 }
 
-.donate-content{
+#donate-content{
     min-height:325px !important;
     max-height:325px;
     overflow-y:scroll;
@@ -64,15 +69,15 @@
     margin-top:10px;
 }
 
-.donate-content::-webkit-scrollbar {
+#donate-content::-webkit-scrollbar {
     width: 5px;
 }
    
-.donate-content::-webkit-scrollbar-track {
+#donate-content::-webkit-scrollbar-track {
     background: whitesmoke;
 }
    
-.donate-content::-webkit-scrollbar-thumb {
+#donate-content::-webkit-scrollbar-thumb {
     background: #005EAA;
 }
 
@@ -102,7 +107,7 @@
 }
 
 .wrapper p:hover{
-    background-color: gray;
+    background-color: #005EAA;
     color: white;
 }
 

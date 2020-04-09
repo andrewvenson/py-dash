@@ -19,20 +19,22 @@
     <div class="col-lg donate-block">
         <p id='donate'>Donate</p>
         <div class='wrapper'>
-            <p>Arts/Culture</p>
-            <p>Seniors/Disabilities</p>
-            <p>Meals/Food support</p>
-            <p>Homeless</p>
-            <p>Medical</p>
-            <p>Mental health</p>
-            <p>Refugees/International relief</p>
-            <p>Restaurants/Food workers</p>
-            
+            <a class="arts"><p>Arts/Culture</p></a>
+            <a class="seniors"><p>Seniors/Disabilities</p></a>
+            <a class="food"><p>Meals/Food support</p></a>
+            <a class="homeless"><p>Homeless</p></a>
+            <a class="medical"><p>Medical</p></a>
+            <a class="mental"><p>Mental health</p></a>
+            <a class="refugees"><p>Refugees/International relief</p></a>
+            <a class="restuarants"><p>Restaurants/Food workers</p></a>
+            <a class="service"><p>Service workers</p></a>
+            <a class="businesses"><p>Small businesses</p></a>
         </div>
-        <div class='donate-content'>
+
+        <div id='donate-content'>
             {% for x in donation_dict %}
             <div style="text-align:center">
-                <h5>{{x}}</h5>
+                <h5 id="{{ donation_header_ids[x] }}">{{x}}</h5>
             </div>
                 {% for y in donation_dict[x] %}
                     {% if y[1]|length !=1 %}
