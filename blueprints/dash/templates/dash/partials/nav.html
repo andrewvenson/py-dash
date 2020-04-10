@@ -45,3 +45,35 @@
         {% endfor %}
     </div>
 </div>
+
+<div class='global-numbers-shrunk' style='position:fixed; right:10px;top:10px;display:none;'>
+    <button class='btn btn-primary btn-sm global-btn' style='background-color:#005EAA; border-color:#005EAA;'>Global #'s</button>
+    <button class='btn btn-primary btn-sm close-global' style='background-color:#005EAA; border-color:#005EAA;display:none;'>X</button>
+
+</div>
+
+<div class='global-numbers-shrunk-div' style='position:fixed; display:none; right:10px;top:50px;width: 200px;z-index:2000;border:1px solid lightgray; background-color: whitesmoke;box-shadow: 2px 3px 4px gray;padding:5px;border-radius:5px'>
+    {% for x in data %}
+        {% for y in data[x] %}
+            {% if y == "NewConfirmed" %}
+                <p>New Cases: <span style='color:red;'>{{data[x][y]}}</span></p>
+            {% endif %}
+            {% if y == "TotalConfirmed" %}
+                <p>Total Cases: <span style='color:red;'>{{data[x][y]}}</span></p>
+            {% endif %}
+            {% if y == "NewDeaths" %}
+                <p>New Deaths: <span style='color:red;'>{{data[x][y]}}</span></p>
+            {% endif %}
+            {% if y == "TotalDeaths" %}
+                <p>Total Deaths: <span style='color:red;'>{{data[x][y]}}</span></p>
+            {% endif %}
+            {% if y == "NewRecovered" %}
+                <p>New Recovered: <span style='color:red;'>{{data[x][y]}}</span> </p>
+            {% endif %}
+            {% if y == "TotalRecovered" %}
+                <p>Total Recovered: <span style='color:red;'>{{data[x][y]}}</span></p>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+</div>

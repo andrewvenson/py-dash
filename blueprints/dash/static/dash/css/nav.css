@@ -35,11 +35,16 @@ nav{
 }
 
 @media only screen and (max-width: 906px) {
-    
     .global-numbers{
         display:none !important;
     }
+    .global-numbers-shrunk{
+        display:block !important;
+    }
+}
 
-    
-    
+@media only screen and (min-width: 906px) {
+    .global-numbers-shrunk-div{
+        display:none !important;
+    }
 }
