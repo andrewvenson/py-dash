@@ -34,10 +34,10 @@ nav{
     color: #005EAA;
 }
 
-.global-numbers p{
+.global-numbers-shrunk-div p{
     font-size: 14px;
     font-weight:bold;
-    color: #005EAA;
+    color: #005EAA !important;
 }
 
 @media only screen and (max-width: 906px) {
