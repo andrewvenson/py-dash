@@ -313,13 +313,11 @@ function initMap(pos) {
                 }
             });
             map.data.addListener('click', function(event) {
-                // console.log(event.feature.getProperty("name"));
                 if(event.feature.getProperty("name") != "Antarctica"){
                     $('.country-info').css('display', 'block');
                     $('.country-title').text(event.feature.getProperty("name"));
 
                     if(json_countries[event.feature.getProperty('name')] == undefined){
-                        // console.log(json_countries[ccs[event.feature.getProperty("name")]], event.feature.getProperty("name"))
                         if(json_countries[ccs[event.feature.getProperty("name")]] != undefined){
                             $('.map-total').text(json_countries[ccs[event.feature.getProperty("name")]][0]);
                             $('.map-new').text(json_countries[ccs[event.feature.getProperty("name")]][1]);
@@ -344,7 +342,6 @@ function initMap(pos) {
         
         map.data.addListener('mouseover', function(event){
             if (event.feature.getProperty("name") != "Antarctica"){
-                // $('.country-title').text(event.feature.getProperty("name"));
                 map.data.overrideStyle(event.feature, {fillColor: "purple",});
             }
         });
@@ -366,7 +363,6 @@ function initMap(pos) {
                     fullscreenControl: false,
                 });
                 map.setCenter(pos);
-                console.log("iIt's a go")
             }else{
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: new google.maps.LatLng(39.0119,-98.4842),
@@ -402,10 +398,13 @@ function initMap(pos) {
                 
             }else{
                 date = today.getDate().toString();
-                yester_date = (today.getDate()-1).toString();
 
+                yester_date = (today.getDate()-1).toString();
             }
 
+            if(yester_date.length == 1){
+                yester_date = "0" + yester_date
+            }
 
             var today_dt = today.getFullYear() + "-" + month + "-" + date;
             var yest_dt = today.getFullYear() + "-" + month + "-" + yester_date;
@@ -418,6 +417,7 @@ function initMap(pos) {
                         json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"],data[x]["death"],data[x]["deathIncrease"]];
                     }else if(data[x]["dateChecked"] == yest_dt + "T20:00:00Z"){
                         json_states[data[x]["state"]] = [data[x]["positive"], data[x]["positiveIncrease"],data[x]["death"],data[x]["deathIncrease"]];
+                        
                     }
                 }
                 }).done(function(){
@@ -610,10 +610,48 @@ function initMap(pos) {
         // states to search from 
         var county_dict = {};
 
+        var today = new Date();
+        var month = "";
+        var date = "";
+
+        if(today.getMonth().toString().length == 1){
+            month = "0" + (today.getMonth()+1).toString();
+
+        }else{
+            month = (today.getMonth()+1).toString();
+        }
+        
+        if(today.getDate().toString().length == 1){
+            date = "0" + today.getDate().toString();
+            yester_date = "0" + (today.getDate()-1).toString();
+            yester2_date = "0" + (today.getDate()-2).toString();
+            
+        }else{
+            date = today.getDate().toString();
+            yester_date = (today.getDate()-1).toString();
+            yester2_date = (today.getDate()-2).toString();
+        }
+
+        if(yester_date.length == 1){
+            yester_date = "0" + yester_date
+            yester2_date = "0" + yester2_date
+        }
+
+        var today_dt = today.getFullYear() + "-" + month + "-" + date;
+        var yest_dt = today.getFullYear() + "-" + month + "-" + yester_date;
+        var yest2_dt = today.getFullYear() + "-" + month + "-" + yester2_date;
+        
+        console.log(yest_dt);
         $.getJSON("/counties", function(data){
             
             for (x in data){
-                if(data[x]["date"] == "2020-04-01"){
+                if(data[x]["date"] == today_dt){
+                    county_dict[data[x]["county"]] = data[x]["state"];
+                    json_counties[data[x]["county"]] = [data[x]["cases"], data[x]["deaths"], data[x]["state"]];
+                }else if(data[x]["date"] == yest_dt){
+                    county_dict[data[x]["county"]] = data[x]["state"];
+                    json_counties[data[x]["county"]] = [data[x]["cases"], data[x]["deaths"], data[x]["state"]];
+                }else if(data[x]["date"] == yest2_dt){
                     county_dict[data[x]["county"]] = data[x]["state"];
                     json_counties[data[x]["county"]] = [data[x]["cases"], data[x]["deaths"], data[x]["state"]];
                 }
