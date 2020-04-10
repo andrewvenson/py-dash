@@ -659,7 +659,7 @@ function initMap(pos) {
         }).done(function(){
             var x = 0;
             for(county in county_dict){
-                var results = $("<p class='" + county  +  "' id='" + x + "'><a>" + county + ", " + county_dict[county] + "</a></p>");
+                var results = $("<p class='" + county  +  "' id='" + x + "'><a>" + county + " County, " + county_dict[county] + "</a></p>");
                 
                 $("#search-results").append(results);
 
@@ -729,13 +729,13 @@ function initMap(pos) {
 
             map.data.addListener('click', function(event) {
                 if(json_counties[event.feature.getProperty('name')] == undefined){
-                    $('.county-title').text(event.feature.getProperty("name"));
+                    $('.county-title').text(event.feature.getProperty("name") + " County");
                     $('.county-info').css('display', 'block');
                     $('.county-total').text("no data");
                     $('.county-totaldeaths').text("no data");
                 }else{
                     $('.county-info').css('display', 'block');
-                    $('.county-title').text(event.feature.getProperty("name") + ", " + json_counties[event.feature.getProperty('name')][2]);
+                    $('.county-title').text(event.feature.getProperty("name") + " County, " + json_counties[event.feature.getProperty('name')][2]);
                     $('.county-total').text(json_counties[event.feature.getProperty('name')][0]);
                     $('.county-totaldeaths').text(json_counties[event.feature.getProperty('name')][1]);
                 }

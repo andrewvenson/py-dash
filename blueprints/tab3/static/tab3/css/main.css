@@ -55,8 +55,8 @@
 
 .donate:hover{
     box-shadow: 3px 4px 5px lightgray;
-    color:#005EAA;
-    background-color: white;
+    color:#005EAA !important;
+    background-color: whitesmoke !important;
     cursor:pointer;
 }
 
