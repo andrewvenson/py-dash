@@ -28,3 +28,30 @@ nav{
     margin-right:10px;
 }
 
+
+.global-numbers span{
+    font-size: 10px;
+    font-weight:bold;
+    color: #005EAA;
+}
+
+.global-numbers-shrunk-div p{
+    font-size: 14px;
+    font-weight:bold;
+    color: #005EAA;
+}
+
+@media only screen and (max-width: 906px) {
+    .global-numbers{
+        display:none !important;
+    }
+    .global-numbers-shrunk{
+        display:block !important;
+    }
+} 
+
+@media only screen and (min-width: 906px) {
+    .global-numbers-shrunk-div{
+        display:none !important;
+    }
+}

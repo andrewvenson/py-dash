@@ -1,23 +1,78 @@
+<div>
+    <nav class='nav'>
+        <a class="nav-logo" href="/" style="font-family: monospace !important;"><h5 style='font-weight:bold;text-shadow: 3px 4px 5px gray'>pycdv</h5></a>
+        <a style='color:rgb(0, 55, 100);'>|</a>
+        {% if request.path == "/dash" or request.path == "/" %}
+            <a class="nv-link" href="/" style="color: rgb(0, 55, 100) !important;border-top: 2px solid rgb(0, 55, 100)">Dash</a>          
+        {% else %}
+            <a class="nv-link" href="/">Dash</a>          
+        {% endif %}
+    
+        {% if request.path == "/tab2" %}
+            <a class="nv-link" href="/tab2" style="color: rgb(0, 55, 100) !important;border-top: 2px solid rgb(0, 55, 100)">Coverage</a>
+        {% else %}
+            <a class="nv-link" href="/tab2">Coverage</a>          
+        {% endif %}
+    
+        {% if request.path == "/tab3"  %}
+            <a class="nv-link" href="/tab3" style="color: rgb(0, 55, 100) !important;border-top: 2px solid rgb(0, 55, 100)">Assist</a>
+        {% else %}
+            <a class="nv-link" href="/tab3">Assist</a>          
+        {% endif %}
+    </nav>
+    <div class='global-numbers' style='position:fixed; right:10px;top:10px;'>
+        {% for x in data %}
+            {% for y in data[x] %}
+                {% if y == "NewConfirmed" %}
+                    <span>New Cases: <span style='color:red;'>{{data[x][y]}}</span> |</span>
+                {% endif %}
+                {% if y == "TotalConfirmed" %}
+                    <span>Total Cases: <span style='color:red;'>{{data[x][y]}}</span> |</span>
+                {% endif %}
+                {% if y == "NewDeaths" %}
+                    <span>New Deaths: <span style='color:red;'>{{data[x][y]}}</span> |</span>
+                {% endif %}
+                {% if y == "TotalDeaths" %}
+                    <span>Total Deaths: <span style='color:red;'>{{data[x][y]}}</span> |</span>
+                {% endif %}
+                {% if y == "NewRecovered" %}
+                    <span>New Recovered: <span style='color:red;'>{{data[x][y]}}</span> |</span>
+                {% endif %}
+                {% if y == "TotalRecovered" %}
+                    <span>Total Recovered: <span style='color:red;'>{{data[x][y]}}</span></span>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
 
-<nav class='nav'>
-    <a class="nav-logo" href="/" style="font-family: monospace !important;"><h5 style='font-weight:bold;text-shadow: 3px 4px 5px gray'>pycdv</h5></a>
-    <a style='color:rgb(0, 55, 100);'>|</a>
-    {% if request.path == "/dash" or request.path == "/" %}
-        <a class="nv-link" href="/" style="color: rgb(0, 55, 100) !important;border-top: 2px solid rgb(0, 55, 100)">Dash</a>          
-    {% else %}
-        <a class="nv-link" href="/">Dash</a>          
-    {% endif %}
+    <div class='global-numbers-shrunk' style='position:fixed; right:10px;top:10px;display:none;'>
+        <button class='btn btn-primary btn-sm global-btn' style='background-color:#005EAA; border-color:#005EAA;'>View global #'s</button>
+        <button class='btn btn-primary btn-sm close-global' style='background-color:#005EAA; border-color:#005EAA;display:none;'>Close global #'s</button>
+        
+    </div>
 
-    {% if request.path == "/tab2" %}
-        <a class="nv-link" href="/tab2" style="color: rgb(0, 55, 100) !important;border-top: 2px solid rgb(0, 55, 100)">Coverage</a>
-    {% else %}
-        <a class="nv-link" href="/tab2">Coverage</a>          
-    {% endif %}
-
-    {% if request.path == "/tab3"  %}
-        <a class="nv-link" href="/tab3" style="color: rgb(0, 55, 100) !important;border-top: 2px solid rgb(0, 55, 100)">Assist</a>
-    {% else %}
-        <a class="nv-link" href="/tab3">Assist</a>          
-    {% endif %}
-
-</nav>
+    <div class='global-numbers-shrunk-div' style='position:fixed; display:none; right:10px;top:50px;width: 200px;z-index:2000;border:1px solid lightgray; background-color: whitesmoke;box-shadow: 2px 3px 4px gray;padding:5px;border-radius: 5px;'>
+        {% for x in data %}
+            {% for y in data[x] %}
+                {% if y == "NewConfirmed" %}
+                    <p>New Cases: <span style='color:red;'>{{data[x][y]}}</span></p>
+                {% endif %}
+                {% if y == "TotalConfirmed" %}
+                    <p>Total Cases: <span style='color:red;'>{{data[x][y]}}</span></p>
+                {% endif %}
+                {% if y == "NewDeaths" %}
+                    <p>New Deaths: <span style='color:red;'>{{data[x][y]}}</span></p>
+                {% endif %}
+                {% if y == "TotalDeaths" %}
+                    <p>Total Deaths: <span style='color:red;'>{{data[x][y]}}</span></p>
+                {% endif %}
+                {% if y == "NewRecovered" %}
+                    <p>New Recovered: <span style='color:red;'>{{data[x][y]}}</span> </p>
+                {% endif %}
+                {% if y == "TotalRecovered" %}
+                    <p>Total Recovered: <span style='color:red;'>{{data[x][y]}}</span></p>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+</div>
