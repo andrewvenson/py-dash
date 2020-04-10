@@ -1,5 +1,26 @@
 {% extends 'dash/layouts/layout.html' %}
+
 {% block content %}
 
-<h1>Coverage</h1>
+<div class="wrapper">
+  <div class="widget one" id="wordcloud-widget" style='padding:0px !important;margin: 5px 0px 10px 0px'>
+        {% include 'tab2/widgets/wordcloud.html' %}
+        <img src={{url_for('tab2_bp.static', filename="images/wordcloud.png")}} height="100%", width="100%">
+  </div>
+  <div class="widget two" id="global-news-widget" style='padding:0px !important;margin: 5px 0px 10px 0px'>
+        {% include 'tab2/widgets/global-news-widget.html' %}
+        {% for key in global_keys[:7] %}
+          <h5 style='margin: 5px 5px 5px 20px'> {{ global_data[key]['title'] }}<h5>
+          <a href="{{ global_data[key]['url'] }}" style='margin: 5 px;'> {{ global_data[key]['description'][:90]}} </a>
+        {% endfor %}
+  </div>
+  <div class="widget three" id="local-news-widget" style='padding:0px !important;margin: 5px 0px 10px 0px; overflow: scroll;'>
+        {% include 'tab2/widgets/local-news-widget.html' %}
+        {% for key in local_keys[:4] %}
+          <h5 style='margin: 5px 5px 5px 10px;'> {{local_news_data[key]['title'][:45]}}</h5>
+          <a href="{{ local_news_data[key]['url'] }}" style='margin: 5px;'> {{ local_news_data[key]['description'][:80] }}</a>
+        {%endfor%}
+  </div>
+</div>
+
 {% endblock content %}

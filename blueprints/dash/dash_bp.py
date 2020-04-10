@@ -280,10 +280,10 @@ def index():
     # all_data = json.loads(response_all.text)
     sum_data = json.loads(response_sum.text)
     # covidpath = os.path.abspath("covid-19-data")
-    csv_file_path = os.path.abspath(".") + "/blueprints/dash/templates/dash/covid-19-data/tah/us-counties.csv"
+    csv_file_path = os.path.abspath(".") + "/blueprints/dash/templates/dash/covid-19-data/us-counties.csv"
     json_file_path = os.path.abspath(".") + "/blueprints/dash/templates/dash/covid-19-data/us-counties.json"
 
-    #csv_file_path = "var/www/html/py-dash/blueprints/dash/templates/dash/covid-19-data/tah/us-counties.csv"
+    #csv_file_path = "var/www/html/py-dash/blueprints/dash/templates/dash/covid-19-data/us-counties.csv"
     #json_file_path = "var/www/html/py-dash/blueprints/dash/templates/dash/covid-19-data/us-counties.json"
     data = []
 
