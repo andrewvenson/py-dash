@@ -28,3 +28,18 @@ nav{
     margin-right:10px;
 }
 
+.global-numbers span{
+    font-size: 10px;
+    font-weight:bold;
+    color: #005EAA;
+}
+
+@media only screen and (max-width: 906px) {
+    
+    .global-numbers{
+        display:none !important;
+    }
+
+    
+    
+}
