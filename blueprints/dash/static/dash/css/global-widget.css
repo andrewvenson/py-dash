@@ -62,7 +62,6 @@
 .titles{
     color:#005EAA !important;
     background-color: rgb(231, 231, 231);
-    float:left;
     padding:3px;
     border-radius: 10px;
     font-size: 15px;
@@ -73,7 +72,6 @@
 .titles1{
     color:#005EAA !important;
     background-color: rgb(231, 231, 231);
-    float:right;
     padding:3px;
     border-radius: 10px;
     font-size: 15px;
