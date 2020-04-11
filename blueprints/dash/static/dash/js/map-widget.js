@@ -636,7 +636,7 @@ function initMap(pos) {
         if(yester_date.length == 1){
             yester_date = "0" + yester_date;
             yester2_date = "0" + yester2_date;
-        }else if (yester2_date == 1){
+        }else if (yester2_date.length == 1){
             yester2_date = "0" + yester2_date;
         }
 
