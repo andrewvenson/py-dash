@@ -613,6 +613,7 @@ function initMap(pos) {
         var today = new Date();
         var month = "";
         var date = "";
+        var yester2_date; 
 
         if(today.getMonth().toString().length == 1){
             month = "0" + (today.getMonth()+1).toString();
@@ -633,8 +634,10 @@ function initMap(pos) {
         }
 
         if(yester_date.length == 1){
-            yester_date = "0" + yester_date
-            yester2_date = "0" + yester2_date
+            yester_date = "0" + yester_date;
+            yester2_date = "0" + yester2_date;
+        }else if (yester2_date == 1){
+            yester2_date = "0" + yester2_date;
         }
 
         var today_dt = today.getFullYear() + "-" + month + "-" + date;
