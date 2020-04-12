@@ -27,12 +27,14 @@
     <!-- All data within global widget -->
     <div class='global-sts' style="margin-top:10px;">
     <!-- This is jinja templating | Here we're looping through the api data "https://api.covid19api.com/summary" our dashboard blueprint-->
+    <div class='sorted'></div>
+    <div class='wild'>
         {% for x in data %}
             {% for y in data[x] %}
                 {% if (y['Country'] != "" ) %}
                     {% if data[x]["NewConfirmed"] %}
                     {% else %}
-                        <div class='country-block'>
+                        <div class="country-block {{y['NewConfirmed']}} {{y['TotalConfirmed']}} {{y['NewDeaths']}} {{y['TotalDeaths']}}" id="{{cc[y['Country']]}}">
                             <div class="row" style='height:50px;'>
                                 <div class="col">
                                     <p style='padding-left:12px;'>{{y['Country']}}</p>
@@ -54,6 +56,7 @@
                 {% endif %}
             {% endfor %}
         {% endfor %}
+        </div>
     </div>
 </div> 
 

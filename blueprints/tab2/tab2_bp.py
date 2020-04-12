@@ -7,6 +7,10 @@ from .. import db
 import json
 import requests
 import urllib.request as request
+from matplotlib import pyplot as plt
+from wordcloud import STOPWORDS, WordCloud
+import pandas as pd
+from bs4 import BeautifulSoup as bs
 
 # Dash Blueprint Creation
 tab2_bp = Blueprint('tab2_bp', __name__,
@@ -268,13 +272,68 @@ country_codes = {
 # Dash Blueprint Routes
 @tab2_bp.route('/tab2')
 def index():
-    
      # Covid all/summary Urls
+    getUrlAll = "https://api.covid19api.com/all"
     getUrlSum = "https://api.covid19api.com/summary"
+
+    tab3_url = url_for('tab3_bp.index')
 
     # response_all = requests.get(getUrlAll)
     response_sum = requests.get(getUrlSum)
     # all_data = json.loads(response_all.text)
     sum_data = json.loads(response_sum.text)
-    
-    return render_template('tab2/tab2.html', data = sum_data, cc = country_codes)
+
+    local_news_url = ('http://newsapi.org/v2/top-headlines?'
+           'q=COVID-19&'
+           'country={}&'
+           'apiKey=89e2406696674eaeb296660f1ff27edb'.format('IN'))
+    local_news_response = requests.get(local_news_url)
+    local_news_response.raise_for_status()
+    local_news_data = json.loads(local_news_response.text)
+    local_news_dict = dict()
+
+    for i in range(len(local_news_data['articles'])):
+        local_news_dict[i] = local_news_data['articles'][i]
+
+    global_news_url = "https://newsapi.org/v2/top-headlines?q=covid-19&apiKey=89e2406696674eaeb296660f1ff27edb"
+    global_news_response = requests.get(global_news_url)
+    global_news_response.raise_for_status()
+    global_news_data = json.loads(global_news_response.text)
+    global_news_dict = dict()
+
+    for i in range(len(global_news_data['articles'])):
+        global_news_dict[i] = global_news_data['articles'][i]
+
+    return render_template(
+        'tab2/tab2.html',
+        data = sum_data,
+        cc = country_codes,
+        local_keys = list(local_news_dict.keys()),
+        local_news_data = local_news_dict,
+        global_keys = list(global_news_dict.keys()),
+        global_data = global_news_dict
+    )
+
+@tab2_bp.route('/tab2')
+def wordcloud_gen():
+    """
+    Generates a wordcloud by scraping an article from The Verge
+    """
+    url = "https://www.theverge.com/2020/4/3/21207227/black-widow-mulan-release-date-artemis-fowl-marvel-cinematic-universe"
+    response = requests.get(url)
+    response.raise_for_status() # checks whether or not the response is valid
+    soup = bs(response.text, 'html.parser') # parses the html to a BeautifulSoup object
+    text = ''
+
+    for tag in soup.find_all("div", class_="c-entry-content"): # filters out all div tags with the class 'c-entry-content'
+        soup2 = bs(str(tag), 'html.parser') # anothr BeautifulSoup object to parse <div> tags
+        for para in soup2.find_all('p'): # finds all div-tags with the <p> tag
+            text += para.text # adds the text in the <p> tag to a string object
+
+    wordcloud = WordCloud(max_font_size=55, max_words=100, background_color='black').generate(text)
+
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis("off")
+    plt.savefig('../static/tab2/images/wordcloud.png', bbox_inches = 'tight', pad_inches = 0)
+
+    return render_template('tab2.html', url="wordcloud.png")
