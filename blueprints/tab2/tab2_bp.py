@@ -270,7 +270,7 @@ country_codes = {
 
 
 # Dash Blueprint Routes
-@tab2_bp.route('/tab2')
+@tab2_bp.route('/coverage')
 def index():
      # Covid all/summary Urls
     getUrlAll = "https://api.covid19api.com/all"
@@ -314,7 +314,7 @@ def index():
         global_data = global_news_dict
     )
 
-@tab2_bp.route('/tab2')
+@tab2_bp.route('/coverage')
 def wordcloud_gen():
     """
     Generates a wordcloud by scraping an article from The Verge

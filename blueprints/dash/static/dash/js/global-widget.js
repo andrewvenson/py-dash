@@ -259,6 +259,7 @@ $('.filter').click(function(){
     var sorted_new = [];
     var sorted_total_d = [];
     var sorted_total_nd = [];
+    var sorted_az = [];
 
     for(x in country_codes){
         ccs[country_codes[x]] = x;

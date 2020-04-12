@@ -262,7 +262,7 @@ country_codes = {
 
 
 # Dash Blueprint Routes
-@tab3_bp.route('/tab3')
+@tab3_bp.route('/assist')
 def index():
 
      # Covid all/summary Urls
