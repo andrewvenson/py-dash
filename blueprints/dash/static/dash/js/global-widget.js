@@ -1,27 +1,3 @@
-$('.search').click(function(){
-    if($('.titles').css('display')=='none'){
-        $('.titles').css('display', 'block');
-        $('.search-inp').css('display', 'none');
-    }else{
-        $('.titles').css('display', 'none');
-        $('.search-inp').css('display', 'block');
-    }
-});
-
-$('.minimize').click(function(){
-    // $('.sd-hgt-xtnd').css('display', 'none');
-    // $('.shrunkdv').css('display', 'block');
-    $('.sd-hgt-xtnd').css({'cssText':'display: none !important'});
-    $('.shrunkdv').css({'cssText':'display: block !important'});
-
-});
-
-$('.maximize').click(function(){
-    // $('.shrunkdv').css('display', 'none');
-    $('.shrunkdv').css({'cssText':'display: none !important'});
-
-    $('.sd-hgt-xtnd').css({'cssText':'display: block !important'});
-});
 
 country_codes = {
     "Afghanistan" 	:"AF",
@@ -274,11 +250,8 @@ country_codes = {
     }
 
 
-$('.titles1').click(function(){
+$('.filter').click(function(){
 
-    // $(".wild").css('display', "none");
-
-    
     var ccs = {};
     var country_stats = {};
 
@@ -296,24 +269,102 @@ $('.titles1').click(function(){
             // console.log(ccs[$('.country-block')[x].id] , $("#" + $('.country-block')[x].id).attr('class').split(' ')[1], $("#" + $('.country-block')[x].id).attr('class').split(' ')[2], $("#" + $('.country-block')[x].id).attr('class').split(' ')[3], $("#" + $('.country-block')[x].id).attr('class').split(' ')[4]);
             country_stats[ccs[$('.country-block')[x].id]] = [$("#" + $('.country-block')[x].id).attr('class').split(' ')[1], $("#" + $('.country-block')[x].id).attr('class').split(' ')[2], $("#" + $('.country-block')[x].id).attr('class').split(' ')[3], $("#" + $('.country-block')[x].id).attr('class').split(' ')[4]];
         }catch(err){
-            console.log("Country not in dict")
+            // console.log("Country not in dict")
         }
     }
 
-    
-
     for(x in country_stats){
-        sorted_totals.push(country_stats[x][0]);
-        // $(".sorted").append("<div class='country-block'><p>" + x +  "</p><div>" + 
-        // "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[x][0] + 
-        // "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[x][1] +
-        // "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>"+country_stats[x][2] +
-        // "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;margin-bottom:0px !important;'>Total Deaths: <span style='color:whitesmoke;'>"+country_stats[x][3] +"</span></p>" + 
-        // "</div></div>");
+        sorted_new.push([x, country_stats[x][0]]);
+        sorted_totals.push([x, country_stats[x][1]]);
+        sorted_total_nd.push([x, country_stats[x][2]]);
+        sorted_total_d.push([x, country_stats[x][3]]);
     }
 
-    for( x in sorted_totals){
-        console.log(sorted_totals[x]);
-    }
+    sorted_totals.sort(function(a, b) {
+        return b[1] - a[1];
+    });
 
+    sorted_new.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+
+    sorted_total_d.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+
+    sorted_total_nd.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+
+    $(".wild").css('display', "none");
+    
+    if(this.id == "newcases"){
+        $(".sorted").empty();
+        for (var x = 0; x < sorted_new.length; x++){
+            // console.log(sorted_new[x][0], sorted_new[x][1]);
+            // console.log(country_stats[sorted_new[x][0]]);
+    
+            $(".sorted").append("<div class='country-block'><p>" + sorted_new[x][0] +  "</p><div>" + 
+            "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_new[x][0]][0] + 
+            "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_new[x][0]][1] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_new[x][0]][2] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;margin-bottom:0px !important;'>Total Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_new[x][0]][3] +"</span></p>" + 
+            "</div></div>");
+        }
+    }else if(this.id == "totalcases"){
+        $(".sorted").empty();
+        for (var x = 0; x < sorted_totals.length; x++){
+            // console.log(sorted_totals[x][0], sorted_totals[x][1]);
+            // console.log(country_stats[sorted_totals[x][0]]);
+    
+            $(".sorted").append("<div class='country-block'><p>" + sorted_totals[x][0] +  "</p><div>" + 
+            "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_totals[x][0]][0] + 
+            "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_totals[x][0]][1] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_totals[x][0]][2] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;margin-bottom:0px !important;'>Total Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_totals[x][0]][3] +"</span></p>" + 
+            "</div></div>");
+        }
+    }else if(this.id == "totaldeaths"){
+        $(".sorted").empty();
+        for (var x = 0; x < sorted_total_d.length; x++){
+            // console.log(sorted_total_d[x][0], sorted_total_d[x][1]);
+            // console.log(country_stats[sorted_total_d[x][0]]);
+    
+            $(".sorted").append("<div class='country-block'><p>" + sorted_total_d[x][0] +  "</p><div>" + 
+            "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_total_d[x][0]][0] + 
+            "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_total_d[x][0]][1] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_total_d[x][0]][2] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;margin-bottom:0px !important;'>Total Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_total_d[x][0]][3] +"</span></p>" + 
+            "</div></div>");
+        }
+    }else if(this.id == "newdeaths"){
+        $(".sorted").empty();
+        for (var x = 0; x < sorted_total_nd.length; x++){
+            // console.log(sorted_total_nd[x][0], sorted_total_nd[x][1]);
+            // console.log(country_stats[sorted_total_nd[x][0]]);
+    
+            $(".sorted").append("<div class='country-block'><p>" + sorted_total_nd[x][0] +  "</p><div>" + 
+            "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_total_nd[x][0]][0] + 
+            "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_total_nd[x][0]][1] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_total_nd[x][0]][2] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;margin-bottom:0px !important;'>Total Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_total_nd[x][0]][3] +"</span></p>" + 
+            "</div></div>");
+        }
+    }
+});
+
+
+$('.minimize').click(function(){
+    // $('.sd-hgt-xtnd').css('display', 'none');
+    // $('.shrunkdv').css('display', 'block');
+    $('.sd-hgt-xtnd').css({'cssText':'display: none !important'});
+    $('.shrunkdv').css({'cssText':'display: block !important'});
+
+});
+
+$('.maximize').click(function(){
+    // $('.shrunkdv').css('display', 'none');
+    $('.shrunkdv').css({'cssText':'display: none !important'});
+
+    $('.sd-hgt-xtnd').css({'cssText':'display: block !important'});
 });

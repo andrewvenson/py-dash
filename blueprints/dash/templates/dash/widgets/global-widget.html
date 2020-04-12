@@ -3,24 +3,13 @@
         <a class='minimize' style='float:right;'><img class='img-min' src="{{url_for('dash_bp.static', filename='images/shrink.png')}}" style='height: 0px; width:0px;' alt=""></a>
     </div>
     <div class="search-title" style='position:relative'>
-        <input class='search-inp' type="text" placeholder='Search...' style="width:100%;
-        display:none;
-        border: 1px solid   rgb(226, 226, 226);
-        background-color: whitesmoke;
-        position: absolute; 
-        z-index: 0;
-        border-radius: 10px;
-        height:33px;
-        color:black;
-        padding-left:30px;">
-
-        <a class='search' style='z-index: 999 !important;
-        position:absolute;
-        top:5px;
-        left:5px;'>
-
         <!-- <img src="{{ url_for('dash_bp.static', filename='images/search1.png') }}" alt="Search" style='width: 20px; height:20px;z-index: 777 !important;'></a> -->
-        <a class='titles1'>Global Cases</a>
+        <p class='titles1'>Global Cases</p>
+        <button class='filter btn btn-secondary btn-sm' id = "az">A-Z</button>
+        <button class='filter btn btn-secondary btn-sm' id="newcases">New Cases</button>
+        <button class='filter btn btn-secondary btn-sm' id = "totalcases">Total Cases</button>
+        <button class='filter btn btn-secondary btn-sm' id = "totaldeaths">Total Deaths</button>
+        <button class='filter btn btn-secondary btn-sm' id="newdeaths">New Deaths</button>
     </div>
 
 
