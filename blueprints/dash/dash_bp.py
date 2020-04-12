@@ -275,11 +275,9 @@ def index():
 
     tab3_url = url_for('tab3_bp.index')
 
-    # response_all = requests.get(getUrlAll)
     response_sum = requests.get(getUrlSum)
-    # all_data = json.loads(response_all.text)
     sum_data = json.loads(response_sum.text)
-    # covidpath = os.path.abspath("covid-19-data")
+
     csv_file_path = os.path.abspath(".") + "/blueprints/dash/templates/dash/covid-19-data/us-counties.csv"
     json_file_path = os.path.abspath(".") + "/blueprints/dash/templates/dash/covid-19-data/us-counties.json"
 
@@ -316,7 +314,7 @@ def index():
     with open(json_file_path, 'w') as jsonFile:
         jsonFile.write(json.dumps(data, indent=4))
     # return html template to browser with covid summary data
-    return render_template('dash/dash.html', data = sum_data, cc = country_codes)
+    return render_template('dash/dash.html', data=sum_data, cc = country_codes)
 
 
 # get counties json
