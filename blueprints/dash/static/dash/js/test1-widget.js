@@ -1,103 +1,72 @@
-// // NOT EFFECTIVE
+window.addEventListener('load', setup);
 
+async function setup() {
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const World = await getData();
+  const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: World.dates,
+      datasets: [
+        {
+          label: 'Confirmed Cases',
+          data: World.cases_sum,
+          fill: false,
+          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Confirmed Cases (World)'
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+    }
+  });
+}
+//get data from csv
+async function getData() {
+  const response = await fetch('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv');
+  var data = await response.text();
 
+  const dates = [];
+  var cases_sum = [];
+  const first_row = data.split('\n')[0].split(',');
 
-// //api for testing
-// //const api_url = 'https://api.covid19api.com/total/country/south-africa/status/confirmed';
+  for (var i = 4; i < first_row.length; ++i) {
+    var date = first_row[i].substring(0, 4);
+    if (date[date.length - 1] == '/') { date = date.substring(0, 3); }
+    dates.push(date);
+  }
 
-// // api url for country list
-// const country_api = 'https://api.covid19api.com/countries';
+  const second_row = data.split('\n').slice(1)[0].split(',');
 
-// //append country slug & condition string
-// const cases_active = "https://api.covid19api.com/total/country/" ;
-// const confirmed = "/status/confirmed";
-// const recovered = "/status/recovered";
-// const deaths = "/status/deaths";
+  for (var i = 4; i < second_row.length; ++i) {
+    cases_sum.push(parseInt(second_row[i]));
+  }
 
-// window.addEventListener('load', setup);
+  const rows_after_two = data.split('\n').slice(2);
+  for (var i = 0; i < rows_after_two.length; ++i) {
+    const cols = rows_after_two[i].split(',');
+    for (var j = 4; j < cols.length; ++j) {
+      cases_sum[j] += parseInt(cols[j]);
+    }
+  }
 
-// async function setup(){
-//     const ctx = document.getElementById('myChart').getContext('2d');
-//     const World_Cases = await getData();
-//     const myChart = new Chart(ctx, {
-//       type: 'line',
-//       data: {
-//         labels: World_Cases.dates,
-//         datasets: [
-//           {
-//             label: 'Confirmed Cases',
-//             data: World_Cases.cases,
-//             fill: false,
-//             borderColor: 'rgba(255, 99, 132, 1)',
-//             backgroundColor: 'rgba(255, 99, 132, 0.5)',
-//             borderWidth: 1
-//           }
-//         ]
-//       },
-//       options: {
-//           title: {
-//             display: true,
-//             text: 'Confirmed Cases (World)'
-//         },
-//         responsive: true,
-//         maintainAspectRatio: false,
-//       }
-//     });
-//   }
+  return { dates, cases_sum };
+}
 
-//   async function getData() {
-//     const dates = [];
-//     var cases_sum = [];
-//     var first_run = true;
-
-//     //get country slug data to change api url
-//     const country_response = await fetch(country_api);
-//     const country_list = await country_response.json();
-//     const country_slug = [];
-
-//     //save country slug(will be used for api urls)
-//     country_list.forEach(obj =>{
-//       for(const key in obj){
-//         if(key == "Slug") { country_slug.push(obj[key]);}
-//       }
-//     });
-
-//     //go through each country,and add numbers (all dates start at 1-22)
-//     //if it is the first iteration, push back the dates to dates array
-//     for(let i = 0; i < country_slug.length; ++i)
-//     {
-//       var slug_string = country_slug[i];
-//       const api_url = cases_active + slug_string + confirmed;
-//       //console.log(api_url);
-
-//       const response = await fetch(api_url);
-//       const data = await response.json();
-
-//       data.forEach(obj => {
-//         let index = 0;
-//         for(const key in obj){
-//           if(first_run && key == "Date") {dates.push(obj[key].substring(5,10));}
-//           else if(key == "Cases")
-//           {
-//             if(first_run) { cases_sum.push(obj[key]);}
-//             else if(obj[key] > 0){ cases_sum[index++] += obj[key];}
-//           }
-//         }
-//       });
-
-//       first_run = false;
-//     }
-//       return {dates, cases_sum};
-//   }
-
-// // Select map tab
+// //Select map tab (implement later)
 // $(".graph-tab").click(function(){
 //     $(".graph-tab").css("background-color", "whitesmoke");
 //     $(this).css("background-color", "rgb(211, 211, 211)");
- 
+
 //     if($(this).text() == "Linear"){
- 
+
 //     }else if($(this).text() == "Logarithmic"){
 //     }
-
 //  });
