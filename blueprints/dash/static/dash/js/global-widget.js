@@ -381,16 +381,6 @@ $('.filter').click(function(){
 });
 
 
-{/* <div class="row" style='height:50px;'>
-    <div class="col">
-        <p style='padding-left:12px;'>{{y['Country']}}</p>
-    </div>
-    <div class="col" style='position:relative;'>
-            <img style='position:absolute; top:-17px;right: 8px;' src="https://www.countryflags.io/{{ cc[y['Country']] }}/flat/64.png">
-    </div>
-</div> */}
-
-
 $('.minimize').click(function(){
     // $('.sd-hgt-xtnd').css('display', 'none');
     // $('.shrunkdv').css('display', 'block');

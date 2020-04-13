@@ -20,7 +20,7 @@
     <div class='wild'>
         {% for x in data %}
             {% for y in data[x] %}
-                {% if (y['Country'] != "" ) %}
+                {% if y['Country'] is defined %}
                     {% if data[x]["NewConfirmed"] %}
                     {% else %}
                         <div class="country-block {{y['NewConfirmed']}} {{y['TotalConfirmed']}} {{y['NewDeaths']}} {{y['TotalDeaths']}}" id="{{cc[y['Country']]}}">
