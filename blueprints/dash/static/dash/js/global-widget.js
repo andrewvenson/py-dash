@@ -313,7 +313,7 @@ $('.filter').click(function(){
             // console.log(sorted_new[x][0], sorted_new[x][1]);
             // console.log(country_stats[sorted_new[x][0]]);
     
-            $(".sorted").append("<div class='country-block'><div class='row' style='height:50px;'><div class='col'><p style='padding-left:12px'>" + sorted_new[x][0] +  "</p></div>"+
+            $(".sorted").append("<div class='country-block'><div class='row' style='height:65px;'><div class='col'><p style='padding-left:12px'>" + sorted_new[x][0] +  "</p></div>"+
             "<div class='col' style='position:relative;'><img style='position:absolute; top:-17px;right: 8px;' src='https://www.countryflags.io/" + country_codes[sorted_new[x][0]] + "/flat/64.png'></div></div>" + 
             "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_new[x][0]][0] + 
             "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_new[x][0]][1] +
@@ -327,7 +327,7 @@ $('.filter').click(function(){
             // console.log(sorted_totals[x][0], sorted_totals[x][1]);
             // console.log(country_stats[sorted_totals[x][0]]);
     
-            $(".sorted").append("<div class='country-block'><div class='row' style='height:50px;'><div class='col'><p style='padding-left:12px'>" + sorted_totals[x][0] +  "</p></div>"+
+            $(".sorted").append("<div class='country-block'><div class='row' style='height:65px;'><div class='col'><p style='padding-left:12px'>" + sorted_totals[x][0] +  "</p></div>"+
             "<div class='col' style='position:relative;'><img style='position:absolute; top:-17px;right: 8px;' src='https://www.countryflags.io/" + country_codes[sorted_totals[x][0]] + "/flat/64.png'></div></div>" + 
             "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_totals[x][0]][0] + 
             "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_totals[x][0]][1] +
@@ -341,7 +341,7 @@ $('.filter').click(function(){
             // console.log(sorted_total_d[x][0], sorted_total_d[x][1]);
             // console.log(country_stats[sorted_total_d[x][0]]);
     
-            $(".sorted").append("<div class='country-block'><div class='row' style='height:50px;'><div class='col'><p style='padding-left:12px'>" + sorted_total_d[x][0] +  "</p></div>"+
+            $(".sorted").append("<div class='country-block'><div class='row' style='height:65px;'><div class='col'><p style='padding-left:12px'>" + sorted_total_d[x][0] +  "</p></div>"+
             "<div class='col' style='position:relative;'><img style='position:absolute; top:-17px;right: 8px;' src='https://www.countryflags.io/" + country_codes[sorted_total_d[x][0]] + "/flat/64.png'></div></div>" + 
             "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_total_d[x][0]][0] + 
             "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_total_d[x][0]][1] +
@@ -355,7 +355,7 @@ $('.filter').click(function(){
             // console.log(sorted_total_nd[x][0], sorted_total_nd[x][1]);
             // console.log(country_stats[sorted_total_nd[x][0]]);
     
-            $(".sorted").append("<div class='country-block'><div class='row' style='height:50px;'><div class='col'><p style='padding-left:12px'>" + sorted_total_nd[x][0] +  "</p></div>"+
+            $(".sorted").append("<div class='country-block'><div class='row' style='height:65px;'><div class='col'><p style='padding-left:12px'>" + sorted_total_nd[x][0] +  "</p></div>"+
             "<div class='col' style='position:relative;'><img style='position:absolute; top:-17px;right: 8px;' src='https://www.countryflags.io/" + country_codes[sorted_total_nd[x][0]] + "/flat/64.png'></div></div>" + 
             "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_total_nd[x][0]][0] + 
             "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_total_nd[x][0]][1] +
@@ -369,7 +369,7 @@ $('.filter').click(function(){
             // console.log(sorted_total_nd[x][0], sorted_total_nd[x][1]);
             // console.log(country_stats[sorted_total_nd[x][0]]);
     
-            $(".sorted").append("<div class='country-block'><div class='row' style='height:50px;'><div class='col'><p style='padding-left:12px'>" + sorted_az[x] +  "</p></div>"+
+            $(".sorted").append("<div class='country-block'><div class='row' style='height:65px;'><div class='col'><p style='padding-left:12px'>" + sorted_az[x] +  "</p></div>"+
             "<div class='col' style='position:relative;'><img style='position:absolute; top:-17px;right: 8px;' src='https://www.countryflags.io/" + country_codes[sorted_az[x]] + "/flat/64.png'></div></div>" + 
             "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_az[x]][0] + 
             "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_az[x]][1] +
