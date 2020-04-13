@@ -279,6 +279,8 @@ $('.filter').click(function(){
         sorted_totals.push([x, country_stats[x][1]]);
         sorted_total_nd.push([x, country_stats[x][2]]);
         sorted_total_d.push([x, country_stats[x][3]]);
+        sorted_az.push(x);
+
     }
 
     sorted_totals.sort(function(a, b) {
@@ -296,6 +298,12 @@ $('.filter').click(function(){
     sorted_total_nd.sort(function(a, b) {
         return b[1] - a[1];
     });
+
+    sorted_total_nd.sort(function(a, b) {
+        return b[1] - a[1];
+    });
+
+    sorted_az.sort();
 
     $(".wild").css('display', "none");
     
@@ -349,6 +357,19 @@ $('.filter').click(function(){
             "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_total_nd[x][0]][1] +
             "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_total_nd[x][0]][2] +
             "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;margin-bottom:0px !important;'>Total Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_total_nd[x][0]][3] +"</span></p>" + 
+            "</div></div>");
+        }
+    }else if(this.id == "az"){
+        $(".sorted").empty();
+        for (var x = 0; x < sorted_az.length; x++){
+            // console.log(sorted_total_nd[x][0], sorted_total_nd[x][1]);
+            // console.log(country_stats[sorted_total_nd[x][0]]);
+    
+            $(".sorted").append("<div class='country-block'><p>" + sorted_az[x] +  "</p><div>" + 
+            "<p style='background-color:lightgray;border-radius:10px;padding:3px'> New Cases: <span style='color:whitesmoke;'>" + country_stats[sorted_az[x]][0] + 
+            "</span></p><p style='background-color:lightgray;border-radius:10px;padding:3px;'>Total Cases: <span style='color:whitesmoke;'>"+country_stats[sorted_az[x]][1] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;'>New Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_az[x]][2] +
+            "</span></p><p style='background-color: lightgray; border-radius:10px;padding:3px;margin-bottom:0px !important;'>Total Deaths: <span style='color:whitesmoke;'>"+country_stats[sorted_az[x]][3] +"</span></p>" + 
             "</div></div>");
         }
     }
