@@ -1,0 +1,12 @@
+#linear-tab {
+  margin-left: 10px;
+  margin-bottom: 0px !important;
+  border: 1px solid lightgray;
+  background-color: lightgray;
+}
+
+.graph-tab:hover {
+  background-color: lightgray !important;
+  color: white !important;
+  cursor: pointer;
+}
