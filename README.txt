@@ -1,5 +1,5 @@
-##Make sure python is installed
-##Clone project to directory of choice
+## Make sure python is installed
+## Clone project to directory of choice
 
 1. cd into our project directory
 
